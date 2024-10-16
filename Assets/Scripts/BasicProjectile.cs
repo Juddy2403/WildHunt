@@ -40,10 +40,11 @@ public class BasicProjectile : MonoBehaviour
 
     const string FRIENDLY_TAG = "Friendly";
     const string ENEMY_TAG = "Enemy";
+    const string PLAYER_TAG = "Player";
     void OnTriggerEnter(Collider other)
     {
         //make sure we only hit friendly or enemies
-        if (other.tag != FRIENDLY_TAG && other.tag != ENEMY_TAG) return;
+        if (other.tag != FRIENDLY_TAG && other.tag != ENEMY_TAG && other.tag != PLAYER_TAG) return;
 
         //only hit the opposing team
         if (other.tag == tag) return;

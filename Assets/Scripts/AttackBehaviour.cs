@@ -23,7 +23,7 @@ public class AttackBehaviour : MonoBehaviour
 
     public void Attack()
     {
-            _weapon?.Fire();
+        _weapon?.Fire();
     }
 }
 

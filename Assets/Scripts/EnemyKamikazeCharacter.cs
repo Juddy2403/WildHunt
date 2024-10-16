@@ -14,7 +14,6 @@ public class EnemyKamikazeCharacter : BasicCharacter
     {
         //expensive method, use with caution
         PlayerCharacter player = FindObjectOfType<PlayerCharacter>();
-
         if (player) _playerTarget = player.gameObject;
     }
 
