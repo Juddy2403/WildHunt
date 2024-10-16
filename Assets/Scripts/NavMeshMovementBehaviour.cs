@@ -23,15 +23,14 @@ public class NavMeshMovementBehaviour : MovementBehaviour
     const float MOVEMENT_EPSILON = .25f;
     protected override void HandleMovement()
     {
-        if (_target == null)
+        if (!_target)
         {
             _navMeshAgent.isStopped = true;
             return;
         }
 
         //should the target move we should recalculate our path
-        if ((_target.transform.position - _previousTargetPosition).sqrMagnitude
-            > MOVEMENT_EPSILON)
+        if ((_target.transform.position - _previousTargetPosition).sqrMagnitude > MOVEMENT_EPSILON)
         {
             _navMeshAgent.SetDestination(_target.transform.position);
             _navMeshAgent.isStopped = false;

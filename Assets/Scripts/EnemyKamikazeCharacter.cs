@@ -26,38 +26,32 @@ public class EnemyKamikazeCharacter : BasicCharacter
 
     void HandleMovement()
     {
-        if (_movementBehaviour == null)
-            return;
-
+        if (!_movementBehaviour) return;
         _movementBehaviour.Target = _playerTarget;
     }
 
     void HandleAttacking()
     {
         if (_hasAttacked) return;
-
-        if (_attackBehaviour == null) return;
-
-        if (_playerTarget == null) return;
+        if (!_attackBehaviour) return;
+        if (!_playerTarget) return;
 
         //if we are in range of the player, fire our weapon, 
         //use sqr magnitude when comparing ranges as it is more efficient
-        if ((transform.position - _playerTarget.transform.position).sqrMagnitude
-            < _attackRange * _attackRange)
+        if ((transform.position - _playerTarget.transform.position).sqrMagnitude < _attackRange * _attackRange)
         {
             _hasAttacked = true;
-
             _attackBehaviour.Attack();
-
-            if (_attackVFXTemplate)
-                Instantiate(_attackVFXTemplate, transform.position, transform.rotation);
-
-
-            //this is a kamikaze enemy, 
-            //when it fires, it should destroy itself
-            //we do this with a delay so other logic (like player feedback and the                   attack, will have the time to execute)
-            Invoke("Kill", 0.2f);
+            if (_attackVFXTemplate) Instantiate(_attackVFXTemplate, transform.position, transform.rotation);
+            _movementBehaviour.PushBackwards();
+            //turn has attacked off after a delay
+            Invoke("ResetAttack", 1.0f);
         }
+    }
+    
+    void ResetAttack()
+    {
+        _hasAttacked = false;
     }
 
     void Kill()

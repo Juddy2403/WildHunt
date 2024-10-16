@@ -14,6 +14,7 @@ public class MovementBehaviour : MonoBehaviour
     protected GameObject _target;
 
     protected bool _grounded = false;
+    protected bool _canMove = true;
     protected const float GROUND_CHECK_DISTANCE = 0.2f;
     protected const string GROUND_LAYER = "Ground";
 
@@ -47,7 +48,7 @@ public class MovementBehaviour : MonoBehaviour
 
     protected virtual void FixedUpdate()
     {
-        HandleMovement();
+        if(_canMove) HandleMovement();
 
         //check if there is ground beneath our feet
         _grounded = Physics.Raycast(transform.position + Vector3.up * 0.1f, Vector3.down, GROUND_CHECK_DISTANCE, LayerMask.GetMask(GROUND_LAYER));
@@ -63,6 +64,20 @@ public class MovementBehaviour : MonoBehaviour
         movement.y = _rigidBody.velocity.y;
         _rigidBody.velocity = movement;
     }
+    
+    public void PushBackwards()
+    {
+        Vector3 force = -transform.forward * 10f + transform.up * 10f; // Adjust the multipliers as needed
+        _rigidBody.AddForce(force, ForceMode.VelocityChange);
+        StartCoroutine(DisableMovementForSeconds(1f));
+    }
+    
+    private IEnumerator DisableMovementForSeconds(float seconds)
+    {
+        _canMove = false;
+        yield return new WaitForSeconds(seconds);
+        _canMove = true;
+    }
 
     protected virtual void HandleLookat()
     {
@@ -77,7 +92,7 @@ public class MovementBehaviour : MonoBehaviour
             _fpsCamera.transform.Rotate(Vector3.right, _desiredXRotation);
         
         transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
-        _shoulderObject.transform.rotation = _fpsCamera.transform.rotation;
+        _shoulderObject.transform.rotation = _fpsCamera.transform.rotation * Quaternion.Euler(0, 0.75f, 0);
     }
 
     public void Jump()

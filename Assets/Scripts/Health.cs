@@ -4,28 +4,23 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    [SerializeField]
-    private int _startHealth = 10;
-
+    [SerializeField] private int _startHealth = 10;
     private int _currentHealth = 0;
-
-    public float StartHealth { get { return _startHealth; } }
+    public float StartHealth { get { return _startHealth; } } 
     public float CurrentHealth { get { return _currentHealth; } }
-
+    protected MovementBehaviour _movementBehaviour;
     public delegate void HealthChange(float startHealth, float currentHealth);
     public event HealthChange OnHealthChanged;
 
-    [SerializeField]
-    private Color _flickerColor = Color.white;
-    [SerializeField]
-    private float _flickerDuration = 0.1f;
+    [SerializeField] private Color _flickerColor = Color.white;
+    [SerializeField] private float _flickerDuration = 0.1f;
     private Material _attachedMaterial;
-
     const string COLOR_PARAMETER = "_BaseColor";
 
     void Awake()
     {
         _currentHealth = _startHealth;
+        _movementBehaviour = GetComponent<MovementBehaviour>();
     }
     private void Start()
     {
@@ -39,12 +34,10 @@ public class Health : MonoBehaviour
     public void Damage(int amount)
     {
         _currentHealth -= amount;
-
+        _movementBehaviour.PushBackwards();
         OnHealthChanged?.Invoke(_startHealth, _currentHealth);
-        if (_attachedMaterial != null)
-            StartCoroutine(HandleColorFlicker());
-        if (_currentHealth <= 0)
-            Kill();
+        if (_attachedMaterial != null) StartCoroutine(HandleColorFlicker());
+        if (_currentHealth <= 0) Kill();
     }
 
     private IEnumerator HandleColorFlicker()

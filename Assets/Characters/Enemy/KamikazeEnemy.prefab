@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 9180801999676994511}
   - component: {fileID: 7357157979032782140}
   - component: {fileID: 9041285030690502900}
+  - component: {fileID: 4298557486569067711}
   m_Layer: 7
   m_Name: KamikazeEnemy
   m_TagString: Enemy
@@ -57,8 +58,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0.5, z: 0}
+  m_Size: {x: 1.5, y: 2, z: 1.5}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &1276297627025725291
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,6 +112,7 @@ MonoBehaviour:
   _shoulderObject: {fileID: 0}
   _movementSpeed: 6
   _jumpStrength: 10
+  _fpsCamera: {fileID: 0}
 --- !u!114 &7357157979032782140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,6 +126,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _startHealth: 15
+  _flickerColor: {r: 1, g: 0, b: 0, a: 1}
+  _flickerDuration: 0.3
 --- !u!114 &9041285030690502900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,6 +143,33 @@ MonoBehaviour:
   _gunTemplate: {fileID: 4917095759107280516, guid: a8e488d518a2083469478d20f3063ab7,
     type: 3}
   _socket: {fileID: 6143053904771826585}
+--- !u!54 &4298557486569067711
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6143053904771826585}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!1001 &4817112475747981704
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -147,6 +178,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6150703913196053318}
     m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 2eb003adc5f2bde43bdb1dc051cf639d,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5568
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2eb003adc5f2bde43bdb1dc051cf639d,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5568
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2eb003adc5f2bde43bdb1dc051cf639d,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.5568
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2eb003adc5f2bde43bdb1dc051cf639d,
         type: 3}
       propertyPath: m_LocalPosition.x

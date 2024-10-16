@@ -6,7 +6,6 @@ public class HUD : MonoBehaviour
 {
     private UIDocument _attachedDocument = null;
     private VisualElement _root = null;
-
     private ProgressBar _healthbar = null;
 
     // Start is called before the first frame update
@@ -43,7 +42,7 @@ public class HUD : MonoBehaviour
     {
         if (_healthbar == null) return;
 
-        _healthbar.value = currentHealth / startHealth;
+        _healthbar.value = (currentHealth / startHealth)*100.0f;
         _healthbar.title = string.Format("{0}/{1}", currentHealth, startHealth);
     }
 }
