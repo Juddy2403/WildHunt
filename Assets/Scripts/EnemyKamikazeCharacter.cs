@@ -28,11 +28,17 @@ public class EnemyKamikazeCharacter : BasicCharacter
     void HandleMovement()
     {
         if (!_movementBehaviour) return;
-        if(!_currentTarget && 
-           (transform.position - _playerTarget.transform.position).sqrMagnitude < _playerFollowRange * _playerFollowRange) 
+        //if enemy doesnt follow creature and is close enough to player
+        if(!_currentTarget && (transform.position - _playerTarget.transform.position).sqrMagnitude < _playerFollowRange * _playerFollowRange)
+        {
             _currentTarget = _playerTarget;
-        else if ((transform.position - _playerTarget.transform.position).sqrMagnitude < _playerFollowRange)
+        }
+        //if enemy follows creature but player is very close
+        else if ((transform.position - _playerTarget.transform.position).sqrMagnitude < _playerFollowRange && _currentTarget != _playerTarget)
+        {
+            _currentTarget?.GetComponent<CreatureAI>().OnEnemyStopsTargeting(gameObject);
             _currentTarget = _playerTarget;
+        }
         _movementBehaviour.Target = _currentTarget;
     }
 
@@ -48,7 +54,7 @@ public class EnemyKamikazeCharacter : BasicCharacter
             _hasAttacked = true;
             _attackBehaviour.Attack();
             if (_attackVFXTemplate) Instantiate(_attackVFXTemplate, transform.position, transform.rotation);
-            _movementBehaviour.PushBackwards();
+            _movementBehaviour.PushBackwards(-transform.forward);
             //turn has attacked off after a delay
             Invoke("ResetAttack", 1.0f);
         }

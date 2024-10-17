@@ -7,6 +7,7 @@ public class Health : MonoBehaviour
     [SerializeField] private int _startHealth = 10;
     private int _currentHealth = 0;
     public float StartHealth { get { return _startHealth; } } 
+    Color _startColor;
     public float CurrentHealth { get { return _currentHealth; } }
     protected MovementBehaviour _movementBehaviour;
     public delegate void HealthChange(float startHealth, float currentHealth);
@@ -29,12 +30,13 @@ public class Health : MonoBehaviour
         {
             //This will actually behind the scenes create a new instance of a material, use renderer.sharedmaterial to get the actual material use (be careful as this will change it for ALL objects using that material)
             _attachedMaterial = renderer.material;
+            _startColor = _attachedMaterial.GetColor(COLOR_PARAMETER);
         }
     }
-    public void Damage(int amount)
+    public void Damage(int amount, Vector3 bulletForward)
     {
         _currentHealth -= amount;
-        _movementBehaviour.PushBackwards();
+        _movementBehaviour.PushBackwards(bulletForward);
         OnHealthChanged?.Invoke(_startHealth, _currentHealth);
         if (_attachedMaterial != null) StartCoroutine(HandleColorFlicker());
         if (_currentHealth <= 0) Kill();
@@ -42,7 +44,6 @@ public class Health : MonoBehaviour
 
     private IEnumerator HandleColorFlicker()
     {
-        Color startColor = _attachedMaterial.GetColor(COLOR_PARAMETER);
         float time = _flickerDuration;
         float normalizedTime;
 
@@ -51,14 +52,14 @@ public class Health : MonoBehaviour
             time -= Time.deltaTime;
             normalizedTime = Mathf.Clamp01(time / _flickerDuration);
 
-            var currentColor = startColor;
+            var currentColor = _startColor;
             var targetColor = _flickerColor;
             //adjust the range of the normalized time from 1,0.5 -> to 0,1 (only used for first half)
             var lerpTime = 1.0f - ((normalizedTime - 0.5f) * 2.0f);
             if (normalizedTime < 0.5f) //second half of the flickcer
             {
                 currentColor = _flickerColor;
-                targetColor = startColor;
+                targetColor = _startColor;
                 //adjust the range of the normalized time from 0.5,0 -> to 0,1 instead
                 lerpTime = 1.0f - (normalizedTime * 2.0f);
             }
@@ -68,7 +69,7 @@ public class Health : MonoBehaviour
             yield return new WaitForEndOfFrame();//this loop will continue next frame until the while loop has finished
         }
         //ensure we are the starting color again at the end if we would not exactly hit it due to rounding
-        _attachedMaterial.SetColor(COLOR_PARAMETER, startColor);
+        _attachedMaterial.SetColor(COLOR_PARAMETER, _startColor);
     }
 
     void Kill()
@@ -78,8 +79,7 @@ public class Health : MonoBehaviour
 
     void OnDestroy()
     {
-        if (_attachedMaterial == null)
-            return;
+        if (_attachedMaterial == null) return;
         //since we created a new material in the start, we should clean it up
         Destroy(_attachedMaterial);
     }

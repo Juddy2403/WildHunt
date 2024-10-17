@@ -53,7 +53,7 @@ public class BasicProjectile : MonoBehaviour
 
         if (otherHealth != null)
         {
-            otherHealth.Damage(_damage);
+            otherHealth.Damage(_damage, transform.forward);
             Kill();
         }
     }

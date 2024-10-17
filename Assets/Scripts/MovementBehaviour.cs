@@ -62,9 +62,9 @@ public class MovementBehaviour : MonoBehaviour
         _rigidBody.velocity = movement;
     }
     
-    public void PushBackwards()
+    public void PushBackwards(Vector3 bulletForward)
     {
-        Vector3 force = -transform.forward * 10f + transform.up * 10f; // Adjust the multipliers as needed
+        Vector3 force = bulletForward * 10f + Vector3.up * 10f; // Adjust the multipliers as needed
         _rigidBody.velocity = force;
         _canMove = false;
         Invoke(nameof(EnableMovement),1f);
