@@ -122,9 +122,10 @@ GameObject:
   - component: {fileID: 4298557486569067711}
   - component: {fileID: 7005099353964170405}
   - component: {fileID: 7256444138763438278}
+  - component: {fileID: 1548508897228914989}
   m_Layer: 6
   m_Name: Creature
-  m_TagString: Friendly
+  m_TagString: Creature
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -260,3 +261,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8023b1b7a17afd42b93c6a81373ba33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _onProxCollisionEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1276297627025725291, guid: 577e25c594af768458b34fff79884f85,
+          type: 3}
+        m_TargetAssemblyTypeName: EnemyKamikazeCharacter, Assembly-CSharp
+        m_MethodName: CreatureDetected
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: CreatureDetected
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!135 &1548508897228914989
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6143053904771826585}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 6
+  m_Center: {x: 0, y: 2, z: 0}

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Friendly
   - Enemy
+  - Creature
   layers:
   - Default
   - TransparentFX
