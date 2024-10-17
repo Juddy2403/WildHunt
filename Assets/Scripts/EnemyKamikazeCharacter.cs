@@ -70,7 +70,6 @@ public class EnemyKamikazeCharacter : BasicCharacter
     // }
     public void CreatureDetected(GameObject creature)
     {
-        Debug.Log("Creature detected");
         //if we are already targeting a creature, tell it its no longer targeted
         if (_currentTarget && _currentTarget != creature && _currentTarget != _playerTarget)
         {

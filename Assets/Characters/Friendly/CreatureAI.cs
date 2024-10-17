@@ -6,7 +6,7 @@ public class CreatureAI : BasicCharacter
 {
     private GameObject _playerTarget = null;
     private float _followRange = 10.0f;
-    private float _idleRange = 2.0f;
+    private float _idleRange = 4.0f;
     private bool _isTargeted = false;
 
     private List<GameObject> _enemiesTargeting = new();

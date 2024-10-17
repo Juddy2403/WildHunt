@@ -65,7 +65,7 @@ public class MovementBehaviour : MonoBehaviour
     public void PushBackwards()
     {
         Vector3 force = -transform.forward * 10f + transform.up * 10f; // Adjust the multipliers as needed
-        _rigidBody.AddForce(force, ForceMode.VelocityChange);
+        _rigidBody.velocity = force;
         _canMove = false;
         Invoke(nameof(EnableMovement),1f);
     }

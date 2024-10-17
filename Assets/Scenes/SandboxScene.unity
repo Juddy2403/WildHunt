@@ -1356,84 +1356,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29d4dc6720d343347a240857882c8d88, type: 3}
---- !u!1001 &647452575
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 6143053904771826585, guid: 577e25c594af768458b34fff79884f85,
-        type: 3}
-      propertyPath: m_Name
-      value: KamikazeEnemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 6143053904771826585, guid: 577e25c594af768458b34fff79884f85,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6150703913196053318, guid: 577e25c594af768458b34fff79884f85,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 10.319681
-      objectReference: {fileID: 0}
-    - target: {fileID: 6150703913196053318, guid: 577e25c594af768458b34fff79884f85,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6150703913196053318, guid: 577e25c594af768458b34fff79884f85,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 5.7996116
-      objectReference: {fileID: 0}
-    - target: {fileID: 6150703913196053318, guid: 577e25c594af768458b34fff79884f85,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6150703913196053318, guid: 577e25c594af768458b34fff79884f85,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6150703913196053318, guid: 577e25c594af768458b34fff79884f85,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6150703913196053318, guid: 577e25c594af768458b34fff79884f85,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6150703913196053318, guid: 577e25c594af768458b34fff79884f85,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6150703913196053318, guid: 577e25c594af768458b34fff79884f85,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6150703913196053318, guid: 577e25c594af768458b34fff79884f85,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7357157979032782140, guid: 577e25c594af768458b34fff79884f85,
-        type: 3}
-      propertyPath: _startHealth
-      value: 100
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 577e25c594af768458b34fff79884f85, type: 3}
 --- !u!1 &649447043
 GameObject:
   m_ObjectHideFlags: 0
@@ -4222,6 +4144,79 @@ MonoBehaviour:
   m_Bidirectional: 1
   m_AutoUpdatePosition: 0
   m_Area: 0
+--- !u!1001 &1804946010
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6143053904771826585, guid: 577e25c594af768458b34fff79884f85,
+        type: 3}
+      propertyPath: m_Name
+      value: KamikazeEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 6143053904771826585, guid: 577e25c594af768458b34fff79884f85,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6150703913196053318, guid: 577e25c594af768458b34fff79884f85,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 10.49
+      objectReference: {fileID: 0}
+    - target: {fileID: 6150703913196053318, guid: 577e25c594af768458b34fff79884f85,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.0000019073486
+      objectReference: {fileID: 0}
+    - target: {fileID: 6150703913196053318, guid: 577e25c594af768458b34fff79884f85,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.8393793
+      objectReference: {fileID: 0}
+    - target: {fileID: 6150703913196053318, guid: 577e25c594af768458b34fff79884f85,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6150703913196053318, guid: 577e25c594af768458b34fff79884f85,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6150703913196053318, guid: 577e25c594af768458b34fff79884f85,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6150703913196053318, guid: 577e25c594af768458b34fff79884f85,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6150703913196053318, guid: 577e25c594af768458b34fff79884f85,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6150703913196053318, guid: 577e25c594af768458b34fff79884f85,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6150703913196053318, guid: 577e25c594af768458b34fff79884f85,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 577e25c594af768458b34fff79884f85, type: 3}
 --- !u!1 &1818438622
 GameObject:
   m_ObjectHideFlags: 0
@@ -6088,6 +6083,12 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2570260896282245354, guid: 79c5cf6a8b4f200468cdf72e2b02809a,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 9b772a7a8213b0144bf0479f7229bf0d,
+        type: 2}
     - target: {fileID: 4913885659166963971, guid: 79c5cf6a8b4f200468cdf72e2b02809a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6175,4 +6176,4 @@ SceneRoots:
   - {fileID: 1859538951}
   - {fileID: 649447046}
   - {fileID: 492512868}
-  - {fileID: 647452575}
+  - {fileID: 1804946010}
