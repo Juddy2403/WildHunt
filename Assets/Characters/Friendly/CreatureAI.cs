@@ -34,9 +34,12 @@ public class CreatureAI : BasicCharacter
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Enemy"))
+        if (other.name == "KamikazeEnemy")
         {
-            _enemiesTargeting.Add(other.gameObject);
+            if(!_enemiesTargeting.Contains(other.gameObject))
+            {
+                _enemiesTargeting.Add(other.gameObject);
+            }
             _isTargeted = true;
             EnemyKamikazeCharacter enemyKamikazeCharacter = other.GetComponent<EnemyKamikazeCharacter>();
             if (enemyKamikazeCharacter) enemyKamikazeCharacter.CreatureDetected(gameObject);
