@@ -33,8 +33,7 @@ public class MovementBehaviour : MonoBehaviour
         get { return _target; }
         set { _target = value; }
     }
-
-
+    
     protected virtual void Awake()
     {
         _rigidBody = GetComponent<Rigidbody>();
@@ -42,14 +41,12 @@ public class MovementBehaviour : MonoBehaviour
 
     protected virtual void Update()
     {
-        HandleLookat();
+        HandleLookAt();
     }
-
 
     protected virtual void FixedUpdate()
     {
         if(_canMove) HandleMovement();
-
         //check if there is ground beneath our feet
         _grounded = Physics.Raycast(transform.position + Vector3.up * 0.1f, Vector3.down, GROUND_CHECK_DISTANCE, LayerMask.GetMask(GROUND_LAYER));
     }
@@ -69,17 +66,16 @@ public class MovementBehaviour : MonoBehaviour
     {
         Vector3 force = -transform.forward * 10f + transform.up * 10f; // Adjust the multipliers as needed
         _rigidBody.AddForce(force, ForceMode.VelocityChange);
-        StartCoroutine(DisableMovementForSeconds(1f));
-    }
-    
-    private IEnumerator DisableMovementForSeconds(float seconds)
-    {
         _canMove = false;
-        yield return new WaitForSeconds(seconds);
+        Invoke(nameof(EnableMovement),1f);
+    }
+
+    private void EnableMovement()
+    {
         _canMove = true;
     }
 
-    protected virtual void HandleLookat()
+    protected virtual void HandleLookAt()
     {
         if (!_shoulderObject) return;
         
