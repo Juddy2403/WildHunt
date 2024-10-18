@@ -8,7 +8,6 @@ public class CreatureAI : BasicCharacter
     private GameObject _playerTarget = null;
     private const float _followRange = 10.0f;
     private const float _idleRange = 4.0f;
-    private bool _isTargeted = false;
     private bool _areMonstersClose = false;
 
     private List<GameObject> _enemiesTargeting = new();
@@ -18,6 +17,7 @@ public class CreatureAI : BasicCharacter
     {
         PlayerCharacter player = FindObjectOfType<PlayerCharacter>();
         if (player) _playerTarget = player.gameObject;
+        if (!_wanderTarget) _wanderTarget = new GameObject("WanderTarget").transform;
     }
 
     // Update is called once per frame
@@ -29,38 +29,38 @@ public class CreatureAI : BasicCharacter
     void HandleMovement()
     {
         if (!_movementBehaviour) return;
-        if (_areMonstersClose)
-        {
-            RunAround();
-            return;
-        }
-
-        if ((transform.position - _playerTarget.transform.position).sqrMagnitude < _followRange * _followRange &&
-            (transform.position - _playerTarget.transform.position).sqrMagnitude > _idleRange * _idleRange &&
-            !_isTargeted)
+        if (_areMonstersClose) RunAround();
+        else if (IsPlayerInFollowRange() && IsPlayerNotTooClose())
             _movementBehaviour.Target = _playerTarget.transform;
         else _movementBehaviour.Target = null;
-        _areMonstersClose = false;
+       // _areMonstersClose = false;
     }
 
-    public float wanderRadius = 20f;
-    public float wanderTimer = 1f;
+    private bool IsPlayerNotTooClose()
+    {
+        return (transform.position - _playerTarget.transform.position).sqrMagnitude > _idleRange * _idleRange;
+    }
+
+    private bool IsPlayerInFollowRange()
+    {
+        return (transform.position - _playerTarget.transform.position).sqrMagnitude < _followRange * _followRange;
+    }
 
     private float _timer;
     private Transform _wanderTarget;
 
     private void RunAround()
     {
-        if (!_wanderTarget) _wanderTarget = new GameObject("WanderTarget").transform;
-        
+        const float wanderRadius = 5f;
+        const float wanderTimer = 1f;
         _timer += Time.deltaTime;
-
         if (_timer >= wanderTimer || !_movementBehaviour.Target)
         {
             Vector3 newPos = RandomNavSphere(transform.position, wanderRadius);
             _wanderTarget.position = newPos;
             _movementBehaviour.Target = _wanderTarget;
             _timer = 0;
+            _areMonstersClose = false;
         }
     }
 
@@ -74,33 +74,25 @@ public class CreatureAI : BasicCharacter
 
     void OnTriggerStay(Collider other)
     {
+        if (other.name == "KamikazeEnemy") _areMonstersClose = true;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
         if (other.name == "KamikazeEnemy")
         {
-            _areMonstersClose = true;
-            if (!_enemiesTargeting.Contains(other.gameObject))
-            {
-                _enemiesTargeting.Add(other.gameObject);
-                _isTargeted = true;
-                EnemyKamikazeCharacter enemyKamikazeCharacter = other.GetComponent<EnemyKamikazeCharacter>();
-                if (enemyKamikazeCharacter) enemyKamikazeCharacter.CreatureDetected(gameObject);
-            }
+            EnemyKamikazeCharacter enemyKamikazeCharacter = other.GetComponent<EnemyKamikazeCharacter>();
+            if (enemyKamikazeCharacter) enemyKamikazeCharacter.CreatureDetected(gameObject);
         }
     }
 
-    public void OnEnemyStopsTargeting(GameObject enemyObj)
+    void OnTriggerExit(Collider other)
     {
-        if (_enemiesTargeting.Contains(enemyObj)) _enemiesTargeting.Remove(enemyObj);
-        if (_enemiesTargeting.Count == 0) _isTargeted = false;
+        if (other.name == "KamikazeEnemy") _areMonstersClose = false;
     }
 
     private void OnDestroy()
     {
-        foreach (GameObject enemy in _enemiesTargeting)
-        {
-            if (!enemy) continue;
-            EnemyKamikazeCharacter enemyKamikazeCharacter = enemy.GetComponent<EnemyKamikazeCharacter>();
-            if (enemyKamikazeCharacter) enemyKamikazeCharacter.TargetDestroyed();
-        }
-        if(_wanderTarget) Destroy(_wanderTarget.gameObject);
+        if (_wanderTarget) Destroy(_wanderTarget.gameObject);
     }
 }

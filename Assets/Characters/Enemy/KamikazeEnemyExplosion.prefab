@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2872844702167447196}
   - component: {fileID: 334266511761676084}
   - component: {fileID: 59930112047284726}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: KamikazeEnemyExplosion
   m_TagString: Enemy
   m_Icon: {fileID: 0}

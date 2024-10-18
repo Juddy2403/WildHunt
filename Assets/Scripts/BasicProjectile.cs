@@ -45,7 +45,6 @@ public class BasicProjectile : MonoBehaviour
     {
         //make sure we only hit friendly or enemies
         if (other.tag != FRIENDLY_TAG && other.tag != ENEMY_TAG && other.tag != CREATURE_TAG) return;
-        
         //only hit the opposing team
         if (other.tag == tag) return;
 

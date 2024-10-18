@@ -29,17 +29,19 @@ public class EnemyKamikazeCharacter : BasicCharacter
     {
         if (!_movementBehaviour) return;
         //if enemy doesnt follow creature and is close enough to player
-        if(!_currentTarget && (transform.position - _playerTarget.transform.position).sqrMagnitude < _playerFollowRange * _playerFollowRange)
+        if (!_currentTarget && (transform.position - _playerTarget.transform.position).sqrMagnitude <
+            _playerFollowRange * _playerFollowRange)
         {
             _currentTarget = _playerTarget;
         }
         //if enemy follows creature but player is very close
-        else if ((transform.position - _playerTarget.transform.position).sqrMagnitude < _playerFollowRange && _currentTarget != _playerTarget)
+        else if ((transform.position - _playerTarget.transform.position).sqrMagnitude < _playerFollowRange &&
+                 _currentTarget != _playerTarget)
         {
-            _currentTarget?.GetComponent<CreatureAI>().OnEnemyStopsTargeting(gameObject);
             _currentTarget = _playerTarget;
         }
-        if(_currentTarget) _movementBehaviour.Target = _currentTarget.transform;
+
+        if (_currentTarget) _movementBehaviour.Target = _currentTarget.transform;
         else _movementBehaviour.Target = null;
     }
 
@@ -65,26 +67,17 @@ public class EnemyKamikazeCharacter : BasicCharacter
     {
         _hasAttacked = false;
     }
-
-    private void OnDestroy()
-    {
-        if(_currentTarget != _playerTarget) _currentTarget?.GetComponent<CreatureAI>().OnEnemyStopsTargeting(gameObject);
-    }
-
-    // void Kill()
-    // {
-    //     Destroy(gameObject);
-    // }
+    
     public void CreatureDetected(GameObject creature)
     {
-        //if we are already targeting a creature, tell it its no longer targeted
-        if (_currentTarget && _currentTarget != creature && _currentTarget != _playerTarget)
+        //if we are not already targeting a creature, follow this one
+        if (!_currentTarget || !_currentTarget.CompareTag("Creature"))
         {
-            _currentTarget.GetComponent<CreatureAI>().OnEnemyStopsTargeting(gameObject);
+            _currentTarget = creature;
+            _movementBehaviour.Target = _currentTarget.transform;
         }
-        _currentTarget = creature;
-        _movementBehaviour.Target = _currentTarget.transform;
     }
+
     public void TargetDestroyed()
     {
         _currentTarget = null;
