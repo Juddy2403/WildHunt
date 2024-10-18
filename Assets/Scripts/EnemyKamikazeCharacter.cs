@@ -39,7 +39,8 @@ public class EnemyKamikazeCharacter : BasicCharacter
             _currentTarget?.GetComponent<CreatureAI>().OnEnemyStopsTargeting(gameObject);
             _currentTarget = _playerTarget;
         }
-        _movementBehaviour.Target = _currentTarget;
+        if(_currentTarget) _movementBehaviour.Target = _currentTarget.transform;
+        else _movementBehaviour.Target = null;
     }
 
     void HandleAttacking()
@@ -82,7 +83,7 @@ public class EnemyKamikazeCharacter : BasicCharacter
             _currentTarget.GetComponent<CreatureAI>().OnEnemyStopsTargeting(gameObject);
         }
         _currentTarget = creature;
-        _movementBehaviour.Target = _currentTarget;
+        _movementBehaviour.Target = _currentTarget.transform;
     }
     public void TargetDestroyed()
     {

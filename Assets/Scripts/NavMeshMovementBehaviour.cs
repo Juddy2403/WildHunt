@@ -30,11 +30,11 @@ public class NavMeshMovementBehaviour : MovementBehaviour
         }
 
         //should the target move we should recalculate our path
-        if ((_target.transform.position - _previousTargetPosition).sqrMagnitude > MOVEMENT_EPSILON)
+        if ((_target.position - _previousTargetPosition).sqrMagnitude > MOVEMENT_EPSILON)
         {
-            _navMeshAgent.SetDestination(_target.transform.position);
+            _navMeshAgent.SetDestination(_target.position);
             _navMeshAgent.isStopped = false;
-            _previousTargetPosition = _target.transform.position;
+            _previousTargetPosition = _target.position;
         }
 
     }

@@ -11,7 +11,7 @@ public class MovementBehaviour : MonoBehaviour
     protected Rigidbody _rigidBody;
     protected Vector3 _desiredMovementDirection = Vector3.zero;
     protected float _desiredXRotation = 0.0f;
-    protected GameObject _target;
+    protected Transform _target;
 
     protected bool _grounded = false;
     protected bool _canMove = true;
@@ -28,7 +28,7 @@ public class MovementBehaviour : MonoBehaviour
         get { return _desiredXRotation; }
         set { _desiredXRotation = value; }
     }
-    public GameObject Target
+    public Transform Target
     {
         get { return _target; }
         set { _target = value; }

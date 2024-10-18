@@ -261,6 +261,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8023b1b7a17afd42b93c6a81373ba33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wanderRadius: 50
+  wanderTimer: 1
 --- !u!135 &1548508897228914989
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -280,5 +282,5 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 6
+  m_Radius: 12
   m_Center: {x: 0, y: 2, z: 0}
