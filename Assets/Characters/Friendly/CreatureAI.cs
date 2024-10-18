@@ -74,7 +74,11 @@ public class CreatureAI : BasicCharacter
 
     void OnTriggerStay(Collider other)
     {
-        if (other.name == "KamikazeEnemy") _areMonstersClose = true;
+        if (other.name == "KamikazeEnemy")
+        {
+            _areMonstersClose = true;
+            Debug.Log("Monsters are close");
+        }
     }
 
     private void OnTriggerEnter(Collider other)
