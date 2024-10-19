@@ -306,6 +306,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gunTemplate: {fileID: 4917095759107280516, guid: 4c5c998569dd8874690bd36569f4ceff,
     type: 3}
+  _knifeTemplate: {fileID: 4917095759107280516, guid: c3849ef4fe2faba4a9f7b9eaad677c08,
+    type: 3}
   _socket: {fileID: 8462820703556405304}
 --- !u!54 &5512537419559470378
 Rigidbody:
@@ -349,6 +351,7 @@ MonoBehaviour:
   _startHealth: 100
   _flickerColor: {r: 1, g: 1, b: 1, a: 1}
   _flickerDuration: 0.1
+  healthBar: {fileID: 0}
 --- !u!1 &8462820703556405304
 GameObject:
   m_ObjectHideFlags: 0

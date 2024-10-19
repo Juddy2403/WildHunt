@@ -12,6 +12,7 @@ public class PlayerCharacter : BasicCharacter
     private InputAction _xmovementAction;
     private InputAction _zmovementAction;
     private InputAction _sprintAction;
+    private InputAction _switchWeaponAction;
     private float _sprintSpeed;
     private float _movementSpeed;
 
@@ -32,9 +33,11 @@ public class PlayerCharacter : BasicCharacter
         _xmovementAction = _inputAsset.FindActionMap("Gameplay").FindAction("XMovement");
         _zmovementAction = _inputAsset.FindActionMap("Gameplay").FindAction("ZMovement");
         _sprintAction = _inputAsset.FindActionMap("Gameplay").FindAction("Sprint");
+        _switchWeaponAction = _inputAsset.FindActionMap("Gameplay").FindAction("SwitchWeapon");
 
         //we bind a callback to it instead of continiously monitoring input
         _jumpAction.performed += HandleJumpInput;
+        _switchWeaponAction.performed += HandleSwitchWeapon;
         
         _sprintSpeed = _movementBehaviour.MovementSpeed * 2f;
         _movementSpeed = _movementBehaviour.MovementSpeed;
@@ -43,6 +46,7 @@ public class PlayerCharacter : BasicCharacter
     protected void OnDestroy()
     {
         _jumpAction.performed -= HandleJumpInput;
+        _switchWeaponAction.performed -= HandleSwitchWeapon;
     }
 
 
@@ -92,6 +96,10 @@ public class PlayerCharacter : BasicCharacter
     private void HandleJumpInput(InputAction.CallbackContext context)
     {
         _movementBehaviour.Jump();
+    }
+    private void HandleSwitchWeapon(InputAction.CallbackContext context)
+    {
+        _attackBehaviour?.SwitchWeapon();
     }
 
     private void HandleAttackInput()
