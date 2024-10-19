@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Health : MonoBehaviour
 {
@@ -18,6 +19,8 @@ public class Health : MonoBehaviour
     private Material _attachedMaterial;
     const string COLOR_PARAMETER = "_BaseColor";
 
+    public HealthBar healthBar;
+
     void Awake()
     {
         _currentHealth = _startHealth;
@@ -32,10 +35,12 @@ public class Health : MonoBehaviour
             _attachedMaterial = renderer.material;
             _startColor = _attachedMaterial.GetColor(COLOR_PARAMETER);
         }
+        healthBar?.SetMaxHealth(_startHealth);
     }
     public void Damage(int amount, Vector3 bulletForward)
     {
         _currentHealth -= amount;
+        healthBar?.SetHealth(_currentHealth);
         _movementBehaviour.PushBackwards(bulletForward);
         OnHealthChanged?.Invoke(_startHealth, _currentHealth);
         if (_attachedMaterial != null) StartCoroutine(HandleColorFlicker());
