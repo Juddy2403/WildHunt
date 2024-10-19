@@ -21,7 +21,7 @@ public class CreatureAI : BasicCharacter
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         HandleMovement();
     }
@@ -33,7 +33,7 @@ public class CreatureAI : BasicCharacter
         else if (IsPlayerInFollowRange() && IsPlayerNotTooClose())
             _movementBehaviour.Target = _playerTarget.transform;
         else _movementBehaviour.Target = null;
-       // _areMonstersClose = false;
+        _areMonstersClose = false;
     }
 
     private bool IsPlayerNotTooClose()
@@ -60,7 +60,6 @@ public class CreatureAI : BasicCharacter
             _wanderTarget.position = newPos;
             _movementBehaviour.Target = _wanderTarget;
             _timer = 0;
-            _areMonstersClose = false;
         }
     }
 
@@ -74,11 +73,7 @@ public class CreatureAI : BasicCharacter
 
     void OnTriggerStay(Collider other)
     {
-        if (other.name == "KamikazeEnemy")
-        {
-            _areMonstersClose = true;
-            Debug.Log("Monsters are close");
-        }
+        if (other.name == "KamikazeEnemy") _areMonstersClose = true;
     }
 
     private void OnTriggerEnter(Collider other)
