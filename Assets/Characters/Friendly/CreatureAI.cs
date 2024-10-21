@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
+using Movement;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 public class CreatureAI : BasicCharacter
 {
@@ -9,31 +9,48 @@ public class CreatureAI : BasicCharacter
     private const float _followRange = 10.0f;
     private const float _idleRange = 4.0f;
     private bool _areMonstersClose = false;
-
-    private List<GameObject> _enemiesTargeting = new();
+    private NavMeshMovementBehaviour _navMovementBehaviour;
 
     // Start is called before the first frame update
     void Start()
     {
         PlayerCharacter player = FindObjectOfType<PlayerCharacter>();
         if (player) _playerTarget = player.gameObject;
-        if (!_wanderTarget) _wanderTarget = new GameObject("WanderTarget").transform;
+        _navMovementBehaviour = GetComponent<NavMeshMovementBehaviour>();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        HandleMovement();
+        //HandleMovement();
+        if (_areMonstersClose)
+        {
+            _navMovementBehaviour.SetState(new RunState(_navMovementBehaviour));
+        }
+        else if (IsPlayerInFollowRange() && IsPlayerNotTooClose())
+        {
+            _navMovementBehaviour.SetState(new FollowState(_navMovementBehaviour, _playerTarget.transform));
+        }
+        else if (!IsPlayerNotTooClose())
+        {
+            _navMovementBehaviour.SetState(null);
+        }
+        else
+        {
+            _navMovementBehaviour.SetState(new IdleState(_navMovementBehaviour));
+        }
+
+        _areMonstersClose = false;
     }
 
-    void HandleMovement()
+    private void OnDestroy()
     {
-        if (!_movementBehaviour) return;
-        if (_areMonstersClose) RunAround();
-        else if (IsPlayerInFollowRange() && IsPlayerNotTooClose())
-            _movementBehaviour.Target = _playerTarget.transform;
-        else _movementBehaviour.Target = null;
-        _areMonstersClose = false;
+        SphereCollider sphereCollider = GetComponent<SphereCollider>();
+        Collider[] colliders = Physics.OverlapSphere(transform.position, sphereCollider.radius);
+        foreach (var collider in colliders)
+        {
+            OnTriggerExit(collider);
+        }
     }
 
     private bool IsPlayerNotTooClose()
@@ -46,52 +63,34 @@ public class CreatureAI : BasicCharacter
         return (transform.position - _playerTarget.transform.position).sqrMagnitude < _followRange * _followRange;
     }
 
-    private float _timer;
-    private Transform _wanderTarget;
-
-    private void RunAround()
-    {
-        const float wanderRadius = 5f;
-        const float wanderTimer = 1f;
-        _timer += Time.deltaTime;
-        if (_timer >= wanderTimer || !_movementBehaviour.Target)
-        {
-            Vector3 newPos = RandomNavSphere(transform.position, wanderRadius);
-            _wanderTarget.position = newPos;
-            _movementBehaviour.Target = _wanderTarget;
-            _timer = 0;
-        }
-    }
-
-    public static Vector3 RandomNavSphere(Vector3 origin, float dist)
-    {
-        Vector3 randDirection = Random.insideUnitSphere * dist;
-        randDirection.y = 0;
-        randDirection += origin;
-        return randDirection;
-    }
-
     void OnTriggerStay(Collider other)
-    {
-        if (other.name == "KamikazeEnemy") _areMonstersClose = true;
-    }
-
-    private void OnTriggerEnter(Collider other)
     {
         if (other.name == "KamikazeEnemy")
         {
+            _areMonstersClose = true;
             EnemyKamikazeCharacter enemyKamikazeCharacter = other.GetComponent<EnemyKamikazeCharacter>();
             if (enemyKamikazeCharacter) enemyKamikazeCharacter.CreatureDetected(gameObject);
         }
     }
 
+    // private void OnTriggerEnter(Collider other)
+    // {
+    //     if (other.name == "KamikazeEnemy")
+    //     {
+    //         _areMonstersClose = true;
+    //         EnemyKamikazeCharacter enemyKamikazeCharacter = other.GetComponent<EnemyKamikazeCharacter>();
+    //         if (enemyKamikazeCharacter) enemyKamikazeCharacter.CreatureDetected(gameObject);
+    //     }
+    // }
+
     void OnTriggerExit(Collider other)
     {
-        if (other.name == "KamikazeEnemy") _areMonstersClose = false;
+        if (other.name == "KamikazeEnemy")
+        {
+            _areMonstersClose = false;
+            EnemyKamikazeCharacter enemyKamikazeCharacter = other.GetComponent<EnemyKamikazeCharacter>();
+            enemyKamikazeCharacter?.CreatureLost(gameObject);
+        }
     }
 
-    private void OnDestroy()
-    {
-        if (_wanderTarget) Destroy(_wanderTarget.gameObject);
-    }
 }

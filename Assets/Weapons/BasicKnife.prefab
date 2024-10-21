@@ -163,7 +163,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bulletTemplate: {fileID: 2088402717037601721, guid: 9066328935556a545895dc48d2c54ac3,
     type: 3}
-  _fireRate: 1
+  _fireRate: 4
   _fireSockets:
   - {fileID: 5316968870798660028}
   _onFireEvent:
