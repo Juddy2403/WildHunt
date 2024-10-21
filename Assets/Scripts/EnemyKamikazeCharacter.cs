@@ -43,7 +43,9 @@ public class EnemyKamikazeCharacter : BasicCharacter
 
     void HandleAttacking()
     {
-        if (_hasAttacked) return; if (!_attackBehaviour) return; if (!_currentTarget) return;
+        if (_hasAttacked) return;
+        if (!_attackBehaviour) return;
+        if (!_currentTarget) return;
 
         //if we are in range of the player, fire our weapon, 
         if (IsPlayerInAttackRange())
@@ -61,14 +63,16 @@ public class EnemyKamikazeCharacter : BasicCharacter
     {
         _hasAttacked = false;
     }
-    
+
     public void CreatureDetected(GameObject creature)
     {
         //if we are not already targeting a creature, follow this one
         if (_currentTarget && _currentTarget.CompareTag("Creature")) return;
+        if (_currentTarget == _playerTarget && IsPlayerInRange()) return;
         _currentTarget = creature;
         _navMovementBehaviour.SetState(new FollowState(_navMovementBehaviour, creature.transform));
     }
+
     public void CreatureLost(GameObject creature)
     {
         if (_currentTarget != creature) return;
@@ -80,10 +84,13 @@ public class EnemyKamikazeCharacter : BasicCharacter
     {
         return (transform.position - _playerTarget.transform.position).sqrMagnitude < _targetFollowRange;
     }
+
     private bool IsPlayerInRange()
     {
-        return (transform.position - _playerTarget.transform.position).sqrMagnitude < _targetFollowRange * _targetFollowRange;
+        return (transform.position - _playerTarget.transform.position).sqrMagnitude <
+               _targetFollowRange * _targetFollowRange;
     }
+
     private bool IsPlayerInAttackRange()
     {
         return (transform.position - _currentTarget.transform.position).sqrMagnitude < _attackRange * _attackRange;

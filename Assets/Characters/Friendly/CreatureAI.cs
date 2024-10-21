@@ -6,6 +6,7 @@ using UnityEngine;
 public class CreatureAI : BasicCharacter
 {
     private GameObject _playerTarget = null;
+    private bool _isAlive = true;
     private const float _followRange = 10.0f;
     private const float _idleRange = 4.0f;
     private bool _areMonstersClose = false;
@@ -20,6 +21,8 @@ public class CreatureAI : BasicCharacter
 
     void FixedUpdate()
     {
+        if(!_playerTarget) return;
+        
         if (_areMonstersClose) _navMovementBehaviour.SetState(new RunState(_navMovementBehaviour));
         else if (IsPlayerInFollowRange() && IsPlayerNotTooClose())
             _navMovementBehaviour.SetState(new FollowState(_navMovementBehaviour, _playerTarget.transform));
@@ -33,10 +36,7 @@ public class CreatureAI : BasicCharacter
         //on trigger exit is not called when obj destroyed, so i do it here
         SphereCollider sphereCollider = GetComponent<SphereCollider>();
         Collider[] colliders = Physics.OverlapSphere(transform.position, sphereCollider.radius);
-        foreach (var collider in colliders)
-        {
-            OnTriggerExit(collider);
-        }
+        foreach (var collider in colliders) OnTriggerExit(collider);
     }
 
     private bool IsPlayerNotTooClose()
@@ -56,6 +56,23 @@ public class CreatureAI : BasicCharacter
             _areMonstersClose = true;
             EnemyKamikazeCharacter enemyKamikazeCharacter = other.GetComponent<EnemyKamikazeCharacter>();
             if (enemyKamikazeCharacter) enemyKamikazeCharacter.CreatureDetected(gameObject);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(!_isAlive) return;
+        switch (other.name)
+        {
+            case "SafePointCollider":
+                Debug.Log("Creature saved!");
+                _isAlive = false;
+                Destroy(gameObject);
+                break;
+            case "DetectCollider":
+                _playerTarget = null;
+                _navMovementBehaviour.SetState(new FollowState(_navMovementBehaviour, other.transform));
+                break;
         }
     }
 

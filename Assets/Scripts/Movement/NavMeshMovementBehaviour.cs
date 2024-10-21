@@ -43,7 +43,7 @@ namespace Movement
         public void SetState(MovementState newState)
         {
             if(_currentState?.GetType() == newState?.GetType()) return;
-            //Debug.Log(gameObject.name + " changing state to " + newState.GetType().Name);
+            //Debug.Log(gameObject.name + " changing state to " + newState?.GetType().Name);
             _currentState?.Exit();
             _currentState = newState;
             _currentState?.Enter();
