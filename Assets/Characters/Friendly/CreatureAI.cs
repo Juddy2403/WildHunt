@@ -11,7 +11,6 @@ public class CreatureAI : BasicCharacter
     private bool _areMonstersClose = false;
     private NavMeshMovementBehaviour _navMovementBehaviour;
 
-    // Start is called before the first frame update
     void Start()
     {
         PlayerCharacter player = FindObjectOfType<PlayerCharacter>();
@@ -19,32 +18,19 @@ public class CreatureAI : BasicCharacter
         _navMovementBehaviour = GetComponent<NavMeshMovementBehaviour>();
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
-        //HandleMovement();
-        if (_areMonstersClose)
-        {
-            _navMovementBehaviour.SetState(new RunState(_navMovementBehaviour));
-        }
+        if (_areMonstersClose) _navMovementBehaviour.SetState(new RunState(_navMovementBehaviour));
         else if (IsPlayerInFollowRange() && IsPlayerNotTooClose())
-        {
             _navMovementBehaviour.SetState(new FollowState(_navMovementBehaviour, _playerTarget.transform));
-        }
-        else if (!IsPlayerNotTooClose())
-        {
-            _navMovementBehaviour.SetState(null);
-        }
-        else
-        {
-            _navMovementBehaviour.SetState(new IdleState(_navMovementBehaviour));
-        }
-
+        else if (!IsPlayerNotTooClose()) _navMovementBehaviour.SetState(null);
+        else _navMovementBehaviour.SetState(new IdleState(_navMovementBehaviour));
         _areMonstersClose = false;
     }
 
     private void OnDestroy()
     {
+        //on trigger exit is not called when obj destroyed, so i do it here
         SphereCollider sphereCollider = GetComponent<SphereCollider>();
         Collider[] colliders = Physics.OverlapSphere(transform.position, sphereCollider.radius);
         foreach (var collider in colliders)
@@ -73,16 +59,6 @@ public class CreatureAI : BasicCharacter
         }
     }
 
-    // private void OnTriggerEnter(Collider other)
-    // {
-    //     if (other.name == "KamikazeEnemy")
-    //     {
-    //         _areMonstersClose = true;
-    //         EnemyKamikazeCharacter enemyKamikazeCharacter = other.GetComponent<EnemyKamikazeCharacter>();
-    //         if (enemyKamikazeCharacter) enemyKamikazeCharacter.CreatureDetected(gameObject);
-    //     }
-    // }
-
     void OnTriggerExit(Collider other)
     {
         if (other.name == "KamikazeEnemy")
@@ -92,5 +68,4 @@ public class CreatureAI : BasicCharacter
             enemyKamikazeCharacter?.CreatureLost(gameObject);
         }
     }
-
 }

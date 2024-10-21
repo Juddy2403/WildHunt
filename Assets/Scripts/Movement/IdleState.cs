@@ -22,14 +22,14 @@ namespace Movement
             _movementBehaviour.MovementSpeed /= _movementSpeedMultiplier;
             _movementBehaviour.Target = null;
         }
-        const float wanderRadius = 10f;
+        private const float _wanderRadius = 10f;
         private const float _idleWaitTime = 4f;
         public override void Update()
         {
             _idleTimer += Time.deltaTime;
             if (_idleTimer >= _idleWaitTime)
             {
-                Vector3 newPos = NavMeshMovementBehaviour.RandomNavSphere(_movementBehaviour.transform.position, wanderRadius);
+                Vector3 newPos = NavMeshMovementBehaviour.RandomNavSphere(_movementBehaviour.transform.position, _wanderRadius);
                 _wanderTarget.position = newPos;
                 _movementBehaviour.Target = _wanderTarget;
                 _idleTimer = 0f;

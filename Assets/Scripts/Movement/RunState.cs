@@ -5,6 +5,7 @@ namespace Movement
     public class RunState : MovementState
     {
         private float _timer;
+        private const float _movementSpeedMultiplier = 1.5f;
         private Transform _wanderTarget;
 
         public RunState(NavMeshMovementBehaviour movementBehaviour) : base(movementBehaviour) { }
@@ -12,13 +13,13 @@ namespace Movement
         public override void Enter()
         {
             _wanderTarget = new GameObject("WanderTarget").transform;
-            _movementBehaviour.MovementSpeed *= 1.5f;
+            _movementBehaviour.MovementSpeed *= _movementSpeedMultiplier;
         }
 
         public override void Exit()
         {
             if (_wanderTarget) Object.Destroy(_wanderTarget.gameObject);
-            _movementBehaviour.MovementSpeed /= 1.5f;
+            _movementBehaviour.MovementSpeed /= _movementSpeedMultiplier;
             _movementBehaviour.Target = null;
         }
 

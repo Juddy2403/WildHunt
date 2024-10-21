@@ -10,7 +10,7 @@ public class EnemyKamikazeCharacter : BasicCharacter
     private GameObject _playerTarget = null;
     private GameObject _currentTarget = null;
     [SerializeField] private float _attackRange = 2.0f;
-    [FormerlySerializedAs("_playerFollowRange")] [SerializeField] private float _targetFollowRange = 10.0f;
+    [SerializeField] private float _targetFollowRange = 10.0f;
     [SerializeField] GameObject _attackVFXTemplate = null;
     private NavMeshMovementBehaviour _navMovementBehaviour;
     private bool _hasAttacked = false;
@@ -43,9 +43,7 @@ public class EnemyKamikazeCharacter : BasicCharacter
 
     void HandleAttacking()
     {
-        if (_hasAttacked) return;
-        if (!_attackBehaviour) return;
-        if (!_currentTarget) return;
+        if (_hasAttacked) return; if (!_attackBehaviour) return; if (!_currentTarget) return;
 
         //if we are in range of the player, fire our weapon, 
         if (IsPlayerInAttackRange())
