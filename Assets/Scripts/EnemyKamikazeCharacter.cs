@@ -10,7 +10,7 @@ public class EnemyKamikazeCharacter : BasicCharacter
     private GameObject _playerTarget = null;
     [SerializeField] private GameObject _currentTarget = null;
     [SerializeField] private float _attackRange = 2.0f;
-    [SerializeField] private float _targetFollowRange = 10.0f;
+    [SerializeField] private float _targetFollowRange = 20.0f;
     [SerializeField] GameObject _attackVFXTemplate = null;
     private NavMeshMovementBehaviour _navMovementBehaviour;
     private bool _hasAttacked = false;
@@ -32,6 +32,7 @@ public class EnemyKamikazeCharacter : BasicCharacter
     void HandleMovement()
     {
         if (!_movementBehaviour) return;
+        if(!_playerTarget) return;
         //if enemy doesnt follow creature and is close enough to player or if enemy follows creature but player is very close
         if ((!_currentTarget && IsPlayerInRange()) || (IsPlayerVeryClose() && _currentTarget != _playerTarget))
         {

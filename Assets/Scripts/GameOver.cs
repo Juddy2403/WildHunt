@@ -16,8 +16,14 @@ public class GameOver : MonoBehaviour
 
     void TriggerGameOver()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        //StartCoroutine(ReloadScene());
     }
+    // IEnumerator ReloadScene()
+    // {
+    //     yield return new WaitForEndOfFrame();
+    //     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    // }
 }
 
 
