@@ -8,7 +8,7 @@ using UnityEngine.Serialization;
 public class EnemyKamikazeCharacter : BasicCharacter
 {
     private GameObject _playerTarget = null;
-    private GameObject _currentTarget = null;
+    [SerializeField] private GameObject _currentTarget = null;
     [SerializeField] private float _attackRange = 2.0f;
     [SerializeField] private float _targetFollowRange = 10.0f;
     [SerializeField] GameObject _attackVFXTemplate = null;
@@ -87,8 +87,7 @@ public class EnemyKamikazeCharacter : BasicCharacter
 
     private bool IsPlayerInRange()
     {
-        return (transform.position - _playerTarget.transform.position).sqrMagnitude <
-               _targetFollowRange * _targetFollowRange;
+        return (transform.position - _playerTarget.transform.position).sqrMagnitude < _targetFollowRange * _targetFollowRange;
     }
 
     private bool IsPlayerInAttackRange()

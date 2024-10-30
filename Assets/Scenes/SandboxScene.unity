@@ -1132,6 +1132,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: KamikazeEnemy (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6143053904771826585, guid: 577e25c594af768458b34fff79884f85,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6150703913196053318, guid: 577e25c594af768458b34fff79884f85,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3900,6 +3905,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8822784354161557668, guid: 79c5cf6a8b4f200468cdf72e2b02809a,
+        type: 3}
+      propertyPath: _startHealth
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 4913885659166963971, guid: 79c5cf6a8b4f200468cdf72e2b02809a,
         type: 3}
       propertyPath: m_LocalPosition.x

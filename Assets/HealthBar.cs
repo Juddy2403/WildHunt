@@ -16,6 +16,7 @@ public class HealthBar : MonoBehaviour
 
     private void LateUpdate()
     {
+        if(!gameObject) return;
         transform.LookAt(transform.position + _camera.forward);
     }
 

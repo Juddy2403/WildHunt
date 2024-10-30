@@ -10,7 +10,7 @@ public class GameOver : MonoBehaviour
 
     private void Update()
     {
-        if (_player == null)
+        if (!_player)
             TriggerGameOver();
     }
 

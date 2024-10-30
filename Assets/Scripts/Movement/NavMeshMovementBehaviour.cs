@@ -42,7 +42,9 @@ namespace Movement
         }
         public void SetState(MovementState newState)
         {
-            if(_currentState?.GetType() == newState?.GetType()) return;
+            //if the new state is the same, but not of type Follow State (target can be different), return
+            if(_currentState?.GetType() == newState?.GetType() && _currentState?.GetType() != typeof(FollowState))
+                return;
             //Debug.Log(gameObject.name + " changing state to " + newState?.GetType().Name);
             _currentState?.Exit();
             _currentState = newState;
