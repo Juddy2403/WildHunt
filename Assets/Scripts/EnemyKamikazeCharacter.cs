@@ -10,7 +10,7 @@ public class EnemyKamikazeCharacter : BasicCharacter
     private GameObject _playerTarget = null;
     [SerializeField] private GameObject _currentTarget = null;
     [SerializeField] private float _attackRange = 2.0f;
-    [SerializeField] private float _targetFollowRange = 20.0f;
+    [SerializeField] private float _targetFollowRange = 40.0f;
     [SerializeField] GameObject _attackVFXTemplate = null;
     private NavMeshMovementBehaviour _navMovementBehaviour;
     private bool _hasAttacked = false;

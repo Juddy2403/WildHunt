@@ -18,9 +18,9 @@ public class SpawnPoint : MonoBehaviour
             SpawnManager.Instance.UnRegisterSpawnPoint(this);
     }
 
-    public GameObject Spawn()
+    public void Spawn()
     {
-        return Instantiate(_spawnTemplate, transform.position, transform.rotation);
+        Instantiate(_spawnTemplate, transform.position, transform.rotation);
     }
 }
 

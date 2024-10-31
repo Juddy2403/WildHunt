@@ -3,14 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 public class GameMode : MonoBehaviour
 {
-    [SerializeField]
-    private float _firstWaveStart = 5.0f;
-    [SerializeField]
-    private float _waveStartFrequency = 15.0f;
-    [SerializeField]
-    private float _waveEndFrequency = 7.0f;
-    [SerializeField]
-    private float _waveFrequencyIncrement = 0.5f;
+    [SerializeField] private float _firstWaveStart = 5.0f;
+    [SerializeField] private float _waveStartFrequency = 15.0f;
+    [SerializeField] private float _waveEndFrequency = 7.0f;
+    [SerializeField] private float _waveFrequencyIncrement = 0.5f;
 
     private float _currentFrequency = 0.0f;
     void Awake()

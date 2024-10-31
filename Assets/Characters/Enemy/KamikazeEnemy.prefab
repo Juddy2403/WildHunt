@@ -73,8 +73,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f5961e3ea335b345b2d85dcb5612bce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _currentTarget: {fileID: 0}
   _attackRange: 2
-  _playerFollowRange: 10
+  _targetFollowRange: 10
   _attackVFXTemplate: {fileID: 1800450485291678592, guid: ace173caf46012546b38a004839587df,
     type: 3}
 --- !u!195 &7713891537975957900
@@ -145,6 +146,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gunTemplate: {fileID: 4917095759107280516, guid: a8e488d518a2083469478d20f3063ab7,
     type: 3}
+  _knifeTemplate: {fileID: 0}
   _socket: {fileID: 6143053904771826585}
 --- !u!54 &4298557486569067711
 Rigidbody:

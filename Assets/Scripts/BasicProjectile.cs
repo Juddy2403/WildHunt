@@ -6,7 +6,7 @@ public class BasicProjectile : MonoBehaviour
 {
     private const string KILL_METHOD = "Kill";
     [SerializeField] private float _speed = 30.0f;
-    [SerializeField] private float _lifeTime = 10.0f;
+    [SerializeField] private float _lifeTime = 5.0f;
     [SerializeField] private int _damage = 5;
 
     private void Awake()

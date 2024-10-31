@@ -30,7 +30,7 @@ Material:
   - _WINDQUALITY_BEST
   m_InvalidKeywords: []
   m_LightmapFlags: 4
-  m_EnableInstancingVariants: 1
+  m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -39,15 +39,11 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _BASETEXTURE:
-        m_Texture: {fileID: 0}
+    - _Albedo:
+        m_Texture: {fileID: 2800000, guid: 47c82777887e3fc46bc141849b1b3ccb, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _BaseMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _BaseTexture:
+    - _Albedo_MaskA:
         m_Texture: {fileID: 2800000, guid: 47c82777887e3fc46bc141849b1b3ccb, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -55,31 +51,7 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _DetailAlbedoMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailMask:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailNormalMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _EmissionMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _ExtraTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _GlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -87,15 +59,11 @@ Material:
         m_Texture: {fileID: 2800000, guid: 47c82777887e3fc46bc141849b1b3ccb, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _MetallicGlossMap:
-        m_Texture: {fileID: 0}
+    - _MotionPowerWeightMask:
+        m_Texture: {fileID: 2800000, guid: 47c82777887e3fc46bc141849b1b3ccb, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _OcclusionMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _ParallaxMap:
+    - _NormalMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -103,7 +71,7 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _TerrainHolesTexture:
+    - _TranslucencyMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -128,92 +96,56 @@ Material:
     - BACKFACE_NORMAL_MODE: 1
     - EFFECT_BILLBOARD: 0
     - EFFECT_EXTRA_TEX: 1
-    - _AO: 2.4
-    - _AlphaClip: 0
+    - _AO: 1.81
+    - _AO_power: 0.8
+    - _Adjust: 0
     - _AlphaClipThreshold: 0.33
-    - _AlphaToMask: 0
-    - _BaseLight: 0.381
+    - _BaseLight: 0.443
     - _BillboardKwToggle: 0
     - _BillboardShadowFade: 0.5
-    - _Blend: 0
-    - _BlendOp: 0
-    - _BumpScale: 1
-    - _CUSTOMCOLORSTINTING: 1
-    - _CUSTOMFLOWERSCOLOR: 0
-    - _CUSTOMWIND: 1
-    - _CUSTOMWIND1: 1
-    - _Cull: 2
-    - _Cutoff: 0.515
-    - _DetailNormalMapScale: 1
-    - _DstBlend: 0
-    - _DstBlendAlpha: 0
-    - _Float5: 0.08
-    - _GlossMapScale: 1
-    - _Glossiness: 0
-    - _GlossyReflections: 1
-    - _Gradient: 0.073
-    - _GradientPower: 2.56
-    - _GradientPower1: 1
+    - _CustomColorAmount: 0
+    - _Cutoff: 0.335
+    - _DarknessOnSundown: 0.75
+    - _DesaturateTranslucency: 0.4
+    - _Gloss: 0.2
+    - _Glossiness: 0.5
     - _HueVariationKwToggle: 0
-    - _InvFade: 1
-    - _LeavesThickness: 0.513
-    - _MaskClipValue: 0.5
     - _Metallic: 0
-    - _Mode: 3
+    - _MotionRange: 0.5
+    - _MotionSpeed: 1
     - _NormalMapKwToggle: 0
-    - _Occlusion: 6.68
-    - _OcclusionStrength: 1
+    - _NormalMapPower: 1
+    - _Occlusion: 7.5
     - _OldHueVarBehavior: 0
-    - _Parallax: 0.02
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _SNOWONOFF: 0
-    - _Shininess: 0.078125
-    - _Smoothness: 0
-    - _SmoothnessTextureChannel: 0
-    - _SnowAmount: 1
-    - _SnowCoverage: 0.453
-    - _SnowFade: 0.83
-    - _SnowGradient: 0.446
-    - _SpecularHighlights: 1
+    - _SelfIllum: 0
+    - _SimpleContrast: 0
     - _SquashAmount: 1
-    - _SrcBlend: 1
-    - _SrcBlendAlpha: 1
     - _SubsurfaceIndirect: 0.25
     - _SubsurfaceKwToggle: 0
-    - _Surface: 0
-    - _TRANSLUCENCYONOFF: 1
-    - _TransAmbient: 0.7
+    - _SwitchColumn: 0
+    - _SwitchRow: 0
+    - _ToggleSwitch0: 0
+    - _TransAmbient: 0.2
     - _TransDirect: 1
     - _TransNormalDistortion: 0.1
     - _TransScattering: 2
-    - _TransShadow: 0.5
-    - _Translucency: 7.8
+    - _TransShadow: 0.9
+    - _Translucency: 1
     - _TwoSided: 2
-    - _UVSec: 0
-    - _WINDMASKONOFF: 0
     - _WINDQUALITY: 4
-    - _WindDensity: 0.01
-    - _WindDensity1: 0.01
-    - _WindMovement: 10
-    - _WindMovement1: 10
     - _WindQuality: 0
-    - _WindStrength: 1
-    - _WindStrength1: 1
-    - _ZWrite: 1
-    - __dirty: 0
+    - _WorldSpaceOffset: 1
+    - __dirty: 1
     m_Colors:
-    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _FLOWERSCOLOR: {r: 1, g: 0, b: 0, a: 0}
-    - _GroundColor: {r: 0.010346207, g: 0.07075471, b: 0.040550455, a: 1}
-    - _HueVariation: {r: 1, g: 0.5, b: 0, a: 0.1}
-    - _HueVariationColor: {r: 1, g: 0, b: 0.1997571, a: 0.1}
-    - _Scale: {r: 1, g: 1, b: 1, a: 1}
-    - _SpecColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - _Base_Color: {r: 1, g: 1, b: 1, a: 0}
+    - _Color: {r: 0.63529414, g: 0.63529414, b: 0.63529414, a: 0}
+    - _CustomColorHigh: {r: 0.5528651, g: 0.875, b: 0.4503677, a: 0}
+    - _CustomColorLow: {r: 0.13624567, g: 0.33088237, b: 0.13758796, a: 0}
+    - _HueVariationColor: {r: 1, g: 0.5, b: 0, a: 0.1}
+    - _SpecularTone: {r: 0.058823504, g: 0.056660876, b: 0.056660876, a: 0}
     - _SubsurfaceColor: {r: 1, g: 1, b: 1, a: 1}
-    - _TopColor: {r: 0.01815593, g: 0.19695005, b: 0.2264151, a: 1}
     - _TreeInstanceColor: {r: 1, g: 1, b: 1, a: 1}
     - _TreeInstanceScale: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []

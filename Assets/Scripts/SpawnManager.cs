@@ -52,7 +52,7 @@ public class SpawnManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    protected virtual void OnDestroy()
+    protected void OnDestroy()
     {
         if (_instance == this)
         {
@@ -76,13 +76,7 @@ public class SpawnManager : MonoBehaviour
     void Update()
     {
         //remove any objects that are null
-        _spawnPoints.RemoveAll(s => s == null);
-
-        /*
-        //if you do not know what predicates are: a while loop that 
-        //will remove the first null it finds as long as it finds any
-        while (_spawnPoints.Remove(null)) { }
-        */
+        _spawnPoints.RemoveAll(s => !s);
     }
     public void SpawnWave()
     {
