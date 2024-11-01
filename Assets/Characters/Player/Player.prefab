@@ -305,7 +305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0757e9cf786377d44b960e91420f0e46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gunTemplate: {fileID: 4917095759107280516, guid: 4c5c998569dd8874690bd36569f4ceff,
+  _gunTemplate: {fileID: 3960879644723491920, guid: 9c32f2e3b18a3a94fa0cb90a4ac1c2fd,
     type: 3}
   _knifeTemplate: {fileID: 4917095759107280516, guid: c3849ef4fe2faba4a9f7b9eaad677c08,
     type: 3}
@@ -350,7 +350,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _startHealth: 100
-  _flickerColor: {r: 1, g: 1, b: 1, a: 1}
+  _flickerColor: {r: 1, g: 0, b: 0, a: 1}
   _flickerDuration: 0.1
   healthBar: {fileID: 0}
 --- !u!114 &4730145728972703172
