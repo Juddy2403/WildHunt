@@ -215,6 +215,7 @@ GameObject:
   - component: {fileID: 1041545111055555548}
   - component: {fileID: 5512537419559470378}
   - component: {fileID: -8822784354161557668}
+  - component: {fileID: 4730145728972703172}
   m_Layer: 6
   m_Name: Player
   m_TagString: Friendly
@@ -352,6 +353,20 @@ MonoBehaviour:
   _flickerColor: {r: 1, g: 1, b: 1, a: 1}
   _flickerDuration: 0.1
   healthBar: {fileID: 0}
+--- !u!114 &4730145728972703172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4960522858323277467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3218641dc43085a47aa5014cb95e1734, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inputAsset: {fileID: -944628639613478452, guid: 14a79e306a007e84f8fcc452817cf504,
+    type: 3}
 --- !u!1 &8462820703556405304
 GameObject:
   m_ObjectHideFlags: 0
