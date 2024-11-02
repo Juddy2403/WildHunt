@@ -451,6 +451,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Camera
       objectReference: {fileID: 0}
+    - target: {fileID: 5408771688807536738, guid: 280775ca139621a45a939b88ac26afa7,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6295919010665148318, guid: 280775ca139621a45a939b88ac26afa7,
         type: 3}
       propertyPath: m_LocalPosition.x

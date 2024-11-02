@@ -9,6 +9,8 @@ public class SafePointTeleporter : MonoBehaviour
     [SerializeField] private InputActionAsset _inputAsset;
     private InputAction _interactAction;
     private bool _isOnSafePoint = false;
+    public delegate void SafePointExited();
+    public event SafePointExited OnSafePointExited;
     void Awake()
     {
         if (!_inputAsset) return;
@@ -28,7 +30,11 @@ public class SafePointTeleporter : MonoBehaviour
         if (!_isOnSafePoint) return;
         if (SceneManager.GetActiveScene().name == "Outside")
             SceneManager.LoadScene("Inside");
-        else SceneManager.LoadScene("Outside");
+        else
+        {
+            SceneManager.LoadScene("Outside");
+            OnSafePointExited?.Invoke();
+        }
     }
     
     private void OnTriggerEnter(Collider other)
