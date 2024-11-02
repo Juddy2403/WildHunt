@@ -5,20 +5,22 @@ using UnityEngine.SceneManagement;
 public class GameMaster : SingletonBase<GameMaster>
 {
     private int _currentDay = 1;
+    private int _creaturesSaved = 0;
 
     protected override void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        SafePointTeleporter safePointTeleporter = FindObjectOfType<SafePointTeleporter>();
-        if (safePointTeleporter == null) return;
-        // hook to monitor changes
-        safePointTeleporter.OnSafePointExited += DayPassed;
     }
 
-    void DayPassed()
+    public void CreatureSaved()
+    {
+        ++_creaturesSaved;
+        //update the HUD
+        HUD.Instance.UpdateCreaturesSaved(_creaturesSaved);
+    }
+    public void DayPassed()
     {
         ++_currentDay;
         //update the HUD
-        HUD hud = FindObjectOfType<HUD>();
-        hud?.UpdateDay(_currentDay);
+        HUD.Instance.UpdateDay(_currentDay);
     }
 }

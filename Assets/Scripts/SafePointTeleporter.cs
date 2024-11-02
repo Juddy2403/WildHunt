@@ -9,8 +9,6 @@ public class SafePointTeleporter : MonoBehaviour
     [SerializeField] private InputActionAsset _inputAsset;
     private InputAction _interactAction;
     private bool _isOnSafePoint = false;
-    public delegate void SafePointExited();
-    public event SafePointExited OnSafePointExited;
     void Awake()
     {
         if (!_inputAsset) return;
@@ -33,7 +31,7 @@ public class SafePointTeleporter : MonoBehaviour
         else
         {
             SceneManager.LoadScene("Outside");
-            OnSafePointExited?.Invoke();
+            GameMaster.Instance.DayPassed();
         }
     }
     

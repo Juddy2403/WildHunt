@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Movement;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CreatureAI : BasicCharacter
@@ -67,6 +68,7 @@ public class CreatureAI : BasicCharacter
             case "SafePointCollider":
                 Debug.Log("Creature saved!");
                 _isAlive = false;
+                GameMaster.Instance.CreatureSaved();
                 Destroy(gameObject);
                 break;
             case "DetectCollider":
