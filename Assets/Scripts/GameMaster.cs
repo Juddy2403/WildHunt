@@ -6,6 +6,7 @@ public class GameMaster : SingletonBase<GameMaster>
 {
     private int _currentDay = 1;
     private int _creaturesSaved = 0;
+    public int CreaturesSaved { get { return _creaturesSaved; } } 
 
     protected override void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {

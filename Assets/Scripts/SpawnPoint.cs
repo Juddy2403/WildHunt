@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 public class SpawnPoint : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject _spawnTemplate = null;
+    [SerializeField] private GameObject _spawnTemplate = null;
 
     private void OnEnable()
     {
