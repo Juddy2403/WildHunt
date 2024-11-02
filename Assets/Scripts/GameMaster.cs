@@ -6,17 +6,31 @@ public class GameMaster : SingletonBase<GameMaster>
 {
     private int _currentDay = 1;
     private int _creaturesSaved = 0;
+    private int _trust = 100;
+    private int _sanity = 100;
     public int CreaturesSaved { get { return _creaturesSaved; } } 
-
-    protected override void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-    }
+    public int Trust { get { return _trust; } } 
+    public int Sanity { get { return _sanity; } }
 
     public void CreatureSaved()
     {
         ++_creaturesSaved;
         //update the HUD
         HUD.Instance.UpdateCreaturesSaved(_creaturesSaved);
+    }
+    public void TrustLost()
+    {
+        if(_trust <= 0) return;
+        _trust -= 5;
+        //update the HUD
+        HUD.Instance.UpdateTrust(_trust);
+    }
+    public void SanityLost()
+    {
+        if(_sanity <= 0) return;
+        _sanity -= 5;
+        //update the HUD
+        HUD.Instance.UpdateSanity(_sanity);
     }
     public void DayPassed()
     {

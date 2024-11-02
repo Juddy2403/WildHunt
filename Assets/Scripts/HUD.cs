@@ -9,6 +9,10 @@ public class HUD : SingletonBase<HUD>
     private VisualElement _root = null;
     private ProgressBar _healthBar = null;
     private VisualElement _healthBarContainer = null;
+    private ProgressBar _trustBar = null;
+    private VisualElement _trustBarContainer = null;
+    private ProgressBar _sanityBar = null;
+    private VisualElement _sanityBarContainer = null;
     private Label _dayNr = null;
     private Label _savedCreatureNr = null;
 
@@ -20,8 +24,16 @@ public class HUD : SingletonBase<HUD>
         if (_attachedDocument) _root = _attachedDocument.rootVisualElement;
 
         if (_root == null) return;
-        _healthBar = _root.Q<ProgressBar>(); 
+        _healthBar = _root.Q<ProgressBar>("PlayerHealthbar"); 
         _healthBarContainer = _healthBar.Q(className: "unity-progress-bar__progress");
+        
+        _trustBar = _root.Q<ProgressBar>("TrustBar"); 
+        _trustBarContainer = _trustBar.Q(className: "unity-progress-bar__progress");
+        _trustBarContainer.style.backgroundColor = Color.yellow;
+        
+        _sanityBar = _root.Q<ProgressBar>("SanityBar"); 
+        _sanityBarContainer = _sanityBar.Q(className: "unity-progress-bar__progress");
+        _sanityBarContainer.style.backgroundColor = Color.blue;
         
         _dayNr = _root.Q<Label>("DayNumber");
         _savedCreatureNr = _root.Q<Label>("CreaturesSaved");
@@ -59,12 +71,23 @@ public class HUD : SingletonBase<HUD>
         if (_healthBar == null) return;
 
         _healthBar.value = (currentHealth / startHealth) * 100.0f;
-        _healthBar.title = string.Format("{0}/{1}", currentHealth, startHealth);
+        _healthBar.title = $"{currentHealth}/{startHealth}";
         
         //change the healthbarContainer color from green to red based on the health percentage
         if (_healthBarContainer == null) return;
         if (currentHealth / startHealth < 0.25f) _healthBarContainer.style.backgroundColor = Color.red;
         else if (currentHealth / startHealth < 0.5f) _healthBarContainer.style.backgroundColor = Color.yellow;
         else _healthBarContainer.style.backgroundColor = Color.green;
+    }
+    
+    public void UpdateTrust(int trust)
+    {
+        if (_trustBar == null) return;
+        _trustBar.value = trust;
+    }
+    public void UpdateSanity(int sanity)
+    {
+        if (_sanityBar == null) return;
+        _sanityBar.value = sanity;
     }
 }
