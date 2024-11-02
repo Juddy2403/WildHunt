@@ -8,7 +8,9 @@ public class HealthBar : MonoBehaviour
 {
     public Slider slider;
     private Transform _camera;
-    
+    [SerializeField] private int _showDistance = 20;
+    private bool _isVisible = true;
+
     void Start()
     {
         _camera = Camera.main.transform;
@@ -16,8 +18,24 @@ public class HealthBar : MonoBehaviour
 
     private void LateUpdate()
     {
-        if(!_camera) return;
-        transform.LookAt(transform.position + _camera.forward);
+        if (!_camera) return;
+
+        float distance = Vector3.Distance(transform.position, _camera.position);
+        if (distance > _showDistance && _isVisible)
+        {
+            gameObject.transform.localScale = Vector3.zero;
+            _isVisible = false;
+        }
+        else if (distance <= _showDistance && !_isVisible)
+        {
+            gameObject.transform.localScale = Vector3.one;
+            _isVisible = true;
+        }
+
+        if (_isVisible)
+        {
+            transform.LookAt(transform.position + _camera.forward);
+        }
     }
 
     public void SetMaxHealth(int health)
@@ -30,5 +48,4 @@ public class HealthBar : MonoBehaviour
     {
         slider.value = health;
     }
-
 }
