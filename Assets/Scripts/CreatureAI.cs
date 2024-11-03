@@ -23,7 +23,7 @@ public class CreatureAI : BasicCharacter
     {
         if (GameMaster.Instance.IsIndoors)
         {
-            gameObject.GetComponent<Health>().StartHealth = 10;
+            gameObject.GetComponent<Health>().StartHealth = 1;
         }
     }
 

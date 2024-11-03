@@ -10,13 +10,14 @@ public class AttackBehaviour : MonoBehaviour
     [SerializeField] private GameObject _knifeTemplate = null;
     [SerializeField] private GameObject _socket = null;
     private BasicWeapon _weapon = null;
-    private enum WeaponType
+    public enum WeaponType
     {
         Gun,
         Knife,
         Empty
     }
     WeaponType _currentWeapon = WeaponType.Gun;
+    public WeaponType CurrentWeapon { get { return _currentWeapon; } }
     void Awake()
     {
         if (GameMaster.Instance.IsIndoors)

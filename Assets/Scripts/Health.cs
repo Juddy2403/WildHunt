@@ -84,11 +84,17 @@ public class Health : MonoBehaviour
         _attachedMaterial.SetColor(COLOR_PARAMETER, _startColor);
     }
 
-    void Kill()
+    private void Kill()
     {
         if(gameObject.name == "Player")
         {
             GameMaster.Instance.Player = null;
+        }
+        gameObject.SetActive(false);
+        if (gameObject.CompareTag("Creature"))
+        {
+            GameMaster.Instance.SanityLost();
+            DetectRadar.MurderEvent();
         }
         Destroy(gameObject);
     }

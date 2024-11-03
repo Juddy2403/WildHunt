@@ -403,8 +403,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 159068cb0d3de0d43b1415aa41c163ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 4960522858323277467, guid: 79c5cf6a8b4f200468cdf72e2b02809a, type: 3}
   _radar: {fileID: 1418522868380965139}
+  _onMurderEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7256444138763438278}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: helo
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &1557386645131677604
 PrefabInstance:
   m_ObjectHideFlags: 0

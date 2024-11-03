@@ -30,7 +30,7 @@ public class HUD : SingletonBase<HUD>
         
         _trustBar = _root.Q<ProgressBar>("TrustBar"); 
         _trustBarContainer = _trustBar.Q(className: "unity-progress-bar__progress");
-        _trustBarContainer.style.backgroundColor = Color.yellow;
+        _trustBarContainer.style.backgroundColor = Color.magenta;
         
         _sanityBar = _root.Q<ProgressBar>("SanityBar"); 
         _sanityBarContainer = _sanityBar.Q(className: "unity-progress-bar__progress");
@@ -77,7 +77,7 @@ public class HUD : SingletonBase<HUD>
         if (_healthBar == null) return;
 
         _healthBar.value = (currentHealth / startHealth) * 100.0f;
-        _healthBar.title = $"{currentHealth}/{startHealth}";
+        _healthBar.title = $"hp {currentHealth}/{startHealth}";
         
         //change the healthbarContainer color from green to red based on the health percentage
         if (_healthBarContainer == null) return;
@@ -90,10 +90,12 @@ public class HUD : SingletonBase<HUD>
     {
         if (_trustBar == null) return;
         _trustBar.value = trust;
+        _trustBar.title = $"trust {trust}/{100}";
     }
     public void UpdateSanity(int sanity)
     {
         if (_sanityBar == null) return;
         _sanityBar.value = sanity;
+        _sanityBar.title = $"sanity {sanity}/{100}";
     }
 }

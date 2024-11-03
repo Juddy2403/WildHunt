@@ -18,10 +18,6 @@ public class GameMaster : SingletonBase<GameMaster>
     public int Sanity { get { return _sanity; } }
     public bool IsIndoors { get { return _isIndoors; } }
 
-    private void Update()
-    {
-    }
-
     public void SceneChange()
     {
         switch (SceneManager.GetActiveScene().name)
@@ -52,17 +48,17 @@ public class GameMaster : SingletonBase<GameMaster>
         //update the HUD
         HUD.Instance.UpdateCreaturesSaved(_creaturesSaved);
     }
-    public void TrustLost()
+    public void TrustLost(int amount)
     {
         if(_trust <= 0) return;
-        _trust -= 5;
+        _trust -= amount;
         //update the HUD
         HUD.Instance.UpdateTrust(_trust);
     }
     public void SanityLost()
     {
         if(_sanity <= 0) return;
-        _sanity -= 5;
+        _sanity -= 10;
         //update the HUD
         HUD.Instance.UpdateSanity(_sanity);
     }

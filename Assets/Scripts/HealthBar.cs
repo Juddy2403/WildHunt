@@ -14,11 +14,13 @@ public class HealthBar : MonoBehaviour
     void Start()
     {
         _camera = Camera.main.transform;
+        if (GameMaster.Instance.IsIndoors) gameObject.transform.localScale = Vector3.zero;
     }
 
     private void LateUpdate()
     {
         if (!_camera) return;
+        if (GameMaster.Instance.IsIndoors) return;
 
         float distance = Vector3.Distance(transform.position, _camera.position);
         if (distance > _showDistance && _isVisible)
