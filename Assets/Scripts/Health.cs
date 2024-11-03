@@ -7,7 +7,14 @@ public class Health : MonoBehaviour
 {
     [SerializeField] private int _startHealth = 10;
     private int _currentHealth = 0;
-    public float StartHealth { get { return _startHealth; } } 
+    public float StartHealth { get => _startHealth;
+        set
+        {
+            _startHealth = (int)value;
+            _currentHealth = _startHealth;
+            healthBar?.SetMaxHealth(_startHealth);
+        }
+    }
     Color _startColor;
     public float CurrentHealth { get { return _currentHealth; } }
     protected MovementBehaviour _movementBehaviour;

@@ -15,14 +15,26 @@ public class CreatureAI : BasicCharacter
 
     void Start()
     {
+       
+
         PlayerCharacter player = FindObjectOfType<PlayerCharacter>();
         if (player) _playerTarget = player.gameObject;
         _navMovementBehaviour = GetComponent<NavMeshMovementBehaviour>();
+        _navMovementBehaviour.SetState(new IdleState(_navMovementBehaviour));
+    }
+
+    private void OnEnable()
+    {
+        if (GameMaster.Instance.IsIndoors)
+        {
+            gameObject.GetComponent<Health>().StartHealth = 10;
+        }
     }
 
     void FixedUpdate()
     {
         if(!_playerTarget) return;
+        if(GameMaster.Instance.IsIndoors) return;
         
         if (_areMonstersClose) _navMovementBehaviour.SetState(new RunState(_navMovementBehaviour));
         else if (IsPlayerInFollowRange() && IsPlayerNotTooClose())
@@ -62,6 +74,7 @@ public class CreatureAI : BasicCharacter
 
     private void OnTriggerEnter(Collider other)
     {
+        if(GameMaster.Instance.IsIndoors) return;
         if(!_isAlive) return;
         switch (other.name)
         {

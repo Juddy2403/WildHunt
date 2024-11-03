@@ -8,18 +8,22 @@ public class GameMaster : SingletonBase<GameMaster>
     private int _creaturesSaved = 0;
     private int _trust = 100;
     private int _sanity = 100;
+    private bool _isIndoors = false;
     public int CreaturesSaved { get { return _creaturesSaved; } } 
     public int Trust { get { return _trust; } } 
     public int Sanity { get { return _sanity; } }
+    public bool IsIndoors { get { return _isIndoors; } }
 
     public void SceneChange()
     {
         switch (SceneManager.GetActiveScene().name)
         {
             case "Outside":
+                _isIndoors = true;
                 SceneManager.LoadScene("Inside");
                 break;
             case "Inside":
+                _isIndoors = false;
                 SceneManager.LoadScene("Outside");
                 GameMaster.Instance.DayPassed();
                 break;
