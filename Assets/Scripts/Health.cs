@@ -86,6 +86,10 @@ public class Health : MonoBehaviour
 
     void Kill()
     {
+        if(gameObject.name == "Player")
+        {
+            GameMaster.Instance.Player = null;
+        }
         Destroy(gameObject);
     }
 

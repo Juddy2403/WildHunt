@@ -48,6 +48,9 @@ public class PlayerCharacter : BasicCharacter
     {
         _jumpAction.performed -= HandleJumpInput;
         _switchWeaponAction.performed -= HandleSwitchWeapon;
+        //if health is 0 we need to trigger game over
+        if (GetComponent<Health>().CurrentHealth <= 0)
+            GameMaster.Instance.TriggerGameOver();
     }
 
 

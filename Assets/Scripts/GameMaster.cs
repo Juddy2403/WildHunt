@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -35,7 +37,15 @@ public class GameMaster : SingletonBase<GameMaster>
                 break;
         }
     }
-
+    public void TriggerGameOver()
+    {
+        StartCoroutine(ReloadScene());        
+    }
+    private IEnumerator ReloadScene()
+    {
+        yield return new WaitForEndOfFrame();
+        SceneManager.LoadScene(0);
+    }
     public void CreatureSaved()
     {
         ++_creaturesSaved;
