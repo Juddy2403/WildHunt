@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class HUD : SingletonBase<HUD>
@@ -38,6 +39,11 @@ public class HUD : SingletonBase<HUD>
         _dayNr = _root.Q<Label>("DayNumber");
         _savedCreatureNr = _root.Q<Label>("CreaturesSaved");
 
+        HookHealthEvent();
+    }
+
+    protected override void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
         HookHealthEvent();
     }
 

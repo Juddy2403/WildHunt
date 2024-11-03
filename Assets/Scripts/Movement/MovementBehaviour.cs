@@ -5,7 +5,7 @@ public class MovementBehaviour : MonoBehaviour
 {
     [SerializeField] protected GameObject _shoulderObject = null;
     [SerializeField] protected float _movementSpeed = 1.0f;
-    [SerializeField] protected float _jumpStrength = 10.0f;
+    [SerializeField] protected float _jumpStrength = 5.0f;
     [SerializeField] private Camera _fpsCamera;
 
     protected Rigidbody _rigidBody;

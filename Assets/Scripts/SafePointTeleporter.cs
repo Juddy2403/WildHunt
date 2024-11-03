@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 
 public class SafePointTeleporter : MonoBehaviour
 {
@@ -26,13 +23,7 @@ public class SafePointTeleporter : MonoBehaviour
     void HandleInteraction(InputAction.CallbackContext context)
     {
         if (!_isOnSafePoint) return;
-        if (SceneManager.GetActiveScene().name == "Outside")
-            SceneManager.LoadScene("Inside");
-        else
-        {
-            SceneManager.LoadScene("Outside");
-            GameMaster.Instance.DayPassed();
-        }
+        GameMaster.Instance.SceneChange();
     }
     
     private void OnTriggerEnter(Collider other)

@@ -12,6 +12,19 @@ public class GameMaster : SingletonBase<GameMaster>
     public int Trust { get { return _trust; } } 
     public int Sanity { get { return _sanity; } }
 
+    public void SceneChange()
+    {
+        switch (SceneManager.GetActiveScene().name)
+        {
+            case "Outside":
+                SceneManager.LoadScene("Inside");
+                break;
+            case "Inside":
+                SceneManager.LoadScene("Outside");
+                GameMaster.Instance.DayPassed();
+                break;
+        }
+    }
     public void CreatureSaved()
     {
         ++_creaturesSaved;
