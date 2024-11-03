@@ -13,23 +13,24 @@ public class AttackBehaviour : MonoBehaviour
     private enum WeaponType
     {
         Gun,
-        Knife
+        Knife,
+        Empty
     }
     WeaponType _currentWeapon = WeaponType.Gun;
     void Awake()
     {
-        //spawn guns
-        if (_gunTemplate != null && _socket != null)
+        if (GameMaster.Instance.IsIndoors)
         {
-            var gunObject = Instantiate(_gunTemplate, _socket.transform, true);
-            gunObject.transform.localPosition = Vector3.zero;
-            gunObject.transform.localRotation = Quaternion.identity;
-            _weapon = gunObject.GetComponent<BasicWeapon>();
+            _currentWeapon = WeaponType.Empty;
+            return;
         }
+        //spawn guns
+        InstantiateWeaponInSocket(_gunTemplate);
     }
 
     public void SwitchWeapon()
     {
+        //destroy the current weapon (if there is one) and spawn the next one
         if(_weapon) Destroy(_weapon.gameObject);
         switch (_currentWeapon)
         {
@@ -40,6 +41,11 @@ public class AttackBehaviour : MonoBehaviour
             }
                 break;
             case WeaponType.Knife:
+            {
+                _currentWeapon = WeaponType.Empty;
+            }
+                break;
+            case WeaponType.Empty:
             {
                 InstantiateWeaponInSocket(_gunTemplate);
                 _currentWeapon = WeaponType.Gun;
