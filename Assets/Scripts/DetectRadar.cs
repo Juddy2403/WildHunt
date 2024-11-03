@@ -6,9 +6,8 @@ public class DetectRadar : MonoBehaviour
 {
     private static readonly int Color1 = Shader.PropertyToID("_Color");
     [SerializeField] private GameObject _radar = null;
-    private GameObject _player = null;
 
-    private Color initMatColor;
+    private Color _initMatColor;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,30 +16,28 @@ public class DetectRadar : MonoBehaviour
             _radar.SetActive(false);
             return;
         }
-        PlayerCharacter player = FindObjectOfType<PlayerCharacter>();
-        if (player) _player = player.gameObject;
         //get material
         Material material = _radar.GetComponent<MeshRenderer>().material;
         //save initial color
-        initMatColor = material.color;
+        _initMatColor = material.color;
     }
 
     // Update is called once per frame
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject == _player)
+        if (other.gameObject == GameMaster.Instance.Player)
         {
-            Color materialColor = Color.red;
-            materialColor.a = initMatColor.a;
+            var materialColor = Color.red;
+            materialColor.a = _initMatColor.a;
             _radar.GetComponent<Renderer>().material.color = materialColor;
         }
     }
     
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject == _player)
+        if (other.gameObject == GameMaster.Instance.Player)
         {
-            _radar.GetComponent<Renderer>().material.color = initMatColor;
+            _radar.GetComponent<Renderer>().material.color = _initMatColor;
         }
     }
 

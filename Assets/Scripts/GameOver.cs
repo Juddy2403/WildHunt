@@ -5,13 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class GameOver : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject _player = null;
 
     private void Update()
     {
-        if (!_player)
-            TriggerGameOver();
+        if (!GameMaster.Instance.Player) TriggerGameOver();
     }
 
     void TriggerGameOver()

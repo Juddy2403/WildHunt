@@ -8,7 +8,7 @@ public class SingletonBase<T> : MonoBehaviour where T : MonoBehaviour
     {
         get
         {
-            if (_instance == null && !ApplicationQuitting)
+            if (!_instance && !ApplicationQuitting)
             {
                 _instance = FindObjectOfType<T>();
                 if (_instance == null)

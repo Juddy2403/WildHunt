@@ -6,8 +6,8 @@ using UnityEngine;
 
 public class CreatureAI : BasicCharacter
 {
-    private GameObject _playerTarget = null;
     private bool _isAlive = true;
+    private bool _detectedSafePoint = false;
     private const float _followRange = 10.0f;
     private const float _idleRange = 4.0f;
     private bool _areMonstersClose = false;
@@ -15,10 +15,6 @@ public class CreatureAI : BasicCharacter
 
     void Start()
     {
-       
-
-        PlayerCharacter player = FindObjectOfType<PlayerCharacter>();
-        if (player) _playerTarget = player.gameObject;
         _navMovementBehaviour = GetComponent<NavMeshMovementBehaviour>();
         _navMovementBehaviour.SetState(new IdleState(_navMovementBehaviour));
     }
@@ -33,12 +29,13 @@ public class CreatureAI : BasicCharacter
 
     void FixedUpdate()
     {
-        if(!_playerTarget) return;
+        if(!GameMaster.Instance.Player) return;
         if(GameMaster.Instance.IsIndoors) return;
+        if(_detectedSafePoint) return;
         
         if (_areMonstersClose) _navMovementBehaviour.SetState(new RunState(_navMovementBehaviour));
         else if (IsPlayerInFollowRange() && IsPlayerNotTooClose())
-            _navMovementBehaviour.SetState(new FollowState(_navMovementBehaviour, _playerTarget.transform));
+            _navMovementBehaviour.SetState(new FollowState(_navMovementBehaviour, GameMaster.Instance.Player.transform));
         else if (!IsPlayerNotTooClose()) _navMovementBehaviour.SetState(null);
         else _navMovementBehaviour.SetState(new IdleState(_navMovementBehaviour));
         _areMonstersClose = false;
@@ -54,12 +51,12 @@ public class CreatureAI : BasicCharacter
 
     private bool IsPlayerNotTooClose()
     {
-        return (transform.position - _playerTarget.transform.position).sqrMagnitude > _idleRange * _idleRange;
+        return (transform.position - GameMaster.Instance.Player.transform.position).sqrMagnitude > _idleRange * _idleRange;
     }
 
     private bool IsPlayerInFollowRange()
     {
-        return (transform.position - _playerTarget.transform.position).sqrMagnitude < _followRange * _followRange;
+        return (transform.position - GameMaster.Instance.Player.transform.position).sqrMagnitude < _followRange * _followRange;
     }
 
     void OnTriggerStay(Collider other)
@@ -79,13 +76,15 @@ public class CreatureAI : BasicCharacter
         switch (other.name)
         {
             case "SafePointCollider":
+                //collided with the safe point
                 Debug.Log("Creature saved!");
                 _isAlive = false;
                 GameMaster.Instance.CreatureSaved();
                 Destroy(gameObject);
                 break;
             case "DetectCollider":
-                _playerTarget = null;
+                //safe point detected
+                _detectedSafePoint = true;
                 _navMovementBehaviour.SetState(new FollowState(_navMovementBehaviour, other.transform));
                 break;
         }

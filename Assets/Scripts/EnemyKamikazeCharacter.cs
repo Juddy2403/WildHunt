@@ -7,7 +7,6 @@ using UnityEngine.Serialization;
 
 public class EnemyKamikazeCharacter : BasicCharacter
 {
-    private GameObject _playerTarget = null;
     [SerializeField] private GameObject _currentTarget = null;
     [SerializeField] private float _attackRange = 2.0f;
     [SerializeField] private float _targetFollowRange = 40.0f;
@@ -17,9 +16,6 @@ public class EnemyKamikazeCharacter : BasicCharacter
 
     private void Start()
     {
-        //expensive method, use with caution
-        PlayerCharacter player = FindObjectOfType<PlayerCharacter>();
-        if (player) _playerTarget = player.gameObject;
         _navMovementBehaviour = GetComponent<NavMeshMovementBehaviour>();
     }
 
@@ -32,12 +28,12 @@ public class EnemyKamikazeCharacter : BasicCharacter
     void HandleMovement()
     {
         if (!_movementBehaviour) return;
-        if(!_playerTarget) return;
+        if(!GameMaster.Instance.Player) return;
         //if enemy doesnt follow creature and is close enough to player or if enemy follows creature but player is very close
-        if ((!_currentTarget && IsPlayerInRange()) || (IsPlayerVeryClose() && _currentTarget != _playerTarget))
+        if ((!_currentTarget && IsPlayerInRange()) || (IsPlayerVeryClose() && _currentTarget != GameMaster.Instance.Player))
         {
-            _currentTarget = _playerTarget;
-            _navMovementBehaviour.SetState(new FollowState(_navMovementBehaviour, _playerTarget.transform));
+            _currentTarget = GameMaster.Instance.Player;
+            _navMovementBehaviour.SetState(new FollowState(_navMovementBehaviour, GameMaster.Instance.Player.transform));
         }
         else if (!_currentTarget) _navMovementBehaviour.SetState(new IdleState(_navMovementBehaviour));
     }
@@ -69,7 +65,7 @@ public class EnemyKamikazeCharacter : BasicCharacter
     {
         //if we are not already targeting a creature, follow this one
         if (_currentTarget && _currentTarget.CompareTag("Creature")) return;
-        if (_currentTarget == _playerTarget && IsPlayerInRange()) return;
+        if (_currentTarget == GameMaster.Instance.Player && IsPlayerInRange()) return;
         _currentTarget = creature;
         _navMovementBehaviour.SetState(new FollowState(_navMovementBehaviour, creature.transform));
     }
@@ -83,12 +79,12 @@ public class EnemyKamikazeCharacter : BasicCharacter
 
     private bool IsPlayerVeryClose()
     {
-        return (transform.position - _playerTarget.transform.position).sqrMagnitude < _targetFollowRange;
+        return (transform.position - GameMaster.Instance.Player.transform.position).sqrMagnitude < _targetFollowRange;
     }
 
     private bool IsPlayerInRange()
     {
-        return (transform.position - _playerTarget.transform.position).sqrMagnitude < _targetFollowRange * _targetFollowRange;
+        return (transform.position - GameMaster.Instance.Player.transform.position).sqrMagnitude < _targetFollowRange * _targetFollowRange;
     }
 
     private bool IsPlayerInAttackRange()
