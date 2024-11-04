@@ -63,6 +63,11 @@ public class GameMaster : SingletonBase<GameMaster>
     {
         StartCoroutine(ReloadScene());        
     }
+    
+    public void CreatureMurdered()
+    {
+        HUD.Instance.UpdateCreaturesSaved(--_creaturesSaved); // Update the HUD
+    }
     private IEnumerator ReloadScene()
     {
         yield return new WaitForEndOfFrame();

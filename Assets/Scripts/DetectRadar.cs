@@ -62,7 +62,6 @@ public class DetectRadar : MonoBehaviour
         {
             //reset radar color
             _radar.GetComponent<Renderer>().material.color = _initMatColor;
-
             _isPlayerInside = false;
         }
     }
@@ -70,6 +69,7 @@ public class DetectRadar : MonoBehaviour
     public static void MurderEvent()
     {
         _onMurderEvent?.Invoke();
+        GameMaster.Instance.CreatureMurdered();
     }
 
     private void OnMurder()
