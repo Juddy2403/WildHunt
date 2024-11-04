@@ -25,12 +25,38 @@ public class GameMaster : SingletonBase<GameMaster>
             case "Outside":
                 _isIndoors = true;
                 SceneManager.LoadScene("Inside");
+                RunAwayCreatures();
                 break;
             case "Inside":
                 _isIndoors = false;
                 SceneManager.LoadScene("Outside");
-                GameMaster.Instance.DayPassed();
+                DayPassed();
                 break;
+        }
+    }
+
+    private void RunAwayCreatures()
+    {
+        if (_trust < 50)
+        {
+            float baseChance = (50 - _trust) / 50.0f; // Base chance based on trust level
+            int maxCreaturesToLeave = Mathf.FloorToInt(_creaturesSaved / 2.0f); // Maximum number of creatures that can leave (not more than half)
+            int creaturesToLeave = 0;
+
+            for (int i = 0; i < _creaturesSaved; i++)
+            {
+                if (UnityEngine.Random.value < baseChance)
+                {
+                    creaturesToLeave++;
+                    if (creaturesToLeave >= maxCreaturesToLeave)
+                    {
+                        break; // Stop if we reach the maximum number of creatures that can leave
+                    }
+                }
+            }
+            Debug.Log($"Creatures to leave: {creaturesToLeave}");
+            _creaturesSaved = Mathf.Max(0, _creaturesSaved - creaturesToLeave); // Decrease the number of saved creatures
+            HUD.Instance.UpdateCreaturesSaved(_creaturesSaved); // Update the HUD
         }
     }
     public void TriggerGameOver()
