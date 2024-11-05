@@ -29,13 +29,14 @@ public class CreatureAI : BasicCharacter
 
     void FixedUpdate()
     {
-        if(!GameMaster.Instance.Player) return;
-        if(GameMaster.Instance.IsIndoors) return;
-        if(_detectedSafePoint) return;
-        
+        if (!GameMaster.Instance.Player) return;
+        if (GameMaster.Instance.IsIndoors) return;
+        if (_detectedSafePoint) return;
+
         if (_areMonstersClose) _navMovementBehaviour.SetState(new RunState(_navMovementBehaviour));
         else if (IsPlayerInFollowRange() && IsPlayerNotTooClose())
-            _navMovementBehaviour.SetState(new FollowState(_navMovementBehaviour, GameMaster.Instance.Player.transform));
+            _navMovementBehaviour.SetState(new FollowState(_navMovementBehaviour,
+                GameMaster.Instance.Player.transform));
         else if (!IsPlayerNotTooClose()) _navMovementBehaviour.SetState(null);
         else _navMovementBehaviour.SetState(new IdleState(_navMovementBehaviour));
         _areMonstersClose = false;
@@ -51,28 +52,28 @@ public class CreatureAI : BasicCharacter
 
     private bool IsPlayerNotTooClose()
     {
-        return (transform.position - GameMaster.Instance.Player.transform.position).sqrMagnitude > _idleRange * _idleRange;
+        return (transform.position - GameMaster.Instance.Player.transform.position).sqrMagnitude >
+               _idleRange * _idleRange;
     }
 
     private bool IsPlayerInFollowRange()
     {
-        return (transform.position - GameMaster.Instance.Player.transform.position).sqrMagnitude < _followRange * _followRange;
+        return (transform.position - GameMaster.Instance.Player.transform.position).sqrMagnitude <
+               _followRange * _followRange;
     }
 
     void OnTriggerStay(Collider other)
     {
-        if (other.name == "KamikazeEnemy")
-        {
-            _areMonstersClose = true;
-            EnemyKamikazeCharacter enemyKamikazeCharacter = other.GetComponent<EnemyKamikazeCharacter>();
-            if (enemyKamikazeCharacter) enemyKamikazeCharacter.CreatureDetected(gameObject);
-        }
+        if (other.gameObject.layer != LayerMask.NameToLayer("Enemy")) return;
+        _areMonstersClose = true;
+        EnemyKamikazeCharacter enemyKamikazeCharacter = other.GetComponent<EnemyKamikazeCharacter>();
+        if (enemyKamikazeCharacter) enemyKamikazeCharacter.CreatureDetected(gameObject);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(GameMaster.Instance.IsIndoors) return;
-        if(!_isAlive) return;
+        if (GameMaster.Instance.IsIndoors) return;
+        if (!_isAlive) return;
         switch (other.name)
         {
             case "SafePointCollider":
@@ -92,11 +93,9 @@ public class CreatureAI : BasicCharacter
 
     void OnTriggerExit(Collider other)
     {
-        if (other.name == "KamikazeEnemy")
-        {
-            _areMonstersClose = false;
-            EnemyKamikazeCharacter enemyKamikazeCharacter = other.GetComponent<EnemyKamikazeCharacter>();
-            enemyKamikazeCharacter?.CreatureLost(gameObject);
-        }
+        if (other.gameObject.layer != LayerMask.NameToLayer("Enemy")) return;
+        _areMonstersClose = false;
+        EnemyKamikazeCharacter enemyKamikazeCharacter = other.GetComponent<EnemyKamikazeCharacter>();
+        enemyKamikazeCharacter?.CreatureLost(gameObject);
     }
 }

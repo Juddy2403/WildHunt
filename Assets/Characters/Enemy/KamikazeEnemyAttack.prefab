@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7779561168517936278}
   - component: {fileID: -9149839293163992871}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: KamikazeEnemyAttack
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -50,6 +50,10 @@ MonoBehaviour:
   _fireRate: 1
   _fireSockets:
   - {fileID: 3306555863311352618}
+  _gunfireController: {fileID: 0}
+  _onFireEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &7085561778809248697
 GameObject:
   m_ObjectHideFlags: 0
@@ -59,7 +63,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3306555863311352618}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: FireSocket
   m_TagString: Untagged
   m_Icon: {fileID: -5938655980376293919, guid: 0000000000000000d000000000000000, type: 0}

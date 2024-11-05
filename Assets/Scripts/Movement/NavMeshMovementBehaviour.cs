@@ -11,7 +11,15 @@ namespace Movement
         private NavMeshAgent _navMeshAgent;
         private MovementState _currentState;
         private Vector3 _previousTargetPosition = Vector3.zero;
-
+        public override float MovementSpeed
+        {
+            get { return _movementSpeed; }
+            set
+            {
+                _movementSpeed = value; 
+                _navMeshAgent.speed = _movementSpeed;
+            }
+        }
         protected override void Awake()
         {
             base.Awake();
@@ -53,11 +61,12 @@ namespace Movement
         public static Vector3 RandomNavmeshLocation(Vector3 origin, float radius) {
             Vector3 randomDirection = Random.insideUnitSphere * radius;
             randomDirection += origin;
-            NavMeshHit hit;
+            NavMeshHit hit; 
             Vector3 finalPosition = Vector3.zero;
             if (NavMesh.SamplePosition(randomDirection, out hit, radius, 1)) {
                 finalPosition = hit.position;            
             }
+            finalPosition.y += 0.5f;
             return finalPosition;
         }
 

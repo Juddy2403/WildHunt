@@ -24,7 +24,7 @@ public class MovementBehaviour : MonoBehaviour
         get { return _desiredMovementDirection; }
         set { _desiredMovementDirection = value; }
     }
-    public float MovementSpeed
+    public virtual float MovementSpeed
     {
         get { return _movementSpeed; }
         set { _movementSpeed = value; }
