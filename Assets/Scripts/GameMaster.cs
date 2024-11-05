@@ -17,6 +17,15 @@ public class GameMaster : SingletonBase<GameMaster>
     public int Trust { get { return _trust; } } 
     public int Sanity { get { return _sanity; } }
     public bool IsIndoors { get { return _isIndoors; } }
+    
+    private float _waveStartFrequency = 15.0f;
+    private float _waveEndFrequency = 7.0f;
+    private int _monsterMinSpawnCount = 5;
+    private int _monsterMaxSpawnCount = 20;
+    public float WaveStartFrequency { get { return _waveStartFrequency; } }
+    public float WaveEndFrequency { get { return _waveEndFrequency; } }
+    public int MonsterMinSpawnCount { get { return _monsterMinSpawnCount; } }
+    public int MonsterMaxSpawnCount { get { return _monsterMaxSpawnCount; } }
 
     public void SceneChange()
     {

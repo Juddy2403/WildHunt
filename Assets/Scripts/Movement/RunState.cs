@@ -5,7 +5,8 @@ namespace Movement
     public class RunState : MovementState
     {
         private float _timer;
-        private const float _movementSpeedMultiplier = 1.5f;
+        private  float _startMovementSpeed;
+        private const float _movementSpeed = 10;
         private Transform _wanderTarget;
 
         public RunState(NavMeshMovementBehaviour movementBehaviour) : base(movementBehaviour) { }
@@ -13,13 +14,14 @@ namespace Movement
         public override void Enter()
         {
             _wanderTarget = new GameObject("WanderTarget").transform;
-            _movementBehaviour.MovementSpeed *= _movementSpeedMultiplier;
+            _startMovementSpeed = _movementBehaviour.MovementSpeed;
+            _movementBehaviour.MovementSpeed = _movementSpeed;
         }
 
         public override void Exit()
         {
             if (_wanderTarget) Object.Destroy(_wanderTarget.gameObject);
-            _movementBehaviour.MovementSpeed /= _movementSpeedMultiplier;
+            _movementBehaviour.MovementSpeed = _startMovementSpeed;
             _movementBehaviour.Target = null;
         }
 
@@ -30,7 +32,7 @@ namespace Movement
             _timer += Time.deltaTime;
             if (_timer >= wanderTimer || !_movementBehaviour.Target)
             {
-                Vector3 newPos = NavMeshMovementBehaviour.RandomNavSphere(_movementBehaviour.transform.position, wanderRadius);
+                Vector3 newPos = NavMeshMovementBehaviour.RandomNavmeshLocation(_movementBehaviour.transform.position, wanderRadius);
                 _wanderTarget.position = newPos;
                 _movementBehaviour.Target = _wanderTarget;
                 _timer = 0;

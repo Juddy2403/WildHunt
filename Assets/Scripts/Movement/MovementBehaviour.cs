@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -99,6 +100,11 @@ public class MovementBehaviour : MonoBehaviour
     public void Jump()
     {
         if (_grounded) _rigidBody.AddForce(Vector3.up * _jumpStrength, ForceMode.Impulse);
+    }
+
+    private void OnDestroy()
+    {
+        _target = null;
     }
 }
 

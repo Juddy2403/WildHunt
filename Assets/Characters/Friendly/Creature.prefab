@@ -264,7 +264,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 10
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -404,21 +404,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _radar: {fileID: 1418522868380965139}
-  _onMurderEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7256444138763438278}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: helo
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1001 &1557386645131677604
 PrefabInstance:
   m_ObjectHideFlags: 0

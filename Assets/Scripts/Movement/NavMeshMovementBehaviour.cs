@@ -50,12 +50,15 @@ namespace Movement
             _currentState = newState;
             _currentState?.Enter();
         }
-        public static Vector3 RandomNavSphere(Vector3 origin, float dist)
-        {
-            Vector3 randDirection = Random.insideUnitSphere * dist;
-            randDirection.y = 0;
-            randDirection += origin;
-            return randDirection;
+        public static Vector3 RandomNavmeshLocation(Vector3 origin, float radius) {
+            Vector3 randomDirection = Random.insideUnitSphere * radius;
+            randomDirection += origin;
+            NavMeshHit hit;
+            Vector3 finalPosition = Vector3.zero;
+            if (NavMesh.SamplePosition(randomDirection, out hit, radius, 1)) {
+                finalPosition = hit.position;            
+            }
+            return finalPosition;
         }
 
         private void OnDestroy()
