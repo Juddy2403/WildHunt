@@ -34,11 +34,6 @@ public class MovementBehaviour : MonoBehaviour
         get { return _desiredXRotation; }
         set { _desiredXRotation = value; }
     }
-    public Transform Target
-    {
-        get { return _target; }
-        set { _target = value; }
-    }
     
     protected virtual void Awake()
     {
@@ -100,11 +95,6 @@ public class MovementBehaviour : MonoBehaviour
     public void Jump()
     {
         if (_grounded) _rigidBody.AddForce(Vector3.up * _jumpStrength, ForceMode.Impulse);
-    }
-
-    private void OnDestroy()
-    {
-        _target = null;
     }
 }
 

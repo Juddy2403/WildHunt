@@ -11,6 +11,17 @@ namespace Movement
         private NavMeshAgent _navMeshAgent;
         private MovementState _currentState;
         private Vector3 _previousTargetPosition = Vector3.zero;
+        private Vector3 _wanderTarget = Vector3.zero;
+        public void SetTarget(Transform target)
+        {
+            _wanderTarget = Vector3.zero;
+            _target = target;
+        }
+        public void SetTarget(Vector3 target)
+        {
+            _target = null;
+            _wanderTarget = target;
+        }
         public override float MovementSpeed
         {
             get { return _movementSpeed; }
@@ -37,19 +48,21 @@ namespace Movement
         {
             _currentState?.Update();
             
-            if (!_target)
+            if (!_target && _wanderTarget == Vector3.zero)
             {
                 _navMeshAgent.isStopped = true;
                 return;
             }
 
-            const float MOVEMENT_EPSILON = .25f;
+            const float movementEpsilon = .25f;
+            //target pos is either _target.position or _wanderTarget
+            Vector3 targetPos = _target ? _target.position : _wanderTarget;
             //should the target move we should recalculate our path
-            if ((_target.position - _previousTargetPosition).sqrMagnitude > MOVEMENT_EPSILON)
+            if ((targetPos - _previousTargetPosition).sqrMagnitude > movementEpsilon)
             {
-                _navMeshAgent.SetDestination(_target.position);
+                _navMeshAgent.SetDestination(targetPos);
                 _navMeshAgent.isStopped = false;
-                _previousTargetPosition = _target.position;
+                _previousTargetPosition = targetPos;
             }
         }
         public void SetState(MovementState newState)

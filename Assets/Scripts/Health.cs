@@ -5,6 +5,7 @@ using UnityEngine.Serialization;
 
 public class Health : MonoBehaviour
 {
+    private static readonly int BaseColor = Shader.PropertyToID("_BaseColor");
     [SerializeField] private int _startHealth = 10;
     private int _currentHealth = 0;
     public float StartHealth { get => _startHealth;
@@ -24,7 +25,6 @@ public class Health : MonoBehaviour
     [SerializeField] private Color _flickerColor = Color.white;
     [SerializeField] private float _flickerDuration = 0.1f;
     private Material _attachedMaterial;
-    const string COLOR_PARAMETER = "_BaseColor";
 
     public HealthBar healthBar;
 
@@ -40,7 +40,7 @@ public class Health : MonoBehaviour
         {
             //This will actually behind the scenes create a new instance of a material, use renderer.sharedmaterial to get the actual material use (be careful as this will change it for ALL objects using that material)
             _attachedMaterial = renderer.material;
-            _startColor = _attachedMaterial.GetColor(COLOR_PARAMETER);
+            _startColor = _attachedMaterial.GetColor(BaseColor);
         }
         healthBar?.SetMaxHealth(_startHealth);
     }
@@ -57,12 +57,11 @@ public class Health : MonoBehaviour
     private IEnumerator HandleColorFlicker()
     {
         float time = _flickerDuration;
-        float normalizedTime;
 
         while (time > 0)
         {
             time -= Time.deltaTime;
-            normalizedTime = Mathf.Clamp01(time / _flickerDuration);
+            var normalizedTime = Mathf.Clamp01(time / _flickerDuration);
 
             var currentColor = _startColor;
             var targetColor = _flickerColor;
@@ -77,11 +76,11 @@ public class Health : MonoBehaviour
             }
 
             var finalColor = Color.Lerp(currentColor, targetColor, lerpTime);
-            _attachedMaterial.SetColor(COLOR_PARAMETER, finalColor);
+            _attachedMaterial.SetColor(BaseColor, finalColor);
             yield return new WaitForEndOfFrame();//this loop will continue next frame until the while loop has finished
         }
         //ensure we are the starting color again at the end if we would not exactly hit it due to rounding
-        _attachedMaterial.SetColor(COLOR_PARAMETER, _startColor);
+        _attachedMaterial.SetColor(BaseColor, _startColor);
     }
 
     private void Kill()
@@ -93,7 +92,8 @@ public class Health : MonoBehaviour
         gameObject.SetActive(false);
         if (gameObject.CompareTag("Creature"))
         {
-            GameMaster.Instance.SanityLost();
+            var gameMaster = GameMaster.Instance;
+            if(gameMaster.IsIndoors) gameMaster.SanityLost();
             DetectRadar.MurderEvent();
         }
         Destroy(gameObject);

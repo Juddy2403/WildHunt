@@ -14,12 +14,12 @@ namespace Movement
 
         public override void Enter()
         {
-            _movementBehaviour.Target = _target;
+            _movementBehaviour.SetTarget(_target);
         }
 
         public override void Exit()
         {
-            _movementBehaviour.Target = null;
+            _movementBehaviour.SetTarget(null);
         }
 
         public override void Update() { }

@@ -19,7 +19,7 @@ public class EnemyKamikazeCharacter : BasicCharacter
         _navMovementBehaviour = GetComponent<NavMeshMovementBehaviour>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         HandleMovement();
         HandleAttacking();

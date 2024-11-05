@@ -76,7 +76,7 @@ public class GameMaster : SingletonBase<GameMaster>
     {
         HUD.Instance.UpdateCreaturesSaved(--_creaturesSaved); // Update the HUD
     }
-    private IEnumerator ReloadScene()
+    private static IEnumerator ReloadScene()
     {
         yield return new WaitForEndOfFrame();
         SceneManager.LoadScene(0);
