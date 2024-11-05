@@ -73,7 +73,7 @@ public class MovementBehaviour : MonoBehaviour
         Vector3 force = bulletForward * 10f + Vector3.up * 10f; // Adjust the multipliers as needed
         _rigidBody.velocity = force;
         _canMove = false;
-        Invoke(nameof(EnableMovement),1f);
+        Invoke(nameof(EnableMovement),0.7f);
     }
 
     private void EnableMovement()

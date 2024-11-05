@@ -20,6 +20,10 @@ namespace Movement
                 _navMeshAgent.speed = _movementSpeed;
             }
         }
+        public void SetNavStopDistance(float distance)
+        {
+            _navMeshAgent.stoppingDistance = distance;
+        }
         protected override void Awake()
         {
             base.Awake();

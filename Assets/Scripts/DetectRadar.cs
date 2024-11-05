@@ -41,10 +41,10 @@ public class DetectRadar : MonoBehaviour
     // Update is called once per frame
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject == GameMaster.Instance.Player)
+        if (other.gameObject == GameMaster.Player)
         {
             //if enemy sees player with a weapon, trust is lost
-            if (GameMaster.Instance.Player.GetComponent<AttackBehaviour>().CurrentWeapon !=
+            if (GameMaster.Player.GetComponent<AttackBehaviour>().CurrentWeapon !=
                 AttackBehaviour.WeaponType.Empty)
                 GameMaster.Instance.TrustLost(5);
             //change radar color
@@ -58,7 +58,7 @@ public class DetectRadar : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject == GameMaster.Instance.Player)
+        if (other.gameObject == GameMaster.Player)
         {
             //reset radar color
             _radar.GetComponent<Renderer>().material.color = _initMatColor;
@@ -79,7 +79,7 @@ public class DetectRadar : MonoBehaviour
         
         if (GameMaster.Instance.IsIndoors)
         {
-            if (_isPlayerInside || GameMaster.Instance.Player?.GetComponent<AttackBehaviour>()?.CurrentWeapon 
+            if (_isPlayerInside || GameMaster.Player?.GetComponent<AttackBehaviour>()?.CurrentWeapon 
                 == AttackBehaviour.WeaponType.Gun)
             {
                 Debug.Log("Murder trust lost");

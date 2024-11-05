@@ -11,8 +11,7 @@ public class GameMaster : SingletonBase<GameMaster>
     private int _trust = 100;
     private int _sanity = 100;
     private bool _isIndoors = false;
-    private GameObject _player = null;
-    public GameObject Player { get { return _player; } set { _player = value; } }
+    public static GameObject Player { get; set; } = null;
     public int CreaturesSaved { get { return _creaturesSaved; } } 
     public int Trust { get { return _trust; } } 
     public int Sanity { get { return _sanity; } }

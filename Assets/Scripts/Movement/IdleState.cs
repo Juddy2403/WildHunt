@@ -13,6 +13,7 @@ namespace Movement
 
         public override void Enter()
         {
+            _movementBehaviour.SetNavStopDistance(0);
             _wanderTarget = new GameObject("WanderTarget").transform;
             _startMovementSpeed = _movementBehaviour.MovementSpeed;
             _movementBehaviour.MovementSpeed = _movementSpeed;
@@ -31,7 +32,7 @@ namespace Movement
             _idleTimer += Time.deltaTime;
             if (_idleTimer >= _idleWaitTime)
             {
-                Vector3 newPos = NavMeshMovementBehaviour.RandomNavmeshLocation(_movementBehaviour.transform.position, Random.Range(1, _wanderRadius));
+                Vector3 newPos = NavMeshMovementBehaviour.RandomNavmeshLocation(_movementBehaviour.transform.position, Random.Range(3, _wanderRadius));
                 _wanderTarget.position = newPos;
                 _movementBehaviour.Target = _wanderTarget;
                 _idleTimer = 0f;

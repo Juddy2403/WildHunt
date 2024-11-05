@@ -8,12 +8,11 @@ public class CreatureAI : BasicCharacter
 {
     private bool _isAlive = true;
     private bool _detectedSafePoint = false;
-    private const float _followRange = 10.0f;
-    private const float _idleRange = 4.0f;
+    [SerializeField] private float _followRange = 10.0f;
     private bool _areMonstersClose = false;
     private NavMeshMovementBehaviour _navMovementBehaviour;
 
-    void Start()
+    private void Start()
     {
         _navMovementBehaviour = GetComponent<NavMeshMovementBehaviour>();
         _navMovementBehaviour.SetState(new IdleState(_navMovementBehaviour));
@@ -21,25 +20,42 @@ public class CreatureAI : BasicCharacter
 
     private void OnEnable()
     {
-        if (GameMaster.Instance.IsIndoors)
-        {
-            gameObject.GetComponent<Health>().StartHealth = 1;
-        }
+        if (GameMaster.Instance.IsIndoors) gameObject.GetComponent<Health>().StartHealth = 1;
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
-        if (!GameMaster.Instance.Player) return;
-        if (GameMaster.Instance.IsIndoors) return;
-        if (_detectedSafePoint) return;
+        //if the player is null, we are indoors or the creature has already found a safe point, return
+        if (!_movementBehaviour || !GameMaster.Player || GameMaster.Instance.IsIndoors || _detectedSafePoint) return;
 
-        if (_areMonstersClose) _navMovementBehaviour.SetState(new RunState(_navMovementBehaviour));
-        else if (IsPlayerInFollowRange() && IsPlayerNotTooClose())
-            _navMovementBehaviour.SetState(new FollowState(_navMovementBehaviour,
-                GameMaster.Instance.Player.transform));
-        else if (!IsPlayerNotTooClose()) _navMovementBehaviour.SetState(null);
-        else _navMovementBehaviour.SetState(new IdleState(_navMovementBehaviour));
+        if (_areMonstersClose) HandleMonstersClose();
+        else if (IsPlayerInFollowRange()) HandlePlayerInFollowRange();
+        else HandleIdleState();
+
+        //resetting the monsters close flag so we can check it again next frame in OnTriggerStay
         _areMonstersClose = false;
+    }
+
+    private bool IsPlayerInFollowRange()
+    {
+        return (transform.position - GameMaster.Player.transform.position).sqrMagnitude <
+               _followRange * _followRange;
+    }
+    
+    private void HandleMonstersClose()
+    {
+        _navMovementBehaviour.SetState(new RunState(_navMovementBehaviour));
+    }
+
+    private void HandlePlayerInFollowRange()
+    {
+        _navMovementBehaviour.SetNavStopDistance(4);
+        _navMovementBehaviour.SetState(new FollowState(_navMovementBehaviour, GameMaster.Player.transform));
+    }
+
+    private void HandleIdleState()
+    {
+        _navMovementBehaviour.SetState(new IdleState(_navMovementBehaviour));
     }
 
     private void OnDestroy()
@@ -48,18 +64,6 @@ public class CreatureAI : BasicCharacter
         SphereCollider sphereCollider = GetComponent<SphereCollider>();
         Collider[] colliders = Physics.OverlapSphere(transform.position, sphereCollider.radius);
         foreach (var collider in colliders) OnTriggerExit(collider);
-    }
-
-    private bool IsPlayerNotTooClose()
-    {
-        return (transform.position - GameMaster.Instance.Player.transform.position).sqrMagnitude >
-               _idleRange * _idleRange;
-    }
-
-    private bool IsPlayerInFollowRange()
-    {
-        return (transform.position - GameMaster.Instance.Player.transform.position).sqrMagnitude <
-               _followRange * _followRange;
     }
 
     void OnTriggerStay(Collider other)
@@ -86,16 +90,17 @@ public class CreatureAI : BasicCharacter
             case "DetectCollider":
                 //safe point detected
                 _detectedSafePoint = true;
+                _navMovementBehaviour.SetNavStopDistance(0);
                 _navMovementBehaviour.SetState(new FollowState(_navMovementBehaviour, other.transform));
                 break;
         }
     }
 
-    void OnTriggerExit(Collider other)
+    private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.layer != LayerMask.NameToLayer("Enemy")) return;
         _areMonstersClose = false;
-        EnemyKamikazeCharacter enemyKamikazeCharacter = other.GetComponent<EnemyKamikazeCharacter>();
+        var enemyKamikazeCharacter = other.GetComponent<EnemyKamikazeCharacter>();
         enemyKamikazeCharacter?.CreatureLost(gameObject);
     }
 }

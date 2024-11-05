@@ -13,6 +13,7 @@ namespace Movement
 
         public override void Enter()
         {
+            _movementBehaviour.SetNavStopDistance(0);
             _wanderTarget = new GameObject("WanderTarget").transform;
             _startMovementSpeed = _movementBehaviour.MovementSpeed;
             _movementBehaviour.MovementSpeed = _movementSpeed;

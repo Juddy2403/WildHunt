@@ -75,7 +75,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _currentTarget: {fileID: 0}
   _attackRange: 2
-  _targetFollowRange: 10
+  _targetFollowRange: 20
   _attackVFXTemplate: {fileID: 1800450485291678592, guid: ace173caf46012546b38a004839587df,
     type: 3}
 --- !u!195 &7713891537975957900

@@ -28,7 +28,7 @@ public class SpawnManager : MonoBehaviour
     
     private void SpawnWave(GameObject spawnTemplate,int minSpawnCount = 5, int maxSpawnCount = 20)
     {
-        GameObject player = GameMaster.Instance.Player;
+        GameObject player = GameMaster.Player;
         if (player == null)
         {
             Debug.LogError("Player not found");

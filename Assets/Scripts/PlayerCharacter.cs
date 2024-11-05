@@ -25,7 +25,7 @@ public class PlayerCharacter : BasicCharacter
     protected override void Awake()
     {
         base.Awake();
-        GameMaster.Instance.Player = gameObject;
+        GameMaster.Player = gameObject;
         if (!_inputAsset) return;
 
         //Bind the actions to the input asset

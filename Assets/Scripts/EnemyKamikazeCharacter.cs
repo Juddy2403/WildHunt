@@ -9,7 +9,7 @@ public class EnemyKamikazeCharacter : BasicCharacter
 {
     [SerializeField] private GameObject _currentTarget = null;
     [SerializeField] private float _attackRange = 2.0f;
-    [SerializeField] private float _targetFollowRange = 40.0f;
+    [SerializeField] private float _targetFollowRange = 20.0f;
     [SerializeField] GameObject _attackVFXTemplate = null;
     private NavMeshMovementBehaviour _navMovementBehaviour;
     private bool _hasAttacked = false;
@@ -25,24 +25,35 @@ public class EnemyKamikazeCharacter : BasicCharacter
         HandleAttacking();
     }
 
-    void HandleMovement()
+    private void HandleMovement()
     {
-        if (!_movementBehaviour) return;
-        if(!GameMaster.Instance.Player) return;
-        //if enemy doesnt follow creature and is close enough to player or if enemy follows creature but player is very close
-        if ((!_currentTarget && IsPlayerInRange()) || (IsPlayerVeryClose() && _currentTarget != GameMaster.Instance.Player))
-        {
-            _currentTarget = GameMaster.Instance.Player;
-            _navMovementBehaviour.SetState(new FollowState(_navMovementBehaviour, GameMaster.Instance.Player.transform));
-        }
-        else if (!_currentTarget) _navMovementBehaviour.SetState(new IdleState(_navMovementBehaviour));
+        if (!_movementBehaviour || !GameMaster.Player) return;
+
+        if (ShouldFollowPlayer()) FollowPlayer();
+        else if (!_currentTarget) SetIdleState();
+    }
+
+    private bool ShouldFollowPlayer()
+    {
+        //follow player if we have no target and the player is in range,
+        //or if the player is very close and we are not already following them
+        return (!_currentTarget && IsPlayerInRange()) || (IsPlayerVeryClose() && _currentTarget != GameMaster.Player);
+    }
+
+    private void FollowPlayer()
+    {
+        _currentTarget = GameMaster.Player;
+        _navMovementBehaviour.SetState(new FollowState(_navMovementBehaviour, _currentTarget.transform));
+    }
+
+    private void SetIdleState()
+    {
+        _navMovementBehaviour.SetState(new IdleState(_navMovementBehaviour));
     }
 
     void HandleAttacking()
     {
-        if (_hasAttacked) return;
-        if (!_attackBehaviour) return;
-        if (!_currentTarget) return;
+        if (_hasAttacked || !_attackBehaviour || !_currentTarget) return;
 
         //if we are in range of the player, fire our weapon, 
         if (IsPlayerInAttackRange())
@@ -51,8 +62,8 @@ public class EnemyKamikazeCharacter : BasicCharacter
             _attackBehaviour.Attack();
             if (_attackVFXTemplate) Instantiate(_attackVFXTemplate, transform.position, transform.rotation);
             _movementBehaviour.PushBackwards(-transform.forward);
-            //turn has attacked off after a delay
-            Invoke("ResetAttack", 1.0f);
+            //can only attack again after a delay
+            Invoke(nameof(ResetAttack), 1.0f);
         }
     }
 
@@ -65,7 +76,7 @@ public class EnemyKamikazeCharacter : BasicCharacter
     {
         //if we are not already targeting a creature, follow this one
         if (_currentTarget && _currentTarget.CompareTag("Creature")) return;
-        if (_currentTarget == GameMaster.Instance.Player && IsPlayerInRange()) return;
+        if (_currentTarget == GameMaster.Player && IsPlayerInRange()) return;
         _currentTarget = creature;
         _navMovementBehaviour.SetState(new FollowState(_navMovementBehaviour, creature.transform));
     }
@@ -79,12 +90,12 @@ public class EnemyKamikazeCharacter : BasicCharacter
 
     private bool IsPlayerVeryClose()
     {
-        return (transform.position - GameMaster.Instance.Player.transform.position).sqrMagnitude < _targetFollowRange;
+        return (transform.position - GameMaster.Player.transform.position).sqrMagnitude < _targetFollowRange;
     }
 
     private bool IsPlayerInRange()
     {
-        return (transform.position - GameMaster.Instance.Player.transform.position).sqrMagnitude < _targetFollowRange * _targetFollowRange;
+        return (transform.position - GameMaster.Player.transform.position).sqrMagnitude < _targetFollowRange * _targetFollowRange;
     }
 
     private bool IsPlayerInAttackRange()

@@ -88,7 +88,7 @@ public class Health : MonoBehaviour
     {
         if(gameObject.name == "Player")
         {
-            GameMaster.Instance.Player = null;
+            GameMaster.Player = null;
         }
         gameObject.SetActive(false);
         if (gameObject.CompareTag("Creature"))
