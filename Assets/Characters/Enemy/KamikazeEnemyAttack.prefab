@@ -48,9 +48,8 @@ MonoBehaviour:
   _bulletTemplate: {fileID: 2088402717037601721, guid: ebe2b5ab3d165b443ad1dc713039bb41,
     type: 3}
   _fireRate: 1
-  _fireSockets:
-  - {fileID: 3306555863311352618}
-  _gunfireController: {fileID: 0}
+  _shootVfx: {fileID: 0}
+  _fireSocket: {fileID: 3306555863311352618}
   _onFireEvent:
     m_PersistentCalls:
       m_Calls: []

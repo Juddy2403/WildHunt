@@ -12,25 +12,28 @@ public class BasicProjectile : MonoBehaviour
     private void Awake()
     {
         Invoke(KILL_METHOD, _lifeTime);
+        var fpsCam = Camera.main;
+        Vector3 aimSpot = fpsCam.transform.position;
+        aimSpot += fpsCam.transform.forward * 200.0f;
+        transform.LookAt(aimSpot);
+        GetComponent<Rigidbody>().velocity = transform.forward * _speed;
     }
 
     void FixedUpdate()
     {
-        if (!WallDetection()) transform.position += transform.forward * (Time.deltaTime * _speed);
+        WallDetection();
     }
 
     //This cannot be defined const as it can only apply to a field which is known at compile-time. Which is not the case for an array, so doing static readonly, which means it can serve a very similar purpose.
 
-    static readonly string[] RAYCAST_MASK = { "Ground", "StaticLevel" };
-    bool WallDetection()
+    private static readonly string[] RaycastMask = { "Ground", "StaticLevel" };
+    private void WallDetection()
     {
         Ray collisionRay = new Ray(transform.position, transform.forward);
-        if (Physics.Raycast(collisionRay, Time.deltaTime * _speed, LayerMask.GetMask(RAYCAST_MASK)))
+        if (Physics.Raycast(collisionRay, Time.deltaTime * _speed, LayerMask.GetMask(RaycastMask)))
         {
             Kill();
-            return true;
         }
-        return false;
     }
 
     void Kill()
@@ -38,15 +41,15 @@ public class BasicProjectile : MonoBehaviour
         Destroy(gameObject);
     }
 
-    const string FRIENDLY_TAG = "Friendly";
-    const string ENEMY_TAG = "Enemy";
-    const string CREATURE_TAG = "Creature";
+    const string FriendlyTag = "Friendly";
+    const string EnemyTag = "Enemy";
+    const string CreatureTag = "Creature";
     void OnTriggerEnter(Collider other)
     {
         //make sure we only hit friendly or enemies
-        if (other.tag != FRIENDLY_TAG && other.tag != ENEMY_TAG && other.tag != CREATURE_TAG) return;
+        if (!other.CompareTag(FriendlyTag) && !other.CompareTag(EnemyTag) && !other.CompareTag(CreatureTag)) return;
         //only hit the opposing team
-        if (other.tag == tag) return;
+        if (other.CompareTag(tag)) return;
 
         Health otherHealth = other.GetComponent<Health>();
 

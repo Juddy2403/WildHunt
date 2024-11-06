@@ -3,18 +3,17 @@ using System.Collections.Generic;
 using BigRookGames.Weapons;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 public class BasicWeapon : MonoBehaviour
 {
     [SerializeField] private GameObject _bulletTemplate = null;
     [SerializeField] private float _fireRate = 25.0f;
-    [SerializeField] private List<Transform> _fireSockets = new();
+    [SerializeField] private GameObject _shootVfx = null;
+    [SerializeField] private Transform _fireSocket = null;
+    [SerializeField] private UnityEvent _onFireEvent;
     private bool _triggerPulled = false;
     private float _fireTimer = 0.0f;
-    [SerializeField] private GunfireController _gunfireController = null;
-
-
-    [SerializeField] private UnityEvent _onFireEvent;
 
     private void Update()
     {
@@ -31,23 +30,14 @@ public class BasicWeapon : MonoBehaviour
     {
         //no bullet to fire
         if (!_bulletTemplate) return;
+        
+        if(_shootVfx) Instantiate(_shootVfx, _fireSocket.transform);
 
         //set the time so we respect the firerate
         _fireTimer += 1.0f / _fireRate;
-
         _onFireEvent?.Invoke();
-        
-        if (_gunfireController)
-        {
-            _gunfireController.FireWeapon();
-            return;
-        }
-        
-        for (int i = 0; i < _fireSockets.Count; i++)
-        {
-            Instantiate(_bulletTemplate, _fireSockets[i].position, _fireSockets[i].rotation);
-        }
-   
+
+        Instantiate(_bulletTemplate, _fireSocket.position, _fireSocket.rotation);
     }
 
     public void Fire()
@@ -55,5 +45,3 @@ public class BasicWeapon : MonoBehaviour
         _triggerPulled = true;
     }
 }
-
-
