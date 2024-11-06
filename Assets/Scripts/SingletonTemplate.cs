@@ -27,6 +27,7 @@ public class SingletonBase<T> : MonoBehaviour where T : MonoBehaviour
     protected virtual void OnApplicationQuit()
     {
         ApplicationQuitting = true;
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     protected virtual void Awake()
@@ -49,7 +50,6 @@ public class SingletonBase<T> : MonoBehaviour where T : MonoBehaviour
         {
             _instance = null;
         }
-        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     protected virtual void OnSceneLoaded(Scene scene, LoadSceneMode mode) { }

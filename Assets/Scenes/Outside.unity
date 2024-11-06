@@ -35359,7 +35359,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 25, y: 0.18325806}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 2, y: 2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1398516381
@@ -35519,7 +35519,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _firstWaveStart: 5
-  _waveFrequencyIncrement: 0.5
+  _waveFrequencyIncrement: 3
   _monsterTemplate: {fileID: 6143053904771826585, guid: 577e25c594af768458b34fff79884f85,
     type: 3}
   _creatureTemplate: {fileID: 6143053904771826585, guid: efef5d42855b6584cb378b4d0994cb9b,
@@ -35742,17 +35742,17 @@ PrefabInstance:
     - target: {fileID: 6150703913196053318, guid: 577e25c594af768458b34fff79884f85,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 425.80002
+      value: 400.0065
       objectReference: {fileID: 0}
     - target: {fileID: 6150703913196053318, guid: 577e25c594af768458b34fff79884f85,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 29.613287
+      value: 31.10112
       objectReference: {fileID: 0}
     - target: {fileID: 6150703913196053318, guid: 577e25c594af768458b34fff79884f85,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 539.67773
+      value: 536.45776
       objectReference: {fileID: 0}
     - target: {fileID: 6150703913196053318, guid: 577e25c594af768458b34fff79884f85,
         type: 3}

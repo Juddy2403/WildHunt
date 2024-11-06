@@ -4,7 +4,7 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     [SerializeField] private float _firstWaveStart = 5.0f;
-    [SerializeField] private float _waveFrequencyIncrement = 0.5f;
+    [SerializeField] private float _waveFrequencyIncrement = 3.0f;
     [SerializeField] private GameObject _monsterTemplate = null;
     [SerializeField] private GameObject _creatureTemplate = null;
 
@@ -13,7 +13,6 @@ public class SpawnManager : MonoBehaviour
     {
         _currentFrequency = GameMaster.Instance.WaveStartFrequency;
         SpawnWave(_creatureTemplate);
-
         Invoke(nameof(StartNewWave), _firstWaveStart);
     }
     void StartNewWave()
@@ -26,7 +25,7 @@ public class SpawnManager : MonoBehaviour
         Invoke(nameof(StartNewWave), _currentFrequency);
     }
     
-    private void SpawnWave(GameObject spawnTemplate,int minSpawnCount = 5, int maxSpawnCount = 20)
+    private void SpawnWave(GameObject spawnTemplate,int minSpawnCount = 10, int maxSpawnCount = 20)
     {
         GameObject player = GameMaster.Player;
         if (player == null)
@@ -37,10 +36,10 @@ public class SpawnManager : MonoBehaviour
 
         Vector3 playerPosition = player.transform.position;
         float minRadius = 40.0f; // Minimum radius for random position
-        float maxRadius = 200.0f; // Maximum radius for random position
+        float maxRadius = 250.0f; // Maximum radius for random position
 
         int spawnCount = Random.Range(minSpawnCount, maxSpawnCount + 1);
-
+        Debug.Log("spawned" + spawnCount + " " + spawnTemplate.name);
         for (int i = 0; i < spawnCount; i++)
         {
             float randomRadius = Random.Range(minRadius, maxRadius);
