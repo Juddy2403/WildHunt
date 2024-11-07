@@ -12,6 +12,7 @@ public class GameMaster : SingletonBase<GameMaster>
     private int _sanity = 100;
     private bool _isIndoors = false;
     public static GameObject Player { get; set; } = null;
+    public int CurrentDay { get { return _currentDay; } }
     public int CreaturesSaved { get { return _creaturesSaved; } } 
     public int Trust { get { return _trust; } } 
     public int Sanity { get { return _sanity; } }

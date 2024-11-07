@@ -12,11 +12,19 @@ public class BasicProjectile : MonoBehaviour
     private void Awake()
     {
         Invoke(KILL_METHOD, _lifeTime);
-        var fpsCam = Camera.main;
-        Vector3 aimSpot = fpsCam.transform.position;
-        aimSpot += fpsCam.transform.forward * 200.0f;
-        transform.LookAt(aimSpot);
-        GetComponent<Rigidbody>().velocity = transform.forward * _speed;
+        if(CompareTag("Friendly"))
+        {
+            var fpsCam = Camera.main;
+            Vector3 aimSpot = fpsCam.transform.position;
+            aimSpot += fpsCam.transform.forward * 200.0f;
+            transform.LookAt(aimSpot);
+            GetComponent<Rigidbody>().velocity = transform.forward * _speed;
+        }
+        else if(CompareTag("Enemy"))
+        {
+            //add damage based on the day
+            _damage += (GameMaster.Instance.CurrentDay - 1) * 5;
+        }
     }
 
     void FixedUpdate()

@@ -17,6 +17,14 @@ public class EnemyKamikazeCharacter : BasicCharacter
     private void Start()
     {
         _navMovementBehaviour = GetComponent<NavMeshMovementBehaviour>();
+        var currentDay = GameMaster.Instance.CurrentDay;
+        if(currentDay > 1)
+        {
+            _navMovementBehaviour.SetState(null);
+            _navMovementBehaviour.MovementSpeed += (currentDay - 1) * 2.5f;
+            _navMovementBehaviour.SetState(new IdleState(_navMovementBehaviour));
+        }
+
     }
 
     private void FixedUpdate()
