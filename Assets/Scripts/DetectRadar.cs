@@ -11,11 +11,6 @@ public class DetectRadar : MonoBehaviour
     [SerializeField] private GameObject _radar = null;
     private bool _isPlayerInside = false;
 
-    public bool IsPlayerInside
-    {
-        get { return _isPlayerInside; }
-    }
-
     private static UnityEvent _onMurderEvent = new UnityEvent();
 
     private Color _initMatColor;
