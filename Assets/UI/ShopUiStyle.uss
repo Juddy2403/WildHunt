@@ -77,12 +77,12 @@
     -unity-font-definition: initial;
     -unity-font: url("project://database/Assets/UI/Caparison.ttf?fileID=12800000&guid=7209270de85c4d54091b5dea3c963bae&type=3#Caparison");
     color: rgb(255, 211, 109);
-    font-size: 20px;
+    font-size: 30px;
     align-self: flex-start;
     justify-content: space-between;
     max-height: 100px;
     min-height: auto;
-    height: 100px;
+    height: 95px;
     align-items: center;
     -unity-text-align: middle-left;
 }

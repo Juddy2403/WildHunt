@@ -1,25 +1,17 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
-using Cursor = UnityEngine.Cursor;
 
-public class Shop : MonoBehaviour
+public class ShopManager : MonoBehaviour
 {
     [SerializeField] private InputActionAsset _inputAsset;
-    private UIDocument _attachedDocument = null;
-    private VisualElement _root = null;
+    [SerializeField] private GameObject _shopUI = null;
     private InputAction _interactAction;
     private bool _isOnShop = false;
-    
-    private void Start()
+    // Start is called before the first frame update
+    void Start()
     {
-        _attachedDocument = GetComponent<UIDocument>();
-        if (_attachedDocument) _root = _attachedDocument.rootVisualElement;
-        _attachedDocument.enabled = false;
-        
         if (!_inputAsset) return;
 
         //Bind the actions to the input asset
@@ -29,11 +21,16 @@ public class Shop : MonoBehaviour
         _interactAction.performed += HandleInteraction;
     }
 
+    private void OnDestroy()
+    {
+        _interactAction.performed -= HandleInteraction;
+    }
+    // Update is called once per frame
     private void HandleInteraction(InputAction.CallbackContext obj)
     {
         if (!_isOnShop) return;
-        _attachedDocument.enabled = !_attachedDocument.enabled;
-        if (_attachedDocument.enabled)
+        _shopUI.SetActive(!_shopUI.activeSelf);
+        if (_shopUI.activeSelf)
         {
             //enable the cursor
             Cursor.lockState = CursorLockMode.None;
@@ -41,11 +38,12 @@ public class Shop : MonoBehaviour
         }
         else
         {
+            //disable the cursor
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
     }
-
+    
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject == GameMaster.Player)
@@ -59,7 +57,7 @@ public class Shop : MonoBehaviour
         if(other.gameObject == GameMaster.Player)
         {
             _isOnShop = false;
-            _attachedDocument.enabled = false;
+            _shopUI.SetActive(false);
         }
     }
 }
