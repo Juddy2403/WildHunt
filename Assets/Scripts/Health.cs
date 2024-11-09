@@ -96,8 +96,11 @@ public class Health : MonoBehaviour
         if (gameObject.CompareTag("Creature"))
         {
             var gameMaster = GameMaster.Instance;
-            if(gameMaster.IsIndoors) gameMaster.SanityLost();
-            DetectRadar.MurderEvent();
+            if(gameMaster.IsIndoors)
+            {
+                gameMaster.SanityLost();
+                DetectRadar.MurderEvent();
+            }
         }
         Destroy(gameObject);
     }

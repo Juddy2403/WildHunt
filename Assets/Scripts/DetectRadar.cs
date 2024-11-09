@@ -63,6 +63,7 @@ public class DetectRadar : MonoBehaviour
 
     public static void MurderEvent()
     {
+        //invoke event for all active creatures
         _onMurderEvent?.Invoke();
         GameMaster.Instance.CreatureMurdered();
     }
