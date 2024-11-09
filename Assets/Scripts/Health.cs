@@ -14,6 +14,7 @@ public class Health : MonoBehaviour
             _startHealth = (int)value;
             _currentHealth = _startHealth;
             healthBar?.SetMaxHealth(_startHealth);
+            OnHealthChanged?.Invoke(_startHealth, _currentHealth);
         }
     }
     Color _startColor;
@@ -46,6 +47,8 @@ public class Health : MonoBehaviour
     }
     public void Damage(int amount, Vector3 bulletForward)
     {
+        Debug.Log(gameObject.name + " has taken " + amount + " damage. Remaining health: " + _currentHealth);
+
         _currentHealth -= amount;
         healthBar?.SetHealth(_currentHealth);
         _movementBehaviour.PushBackwards(bulletForward);

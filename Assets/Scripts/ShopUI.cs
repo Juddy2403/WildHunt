@@ -48,8 +48,9 @@ public class ShopUI : SingletonBase<ShopUI>
         private void OnUpgrade()
         {
             Debug.Log("Upgrading " + _name);
-            _progressBar.value += 10f;
-            _progressBarValue += 10f;
+            if(_progressBarValue >= 100f) return;
+            _progressBar.value += 20f;
+            _progressBarValue += 20f;
             _costLabelValue += 20;
             _costLabel.text = _costLabelValue.ToString();
             GameMaster.Instance.Upgrade(_name);
@@ -60,6 +61,7 @@ public class ShopUI : SingletonBase<ShopUI>
     {
         _attachedDocument = GetComponent<UIDocument>();
         if (_attachedDocument) _root = _attachedDocument.rootVisualElement;
+        
         if (_hpUpgrade == null) _hpUpgrade = new Upgrade(_root, "Hp");
         else _hpUpgrade.Update(_root);
         if (_gunUpgrade == null) _gunUpgrade = new Upgrade(_root, "Gun");

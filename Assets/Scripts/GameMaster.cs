@@ -19,6 +19,12 @@ public class GameMaster : SingletonBase<GameMaster>
     public bool IsIndoors { get { return _isIndoors; } }
     private int _movementIncrease = 0;
     public int MovementIncrease { get { return _movementIncrease; } }
+    private int _healthIncrease = 0;
+    private int _gunDamageIncrease = 0;
+    public int GunDamageIncrease { get { return _gunDamageIncrease; } }
+    private int _knifeDamageIncrease = 0;
+    public int KnifeDamageIncrease { get { return _knifeDamageIncrease; } }
+    
     
     private float _waveStartFrequency = 60.0f;
     private float _waveEndFrequency = 40.0f;
@@ -51,12 +57,16 @@ public class GameMaster : SingletonBase<GameMaster>
         {
             case "Hp":
                // UpgradeHp();
+                _healthIncrease += 20;
+               Player.GetComponent<Health>().StartHealth += 20;
                 break;
             case "Gun":
                 //UpgradeGun();
+                _gunDamageIncrease += 5;
                 break;
             case "Knife":
                 //UpgradeKnife();
+                _knifeDamageIncrease += 5;
                 break;
             case "Movement":
                 _movementIncrease += 1;
@@ -73,6 +83,7 @@ public class GameMaster : SingletonBase<GameMaster>
             _monsterMinSpawnCount = Mathf.FloorToInt(Mathf.Lerp(5, 20, (100 -_sanity) / 100.0f));
             _monsterMaxSpawnCount = Mathf.FloorToInt(Mathf.Lerp(20, 40, (100 -_sanity) / 100.0f));
         }
+        Player.GetComponent<Health>().StartHealth += _healthIncrease;
     }
 
     private void RunAwayCreatures()

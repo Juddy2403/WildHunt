@@ -14,11 +14,19 @@ public class BasicProjectile : MonoBehaviour
         Invoke(KILL_METHOD, _lifeTime);
         if(CompareTag("Friendly"))
         {
+            //if speed is 0, it means it's a knife
+            if(_speed == 0)
+            {
+                _damage += GameMaster.Instance.KnifeDamageIncrease;
+                return;
+            }
+            //if it's a gun, we need to aim the bullet
             var fpsCam = Camera.main;
             Vector3 aimSpot = fpsCam.transform.position;
             aimSpot += fpsCam.transform.forward * 200.0f;
             transform.LookAt(aimSpot);
             GetComponent<Rigidbody>().velocity = transform.forward * _speed;
+            _damage += GameMaster.Instance.GunDamageIncrease;
         }
         else if(CompareTag("Enemy"))
         {

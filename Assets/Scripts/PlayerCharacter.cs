@@ -71,7 +71,6 @@ public class PlayerCharacter : BasicCharacter
 
     private void Update()
     {
-        Debug.Log(_movementBehaviour.MovementSpeed);
         HandleMovementInput();
         HandleAttackInput();
         HandleAimingInput();

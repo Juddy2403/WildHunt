@@ -494,7 +494,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &27981439
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6857,7 +6857,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _inputAsset: {fileID: -944628639613478452, guid: 14a79e306a007e84f8fcc452817cf504,
     type: 3}
-  _shopUI: {fileID: 27981438}
 --- !u!65 &1261466143
 BoxCollider:
   m_ObjectHideFlags: 0
