@@ -16,6 +16,7 @@ public class HUD : SingletonBase<HUD>
     private VisualElement _sanityBarContainer = null;
     private Label _dayNr = null;
     private Label _savedCreatureNr = null;
+    private Label _coins = null;
 
     // Start is called before the first frame update
     void Start()
@@ -38,6 +39,7 @@ public class HUD : SingletonBase<HUD>
         
         _dayNr = _root.Q<Label>("DayNumber");
         _savedCreatureNr = _root.Q<Label>("CreaturesSaved");
+        _coins = _root.Q<Label>("Coins");
 
         HookHealthEvent();
     }
@@ -97,5 +99,10 @@ public class HUD : SingletonBase<HUD>
         if (_sanityBar == null) return;
         _sanityBar.value = sanity;
         _sanityBar.title = $"sanity {sanity}/{100}";
+    }
+    public void UpdateCoins(int coins)
+    {
+        if (_coins == null) return;
+        _coins.text = $"Coins: {coins}";
     }
 }

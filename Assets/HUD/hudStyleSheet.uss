@@ -1,0 +1,16 @@
+.text {
+    -unity-font: url("project://database/Assets/UI/Caparison.ttf?fileID=12800000&guid=7209270de85c4d54091b5dea3c963bae&type=3#Caparison");
+    -unity-font-definition: initial;
+    color: rgb(255, 255, 255);
+    margin-left: 15px;
+    margin-top: 15px;
+    -unity-font-style: bold;
+}
+
+.unity-progress-bar__background {
+    background-color: rgb(135, 53, 45);
+}
+
+.unity-progress-bar__progress {
+    background-color: rgb(64, 123, 121);
+}

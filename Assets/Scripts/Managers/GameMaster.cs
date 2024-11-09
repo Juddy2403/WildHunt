@@ -12,6 +12,7 @@ public class GameMaster : SingletonBase<GameMaster>
     public SanityManager SanityManager { get; } = new();
     public CreatureManager CreatureManager { get; } = new();
     public MonsterManager MonsterManager { get; } = new();
+    public CoinManager CoinManager { get; } = new();
 
     public bool IsIndoors { get; private set; } = false;
     public static GameObject Player { get; set; } = null;

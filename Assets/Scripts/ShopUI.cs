@@ -47,8 +47,10 @@ public class ShopUI : SingletonBase<ShopUI>
 
         private void OnUpgrade()
         {
-            Debug.Log("Upgrading " + _name);
             if(_progressBarValue >= 100f) return;
+            if(GameMaster.Instance.CoinManager.Coins < _costLabelValue) return;
+            GameMaster.Instance.CoinManager.Coins -= _costLabelValue;
+            Debug.Log("Upgrading " + _name);
             _progressBar.value += 20f;
             _progressBarValue += 20f;
             _costLabelValue += 20;
