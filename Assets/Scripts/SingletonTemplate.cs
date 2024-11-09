@@ -11,7 +11,7 @@ public class SingletonBase<T> : MonoBehaviour where T : MonoBehaviour
             if (!_instance && !ApplicationQuitting)
             {
                 _instance = FindObjectOfType<T>();
-                if (_instance == null)
+                if (!_instance)
                 {
                     GameObject newInstance = new GameObject($"Singleton_{typeof(T).Name}");
                     _instance = newInstance.AddComponent<T>();

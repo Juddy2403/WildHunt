@@ -6,13 +6,16 @@ using UnityEngine.InputSystem;
 public class ShopManager : MonoBehaviour
 {
     [SerializeField] private InputActionAsset _inputAsset;
-    [SerializeField] private GameObject _shopUI = null;
+    private GameObject _shopUI = null;
     private InputAction _interactAction;
     private bool _isOnShop = false;
     // Start is called before the first frame update
     void Start()
     {
         if (!_inputAsset) return;
+
+        _shopUI = FindObjectOfType<ShopUI>().gameObject;
+        _shopUI.SetActive(false);
 
         //Bind the actions to the input asset
         _interactAction = _inputAsset.FindActionMap("Gameplay").FindAction("Interact");
@@ -46,18 +49,13 @@ public class ShopManager : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject == GameMaster.Player)
-        {
-            _isOnShop = true;
-        }
+        if(other.gameObject == GameMaster.Player) _isOnShop = true;
     }
     
     private void OnTriggerExit(Collider other)
     {
-        if(other.gameObject == GameMaster.Player)
-        {
-            _isOnShop = false;
-            _shopUI.SetActive(false);
-        }
+        if (other.gameObject != GameMaster.Player) return;
+        _isOnShop = false;
+        _shopUI.SetActive(false);
     }
 }

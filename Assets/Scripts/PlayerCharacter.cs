@@ -15,8 +15,9 @@ public class PlayerCharacter : BasicCharacter
     private InputAction _switchWeaponAction;
     private float _sprintSpeed;
     private float _movementSpeed;
+    public float MovementSpeed { get => _movementSpeed; set => _movementSpeed = value; }
 
-    void Start()
+    private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -29,19 +30,24 @@ public class PlayerCharacter : BasicCharacter
         if (!_inputAsset) return;
 
         //Bind the actions to the input asset
+        BindActions();
+
+        //we bind a callback to it instead of continuously monitoring input
+        _jumpAction.performed += HandleJumpInput;
+        _switchWeaponAction.performed += HandleSwitchWeapon;
+        
+        _sprintSpeed = _movementBehaviour.MovementSpeed * 2f;
+        _movementSpeed = _movementBehaviour.MovementSpeed + GameMaster.Instance.MovementIncrease;
+    }
+    
+    private void BindActions()
+    {
         _jumpAction = _inputAsset.FindActionMap("Gameplay").FindAction("Jump");
         _shootAction = _inputAsset.FindActionMap("Gameplay").FindAction("Shoot");
         _xmovementAction = _inputAsset.FindActionMap("Gameplay").FindAction("XMovement");
         _zmovementAction = _inputAsset.FindActionMap("Gameplay").FindAction("ZMovement");
         _sprintAction = _inputAsset.FindActionMap("Gameplay").FindAction("Sprint");
         _switchWeaponAction = _inputAsset.FindActionMap("Gameplay").FindAction("SwitchWeapon");
-
-        //we bind a callback to it instead of continiously monitoring input
-        _jumpAction.performed += HandleJumpInput;
-        _switchWeaponAction.performed += HandleSwitchWeapon;
-        
-        _sprintSpeed = _movementBehaviour.MovementSpeed * 2f;
-        _movementSpeed = _movementBehaviour.MovementSpeed;
     }
 
     protected void OnDestroy()
@@ -55,24 +61,23 @@ public class PlayerCharacter : BasicCharacter
 
     private void OnEnable()
     {
-        if (_inputAsset == null) return;
-        _inputAsset.Enable();
+        _inputAsset?.Enable();
     }
 
     private void OnDisable()
     {
-        if (_inputAsset == null) return;
-        _inputAsset.Disable();
+        _inputAsset?.Disable();
     }
 
     private void Update()
     {
+        Debug.Log(_movementBehaviour.MovementSpeed);
         HandleMovementInput();
         HandleAttackInput();
         HandleAimingInput();
     }
 
-    void HandleMovementInput()
+    private void HandleMovementInput()
     {
         if (!_movementBehaviour || _xmovementAction == null || _zmovementAction == null) return;
 

@@ -1,10 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
-public class ShopUI : MonoBehaviour
+public class ShopUI : SingletonBase<ShopUI>
 {
     private UIDocument _attachedDocument = null;
     private VisualElement _root = null;
@@ -15,7 +17,7 @@ public class ShopUI : MonoBehaviour
 
     private class Upgrade
     {
-        public string _name;
+        private string _name;
         private Button _button;
         private ProgressBar _progressBar;
         private float _progressBarValue;
@@ -48,8 +50,9 @@ public class ShopUI : MonoBehaviour
             Debug.Log("Upgrading " + _name);
             _progressBar.value += 10f;
             _progressBarValue += 10f;
-            _costLabelValue += 10;
+            _costLabelValue += 20;
             _costLabel.text = _costLabelValue.ToString();
+            GameMaster.Instance.Upgrade(_name);
         }
     }
 
@@ -65,5 +68,10 @@ public class ShopUI : MonoBehaviour
         else _knifeUpgrade.Update(_root);
         if (_movementUpgrade == null) _movementUpgrade = new Upgrade(_root, "Movement");
         else _movementUpgrade.Update(_root);
+    }
+
+    protected override void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if(GameMaster.Instance.IsIndoors) gameObject.SetActive(true);
     }
 }

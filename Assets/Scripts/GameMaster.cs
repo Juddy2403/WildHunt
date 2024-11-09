@@ -17,6 +17,8 @@ public class GameMaster : SingletonBase<GameMaster>
     public int Trust { get { return _trust; } } 
     public int Sanity { get { return _sanity; } }
     public bool IsIndoors { get { return _isIndoors; } }
+    private int _movementIncrease = 0;
+    public int MovementIncrease { get { return _movementIncrease; } }
     
     private float _waveStartFrequency = 60.0f;
     private float _waveEndFrequency = 40.0f;
@@ -43,7 +45,25 @@ public class GameMaster : SingletonBase<GameMaster>
                 break;
         }
     }
-
+    public void Upgrade(string name)
+    {
+        switch (name)
+        {
+            case "Hp":
+               // UpgradeHp();
+                break;
+            case "Gun":
+                //UpgradeGun();
+                break;
+            case "Knife":
+                //UpgradeKnife();
+                break;
+            case "Movement":
+                _movementIncrease += 1;
+                Player.GetComponent<PlayerCharacter>().MovementSpeed += 1;
+                break;
+        }
+    }
     protected override void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         Debug.Log("scene loaded");
