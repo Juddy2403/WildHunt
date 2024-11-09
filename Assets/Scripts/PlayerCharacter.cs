@@ -37,7 +37,7 @@ public class PlayerCharacter : BasicCharacter
         _switchWeaponAction.performed += HandleSwitchWeapon;
         
         _sprintSpeed = _movementBehaviour.MovementSpeed * 2f;
-        _movementSpeed = _movementBehaviour.MovementSpeed + GameMaster.Instance.MovementIncrease;
+        _movementSpeed = _movementBehaviour.MovementSpeed + GameMaster.Instance.PlayerUpgradeManager.MovementIncrease;
     }
     
     private void BindActions()

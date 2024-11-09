@@ -84,7 +84,7 @@ public class CreatureAI : BasicCharacter
                 //collided with the safe point
                 Debug.Log("Creature saved!");
                 _isAlive = false;
-                GameMaster.Instance.CreatureSaved();
+                GameMaster.Instance.CreatureManager.CreatureSaved();
                 Destroy(gameObject);
                 break;
             case "DetectCollider":

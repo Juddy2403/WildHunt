@@ -41,7 +41,7 @@ public class DetectRadar : MonoBehaviour
             //if enemy sees player with a weapon, trust is lost
             if (GameMaster.Player.GetComponent<AttackBehaviour>().CurrentWeapon !=
                 AttackBehaviour.WeaponType.Empty)
-                GameMaster.Instance.TrustLost(5);
+                GameMaster.Instance.TrustManager.TrustLost(5);
             //change radar color
             var materialColor = Color.red;
             materialColor.a = _initMatColor.a;
@@ -65,7 +65,7 @@ public class DetectRadar : MonoBehaviour
     {
         //invoke event for all active creatures
         _onMurderEvent?.Invoke();
-        GameMaster.Instance.CreatureMurdered();
+        GameMaster.Instance.CreatureManager.CreatureMurdered();
     }
 
     private void OnMurder()
@@ -79,7 +79,7 @@ public class DetectRadar : MonoBehaviour
                 == AttackBehaviour.WeaponType.Gun)
             {
                 Debug.Log("Murder trust lost");
-                GameMaster.Instance.TrustLost(10);
+                GameMaster.Instance.TrustManager.TrustLost(10);
             }
         }
     }

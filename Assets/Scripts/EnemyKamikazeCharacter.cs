@@ -17,7 +17,7 @@ public class EnemyKamikazeCharacter : BasicCharacter
     private void Start()
     {
         _navMovementBehaviour = GetComponent<NavMeshMovementBehaviour>();
-        var currentDay = GameMaster.Instance.CurrentDay;
+        var currentDay = GameMaster.Instance.DayManager.CurrentDay;
         if(currentDay > 1)
         {
             //movement speed gets reset when in idle, so we set the state to null first to prevent that

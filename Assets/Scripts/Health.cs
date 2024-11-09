@@ -98,7 +98,7 @@ public class Health : MonoBehaviour
             var gameMaster = GameMaster.Instance;
             if(gameMaster.IsIndoors)
             {
-                gameMaster.SanityLost();
+                gameMaster.SanityManager.SanityLost();
                 DetectRadar.MurderEvent();
             }
         }

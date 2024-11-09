@@ -17,7 +17,7 @@ public class BasicProjectile : MonoBehaviour
             //if speed is 0, it means it's a knife
             if(_speed == 0)
             {
-                _damage += GameMaster.Instance.KnifeDamageIncrease;
+                _damage += GameMaster.Instance.PlayerUpgradeManager.KnifeDamageIncrease;
                 return;
             }
             //if it's a gun, we need to aim the bullet
@@ -26,12 +26,12 @@ public class BasicProjectile : MonoBehaviour
             aimSpot += fpsCam.transform.forward * 200.0f;
             transform.LookAt(aimSpot);
             GetComponent<Rigidbody>().velocity = transform.forward * _speed;
-            _damage += GameMaster.Instance.GunDamageIncrease;
+            _damage += GameMaster.Instance.PlayerUpgradeManager.GunDamageIncrease;
         }
         else if(CompareTag("Enemy"))
         {
             //add damage based on the day
-            _damage += (GameMaster.Instance.CurrentDay - 1) * 5;
+            _damage += (GameMaster.Instance.DayManager.CurrentDay - 1) * 5;
         }
     }
 

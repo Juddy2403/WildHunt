@@ -53,7 +53,7 @@ public class ShopUI : SingletonBase<ShopUI>
             _progressBarValue += 20f;
             _costLabelValue += 20;
             _costLabel.text = _costLabelValue.ToString();
-            GameMaster.Instance.Upgrade(_name);
+            GameMaster.Instance.PlayerUpgradeManager.Upgrade(_name);
         }
     }
 
