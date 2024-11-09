@@ -1,4 +1,3 @@
-// SanityManager.cs
 using UnityEngine;
 
 public class SanityManager

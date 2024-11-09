@@ -1,4 +1,3 @@
-// TrustManager.cs
 using UnityEngine;
 
 public class TrustManager

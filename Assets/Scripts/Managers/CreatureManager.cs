@@ -1,5 +1,4 @@
-﻿// CreatureManager.cs
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CreatureManager
 {

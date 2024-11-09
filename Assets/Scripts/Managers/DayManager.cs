@@ -1,4 +1,3 @@
-// DayManager.cs
 using UnityEngine;
 
 public class DayManager

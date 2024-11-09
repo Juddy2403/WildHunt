@@ -1,4 +1,3 @@
-// PlayerUpgradeManager.cs
 using UnityEngine;
 
 public class PlayerUpgradeManager
