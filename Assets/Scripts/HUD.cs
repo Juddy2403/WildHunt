@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
@@ -17,9 +15,9 @@ public class HUD : SingletonBase<HUD>
     private Label _dayNr = null;
     private Label _savedCreatureNr = null;
     private Label _coins = null;
+    private Label _time = null;
 
-    // Start is called before the first frame update
-    void Start()
+    private void OnEnable()
     {
         //UI
         _attachedDocument = GetComponent<UIDocument>();
@@ -40,20 +38,30 @@ public class HUD : SingletonBase<HUD>
         _dayNr = _root.Q<Label>("DayNumber");
         _savedCreatureNr = _root.Q<Label>("CreaturesSaved");
         _coins = _root.Q<Label>("Coins");
-
-        HookHealthEvent();
+        _time = _root.Q<Label>("Time");
     }
 
     protected override void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        if (_root == null) return;
         HookHealthEvent();
+        _time.style.color = Color.white;
+        if (GameMaster.Instance.IsIndoors)
+        {
+            _time.style.display = DisplayStyle.None;
+            _coins.style.display = DisplayStyle.Flex;
+        }
+        else
+        {
+            _time.text = "00:00 AM";
+            _time.style.display = DisplayStyle.Flex;
+            _coins.style.display = DisplayStyle.None;
+        }
     }
 
     private void HookHealthEvent()
     {
-        PlayerCharacter player = FindObjectOfType<PlayerCharacter>();
-        if (player == null) return;
-        Health playerHealth = player.GetComponent<Health>();
+        Health playerHealth = GameMaster.Player.GetComponent<Health>();
         if (playerHealth)
         {
             // initialize
@@ -79,7 +87,7 @@ public class HUD : SingletonBase<HUD>
         if (_healthBar == null) return;
 
         _healthBar.value = (currentHealth / startHealth) * 100.0f;
-        _healthBar.title = $"hp {currentHealth}/{startHealth}";
+        _healthBar.title = $"{currentHealth}/{startHealth}";
         
         //change the healthbarContainer color from green to red based on the health percentage
         if (_healthBarContainer == null) return;
@@ -92,17 +100,24 @@ public class HUD : SingletonBase<HUD>
     {
         if (_trustBar == null) return;
         _trustBar.value = trust;
-        _trustBar.title = $"trust {trust}/{100}";
+        _trustBar.title = $"{trust}/{100}";
     }
     public void UpdateSanity(int sanity)
     {
         if (_sanityBar == null) return;
         _sanityBar.value = sanity;
-        _sanityBar.title = $"sanity {sanity}/{100}";
+        _sanityBar.title = $"{sanity}/{100}";
     }
     public void UpdateCoins(int coins)
     {
         if (_coins == null) return;
         _coins.text = $"Coins: {coins}";
+    }
+    
+    public void UpdateTime(int hour, int minute)
+    {
+        if (_time == null) return;
+        _time.text = $"{hour:D2}:{minute:D2} AM";
+        if(hour == 5) _time.style.color = Color.red;
     }
 }
