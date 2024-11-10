@@ -119,5 +119,6 @@ public class HUD : SingletonBase<HUD>
         if (_time == null) return;
         _time.text = $"{hour:D2}:{minute:D2} AM";
         if(hour == 5) _time.style.color = Color.red;
+        if(hour == 6) GameMaster.Instance.TriggerGameOver();
     }
 }

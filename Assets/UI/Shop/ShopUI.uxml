@@ -1,0 +1,30 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/ShopUiStyle.uss?fileID=7433441132597879392&amp;guid=e440db3d39458214e8c0d578caff5329&amp;type=3#ShopUiStyle" />
+    <ui:VisualElement name="Canvas" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/UI/Sprites/Inventory-C_0000s_0002s_0001s_0001_BackG.png?fileID=21300000&amp;guid=ae94d59a09db5504f99e8eba4362b5a5&amp;type=3#Inventory-C_0000s_0002s_0001s_0001_BackG&quot;); width: 70%; height: 80%; min-height: auto; align-items: auto; align-self: center; position: absolute; justify-content: center; top: 10%; border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; border-top-left-radius: 30px; border-top-right-radius: 30px; border-bottom-right-radius: 30px; border-bottom-left-radius: 30px; flex-direction: row;">
+        <ui:VisualElement name="Coins" style="flex-grow: 1; position: absolute; height: 587px; width: 92px; top: 154px; left: 773px; border-top-width: 10px; border-right-width: 10px; border-bottom-width: 10px; border-left-width: 10px; border-left-color: rgba(255, 255, 255, 0); border-right-color: rgba(255, 255, 255, 0); border-top-color: rgba(255, 255, 255, 0); border-bottom-color: rgba(255, 255, 255, 0); justify-content: center; align-items: auto; flex-direction: column; flex-wrap: nowrap; flex-shrink: 1; flex-basis: auto;">
+            <ui:VisualElement class="coin" style="flex-grow: 1; margin-top: 0;" />
+            <ui:VisualElement class="coin" style="flex-grow: 1; margin-top: 0;" />
+            <ui:VisualElement class="coin" style="flex-grow: 1; margin-top: 0;" />
+            <ui:VisualElement class="coin" style="flex-grow: 1; margin-top: 0;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="ProgressBars" style="flex-grow: 1; position: absolute; height: 587px; width: 657px; top: 155px; left: 104px; border-top-width: 10px; border-right-width: 10px; border-bottom-width: 10px; border-left-width: 10px; border-left-color: rgba(255, 255, 255, 0); border-right-color: rgba(255, 255, 255, 0); border-top-color: rgba(255, 255, 255, 0); border-bottom-color: rgba(255, 255, 255, 0); align-self: center; flex-direction: column; flex-wrap: nowrap; justify-content: center;">
+            <ui:ProgressBar value="0" title="hp" name="HpUpgradeBar" class="progressBar" />
+            <ui:ProgressBar value="0" title="movement speed" name="MovementUpgradeBar" class="progressBar" />
+            <ui:ProgressBar value="0" title="gun damage" name="GunUpgradeBar" class="progressBar" />
+            <ui:ProgressBar value="0" title="knife damage" name="KnifeUpgradeBar" class="progressBar" />
+        </ui:VisualElement>
+        <ui:VisualElement name="Buttons" style="flex-grow: 1; position: absolute; height: 587px; width: 201px; top: 152px; left: 983px; border-top-width: 10px; border-right-width: 10px; border-bottom-width: 10px; border-left-width: 10px; border-left-color: rgba(255, 255, 255, 0); border-right-color: rgba(255, 255, 255, 0); border-top-color: rgba(255, 255, 255, 0); border-bottom-color: rgba(255, 255, 255, 0); -unity-text-align: middle-left; justify-content: center;">
+            <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="HpUpgradeButton" class="buttons" style="-unity-background-scale-mode: stretch-to-fill;" />
+            <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="MovementUpgradeButton" class="buttons" style="-unity-background-scale-mode: stretch-to-fill;" />
+            <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="GunUpgradeButton" class="buttons" style="-unity-background-scale-mode: stretch-to-fill;" />
+            <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="KnifeUpgradeButton" class="buttons" style="-unity-background-scale-mode: stretch-to-fill;" />
+        </ui:VisualElement>
+        <ui:Label tabindex="-1" text="upgrades" parse-escape-sequences="true" display-tooltip-when-elided="true" style="align-self: center; top: auto; bottom: 34%; -unity-font-definition: initial; -unity-font: url(&quot;project://database/Assets/UI/Caparison.ttf?fileID=12800000&amp;guid=7209270de85c4d54091b5dea3c963bae&amp;type=3#Caparison&quot;); color: rgb(255, 255, 255); font-size: 50px; position: relative; left: -29%;" />
+        <ui:VisualElement name="Price" style="flex-grow: 1; position: absolute; height: 587px; width: 115px; top: 154px; left: 860px; border-top-width: 10px; border-right-width: 10px; border-bottom-width: 10px; border-left-width: 10px; border-left-color: rgba(255, 255, 255, 0); border-right-color: rgba(255, 255, 255, 0); border-top-color: rgba(255, 255, 255, 0); border-bottom-color: rgba(255, 255, 255, 0); justify-content: center; align-items: center; flex-direction: column; flex-wrap: nowrap; flex-shrink: 1; flex-basis: auto; align-self: flex-start;">
+            <ui:Label tabindex="-1" text="20" parse-escape-sequences="true" display-tooltip-when-elided="true" name="HpUpgradePrice" class="text" style="height: 100px;" />
+            <ui:Label tabindex="-1" text="20" parse-escape-sequences="true" display-tooltip-when-elided="true" name="MovementUpgradePrice" class="text" />
+            <ui:Label tabindex="-1" text="20" parse-escape-sequences="true" display-tooltip-when-elided="true" name="GunUpgradePrice" class="text" />
+            <ui:Label tabindex="-1" text="20" parse-escape-sequences="true" display-tooltip-when-elided="true" name="KnifeUpgradePrice" class="text" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

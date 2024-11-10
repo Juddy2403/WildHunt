@@ -49,7 +49,11 @@ public class ShopManager : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject == GameMaster.Player) _isOnShop = true;
+        if(other.gameObject == GameMaster.Player)
+        {
+            _isOnShop = true;
+            TextPopup.Instance.Display("Press E to open shop");
+        }
     }
     
     private void OnTriggerExit(Collider other)

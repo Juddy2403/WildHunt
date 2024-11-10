@@ -28,7 +28,12 @@ public class SafePointTeleporter : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
-        if (other.name == "SafePointCollider") _isOnSafePoint = true;
+        if (other.name == "SafePointCollider")
+        {
+            _isOnSafePoint = true;
+            if(GameMaster.Instance.IsIndoors) TextPopup.Instance.Display("Press E to exit the house");
+            else TextPopup.Instance.Display("Press E to enter the house");
+        }
     }
     private void OnTriggerExit(Collider other)
     {
