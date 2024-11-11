@@ -14,6 +14,7 @@ public class ShopUI : SingletonBase<ShopUI>
     private Upgrade _gunUpgrade = null;
     private Upgrade _knifeUpgrade = null;
     private Upgrade _movementUpgrade = null;
+    private Button _exitButton;
 
     private class Upgrade
     {
@@ -48,7 +49,11 @@ public class ShopUI : SingletonBase<ShopUI>
         private void OnUpgrade()
         {
             if(_progressBarValue >= 100f) return;
-            if(GameMaster.Instance.CoinManager.Coins < _costLabelValue) return;
+            if(GameMaster.Instance.CoinManager.Coins < _costLabelValue)
+            {
+                TextPopup.Instance.Display("Not enough coins");
+                return;
+            }
             GameMaster.Instance.CoinManager.Coins -= _costLabelValue;
             Debug.Log("Upgrading " + _name);
             _progressBar.value += 20f;
@@ -72,6 +77,13 @@ public class ShopUI : SingletonBase<ShopUI>
         else _knifeUpgrade.Update(_root);
         if (_movementUpgrade == null) _movementUpgrade = new Upgrade(_root, "Movement");
         else _movementUpgrade.Update(_root);
+        _exitButton ??= _root.Q<Button>("ExitButton");
+        if (_exitButton != null) _exitButton.clickable.clicked += OnExit;
+    }
+
+    private void OnExit()
+    {
+        gameObject.SetActive(false);
     }
 
     protected override void OnSceneLoaded(Scene scene, LoadSceneMode mode)

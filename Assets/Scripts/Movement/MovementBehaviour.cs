@@ -76,7 +76,7 @@ public class MovementBehaviour : MonoBehaviour
         _canMove = true;
     }
 
-    protected virtual void HandleLookAt()
+    private void HandleLookAt()
     {
         if (!_shoulderObject) return;
         
