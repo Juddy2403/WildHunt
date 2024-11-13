@@ -73,7 +73,7 @@ public class PlayerCharacter : BasicCharacter
     {
         HandleMovementInput();
         HandleAttackInput();
-        HandleAimingInput();
+        //HandleAimingInput();
     }
 
     private void HandleMovementInput()
@@ -86,17 +86,15 @@ public class PlayerCharacter : BasicCharacter
         
         Vector3 movement = XmovementInput * transform.right;
         movement += ZmovementInput * transform.forward;
-        if(_sprintAction.IsPressed()) _movementBehaviour.MovementSpeed = _sprintSpeed;
-        else _movementBehaviour.MovementSpeed = _movementSpeed;
+        _movementBehaviour.MovementSpeed = _sprintAction.IsPressed() ? _sprintSpeed : _movementSpeed;
         
         _movementBehaviour.DesiredMovementDirection = movement;
     }
 
-    private void HandleAimingInput()
-    {
-        float rotationX = -Input.GetAxis("Mouse Y");
-        _movementBehaviour.DesiredXRotation = rotationX;
-    }
+    // private void HandleAimingInput()
+    // {
+    //     _movementBehaviour.DesiredXRotation = rotationX;
+    // }
 
     private void HandleJumpInput(InputAction.CallbackContext context)
     {

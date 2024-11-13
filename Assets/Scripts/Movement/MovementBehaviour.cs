@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 public class MovementBehaviour : MonoBehaviour
 {
     [SerializeField] protected GameObject _shoulderObject = null;
@@ -24,17 +25,13 @@ public class MovementBehaviour : MonoBehaviour
         get { return _desiredMovementDirection; }
         set { _desiredMovementDirection = value; }
     }
+
     public virtual float MovementSpeed
     {
         get { return _movementSpeed; }
         set { _movementSpeed = value; }
     }
-    public float DesiredXRotation
-    {
-        get { return _desiredXRotation; }
-        set { _desiredXRotation = value; }
-    }
-    
+
     protected virtual void Awake()
     {
         _rigidBody = GetComponent<Rigidbody>();
@@ -47,9 +44,10 @@ public class MovementBehaviour : MonoBehaviour
 
     protected virtual void FixedUpdate()
     {
-        if(_canMove) HandleMovement();
+        if (_canMove) HandleMovement();
         //check if there is ground beneath our feet
-        _grounded = Physics.Raycast(transform.position + Vector3.up * 0.1f, Vector3.down, GROUND_CHECK_DISTANCE, LayerMask.GetMask(GROUND_LAYER));
+        _grounded = Physics.Raycast(transform.position + Vector3.up * 0.1f, Vector3.down, GROUND_CHECK_DISTANCE,
+            LayerMask.GetMask(GROUND_LAYER));
     }
 
     protected virtual void HandleMovement()
@@ -62,13 +60,13 @@ public class MovementBehaviour : MonoBehaviour
         movement.y = _rigidBody.velocity.y;
         _rigidBody.velocity = movement;
     }
-    
+
     public void PushBackwards(Vector3 bulletForward)
     {
         Vector3 force = bulletForward * 10f + Vector3.up * 10f; // Adjust the multipliers as needed
         _rigidBody.velocity = force;
         _canMove = false;
-        Invoke(nameof(EnableMovement),0.7f);
+        Invoke(nameof(EnableMovement), 0.7f);
     }
 
     private void EnableMovement()
@@ -79,17 +77,18 @@ public class MovementBehaviour : MonoBehaviour
     private void HandleLookAt()
     {
         if (!_shoulderObject) return;
-        
-        float lookSpeed = 2f;
-        float lookLimit = 45f;
-        _desiredXRotation *= lookSpeed;
-        
-        if(_fpsCamera.transform.rotation.eulerAngles.x + _desiredXRotation < lookLimit || 
-           _fpsCamera.transform.rotation.eulerAngles.x + _desiredXRotation > 360-lookLimit)
-            _fpsCamera.transform.Rotate(Vector3.right, _desiredXRotation);
-        
-        transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
-        _shoulderObject.transform.rotation = _fpsCamera.transform.rotation * Quaternion.Euler(0, 0.75f, 0);
+
+        const float lookSpeed = 120f;
+        const float lookLimit = 80f;
+        float rotationX = -Input.GetAxis("Mouse Y") * lookSpeed * Time.deltaTime;
+        _desiredXRotation += rotationX;
+        _desiredXRotation = Mathf.Clamp(_desiredXRotation, -lookLimit, lookLimit);
+
+        _fpsCamera.transform.localRotation = Quaternion.Euler(_desiredXRotation, 0, 0);
+        _shoulderObject.transform.localRotation = _fpsCamera.transform.localRotation * Quaternion.Euler(0, 0.75f, 0);
+
+        // Move camera left and right; player object follows camera rotation
+        transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed * Time.deltaTime, 0);
     }
 
     public void Jump()
@@ -97,7 +96,3 @@ public class MovementBehaviour : MonoBehaviour
         if (_grounded) _rigidBody.AddForce(Vector3.up * _jumpStrength, ForceMode.Impulse);
     }
 }
-
-
-
-
