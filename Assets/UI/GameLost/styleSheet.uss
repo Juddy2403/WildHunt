@@ -1,0 +1,31 @@
+.titletText {
+    color: rgb(204, 18, 7);
+    font-size: 71px;
+    -unity-font-definition: initial;
+    -unity-font: url("project://database/Assets/UI/youmurdererbb_reg.ttf?fileID=12800000&guid=1d0c8488abb9f014db2192ddb33f38a9&type=3#youmurdererbb_reg");
+    -unity-text-align: upper-center;
+    -unity-font-style: normal;
+    -unity-text-outline-width: 0;
+    text-shadow: 3.2px 4.1px 9.1px rgb(38, 0, 0);
+}
+
+.playAgainButton {
+    -unity-background-image-tint-color: rgb(171, 101, 101);
+    font-size: 33px;
+    color: rgb(145, 152, 150);
+    text-shadow: 0 0 0 rgba(0, 0, 0, 0);
+    background-image: url("project://database/Assets/UI/Shop/Sprites/Inventory-C_0000s_0002s_0000s_0000s_0001_BackG.png?fileID=2800000&guid=8471c2dbdb41e384a97412110ea0ce58&type=3#Inventory-C_0000s_0002s_0000s_0000s_0001_BackG");
+    align-items: auto;
+    align-self: center;
+    width: 13%;
+    background-color: rgba(0, 0, 0, 0);
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+}
+
+.playAgainButton:hover {
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+    color: rgb(245, 242, 242);
+}

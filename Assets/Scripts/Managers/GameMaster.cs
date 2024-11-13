@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -41,14 +42,31 @@ public class GameMaster : SingletonBase<GameMaster>
         PlayerUpgradeManager.ApplyHealthIncrease();
     }
 
-    public void TriggerGameOver()
+    public void TriggerGameOver(bool isWon = false)
     {
-        StartCoroutine(ReloadScene());        
+        //enable cursor
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        Destroy(HUD.Instance);
+        StartCoroutine(isWon ? ReloadScene("WonGame") : ReloadScene("LostGame"));
     }
-    private static IEnumerator ReloadScene()
+    public void TriggerReloadGame()
+    {
+        StartCoroutine(ReloadScene("Outside",true));
+        //delete all active game objects
+        
+    }
+    private static IEnumerator ReloadScene(string sceneName, bool destroyAll = false)
     {
         yield return new WaitForEndOfFrame();
-        SceneManager.LoadScene(0);
+        if(destroyAll)
+        { 
+            foreach (var obj in FindObjectsOfType<GameObject>())
+            {
+                Destroy(obj);
+            }
+        }
+        SceneManager.LoadScene(sceneName);
     }
    
 

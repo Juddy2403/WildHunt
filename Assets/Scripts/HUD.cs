@@ -61,6 +61,7 @@ public class HUD : SingletonBase<HUD>
 
     private void HookHealthEvent()
     {
+        if (GameMaster.Player == null) return;
         Health playerHealth = GameMaster.Player.GetComponent<Health>();
         if (playerHealth)
         {

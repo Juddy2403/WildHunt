@@ -36,6 +36,7 @@ public class PlayerUpgradeManager
 
     public void ApplyHealthIncrease()
     {
+        if(GameMaster.Player == null) return;
         GameMaster.Player.GetComponent<Health>().StartHealth += _healthIncrease;
     }
 }

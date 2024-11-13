@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/GameLost/styleSheet.uss?fileID=7433441132597879392&amp;guid=042a7c48a442276418944892485f4555&amp;type=3#styleSheet" />
+    <ui:VisualElement style="flex-grow: 1; background-image: url(&quot;project://database/Assets/UI/GameWon/gameWon.jpg?fileID=2800000&amp;guid=9f5cdcffc7b69cc41bffd51399653f4b&amp;type=3#gameWon&quot;);">
+        <ui:Button text="Play again" parse-escape-sequences="true" display-tooltip-when-elided="true" name="PlayAgainButton" class="playAgainButton titletText" style="bottom: -80%;" />
+        <ui:Label tabindex="-1" text="you saved them!" parse-escape-sequences="true" display-tooltip-when-elided="true" class="titletText" style="color: rgb(250, 255, 233); top: 22%;" />
+    </ui:VisualElement>
+</ui:UXML>

@@ -58,7 +58,6 @@ public class PlayerCharacter : BasicCharacter
         if (GetComponent<Health>().CurrentHealth <= 0) GameMaster.Instance.TriggerGameOver();
     }
 
-
     private void OnEnable()
     {
         _inputAsset?.Enable();
@@ -73,7 +72,6 @@ public class PlayerCharacter : BasicCharacter
     {
         HandleMovementInput();
         HandleAttackInput();
-        //HandleAimingInput();
     }
 
     private void HandleMovementInput()
@@ -90,11 +88,6 @@ public class PlayerCharacter : BasicCharacter
         
         _movementBehaviour.DesiredMovementDirection = movement;
     }
-
-    // private void HandleAimingInput()
-    // {
-    //     _movementBehaviour.DesiredXRotation = rotationX;
-    // }
 
     private void HandleJumpInput(InputAction.CallbackContext context)
     {
