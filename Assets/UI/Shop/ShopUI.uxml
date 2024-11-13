@@ -8,7 +8,7 @@
             <ui:VisualElement class="coin" style="flex-grow: 1; margin-top: 0;" />
         </ui:VisualElement>
         <ui:VisualElement name="ProgressBars" style="flex-grow: 1; position: absolute; height: 55%; width: 62%; top: 27%; left: 7%; border-top-width: 10px; border-right-width: 10px; border-bottom-width: 10px; border-left-width: 10px; border-left-color: rgba(255, 255, 255, 0); border-right-color: rgba(255, 255, 255, 0); border-top-color: rgba(255, 255, 255, 0); border-bottom-color: rgba(255, 255, 255, 0); align-self: center; flex-direction: column; flex-wrap: nowrap; justify-content: center; transform-origin: center; max-width: 47%; min-width: 0;">
-            <ui:ProgressBar value="27.77" title="hp" name="HpUpgradeBar" class="progressBar" />
+            <ui:ProgressBar value="0" title="hp" name="HpUpgradeBar" class="progressBar" />
             <ui:ProgressBar value="0" title="movement speed" name="MovementUpgradeBar" class="progressBar" />
             <ui:ProgressBar value="0" title="gun damage" name="GunUpgradeBar" class="progressBar" />
             <ui:ProgressBar value="0" title="knife damage" name="KnifeUpgradeBar" class="progressBar" />
