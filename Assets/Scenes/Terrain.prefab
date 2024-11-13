@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 4955733156951493599}
   - component: {fileID: 5726202875567808551}
   - component: {fileID: 4634949243684104417}
-  - component: {fileID: 1034683242536568670}
   m_Layer: 8
   m_Name: Terrain
   m_TagString: Untagged
@@ -45,11 +44,11 @@ Terrain:
   m_Enabled: 1
   serializedVersion: 6
   m_TerrainData: {fileID: 15600000, guid: 772ea6e964978de48936639803d07b77, type: 2}
-  m_TreeDistance: 500
-  m_TreeBillboardDistance: 50
-  m_TreeCrossFadeLength: 5
-  m_TreeMaximumFullLODCount: 50
-  m_DetailObjectDistance: 79.84
+  m_TreeDistance: 105
+  m_TreeBillboardDistance: 343
+  m_TreeCrossFadeLength: 80.3
+  m_TreeMaximumFullLODCount: 60
+  m_DetailObjectDistance: 110
   m_DetailObjectDensity: 1
   m_HeightmapPixelError: 5
   m_SplatMapDistance: 1000
@@ -124,17 +123,5 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.016666668
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 2524b176f61382345b96411a3f5d38f5, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: a129425061339f244bc5cac14c5f4813, type: 2}
   m_BuildHeightMesh: 0
---- !u!114 &1034683242536568670
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1569371804186149146}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21546df308ad06b47aa5b14cd02af956, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

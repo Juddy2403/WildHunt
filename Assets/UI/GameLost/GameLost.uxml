@@ -1,8 +1,9 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/GameLost/styleSheet.uss?fileID=7433441132597879392&amp;guid=042a7c48a442276418944892485f4555&amp;type=3#styleSheet" />
     <Style src="project://database/Assets/UI/Shop/ShopUiStyle.uss?fileID=7433441132597879392&amp;guid=e440db3d39458214e8c0d578caff5329&amp;type=3#ShopUiStyle" />
-    <ui:VisualElement style="flex-grow: 1; background-image: url(&quot;project://database/Assets/UI/GameLost/game%20lost.jpg?fileID=2800000&amp;guid=7bc8054d20e14e5468854463e53f424d&amp;type=3#game lost&quot;);">
+    <ui:VisualElement class="titletText" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/UI/GameLost/game%20lost.jpg?fileID=2800000&amp;guid=7bc8054d20e14e5468854463e53f424d&amp;type=3#game lost&quot;);">
         <ui:Label tabindex="-1" text="You couldn&apos;t save them" parse-escape-sequences="true" display-tooltip-when-elided="true" class="titletText" style="justify-content: space-between; align-self: center; align-items: auto; flex-direction: column; bottom: -38%;" />
         <ui:Button text="play again" parse-escape-sequences="true" display-tooltip-when-elided="true" name="PlayAgainButton" class="titletText playAgainButton" style="background-image: url(&quot;project://database/Assets/UI/Shop/Sprites/Inventory-C_0000s_0002s_0000s_0000s_0001_BackG.png?fileID=2800000&amp;guid=8471c2dbdb41e384a97412110ea0ce58&amp;type=3#Inventory-C_0000s_0002s_0000s_0000s_0001_BackG&quot;); -unity-background-scale-mode: scale-to-fit; width: 13%; align-self: center; top: 748px; background-color: rgba(65, 47, 42, 0); transition-duration: 0.1s;" />
+        <ui:Label tabindex="-1" text="Saved: 2/20" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Saved" style="color: rgb(188, 187, 187); font-size: 37px; top: 36%;" />
     </ui:VisualElement>
 </ui:UXML>

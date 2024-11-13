@@ -36033,15 +36033,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 475450, guid: b56ffad1c0421324d82ef52ef263d4db, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 16.88
+      value: 16.115133
       objectReference: {fileID: 0}
     - target: {fileID: 475450, guid: b56ffad1c0421324d82ef52ef263d4db, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.87
+      value: -4.4460435
       objectReference: {fileID: 0}
     - target: {fileID: 475450, guid: b56ffad1c0421324d82ef52ef263d4db, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.82
+      value: -3.178667
       objectReference: {fileID: 0}
     - target: {fileID: 475450, guid: b56ffad1c0421324d82ef52ef263d4db, type: 3}
       propertyPath: m_LocalRotation.w
@@ -36510,44 +36510,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: Terrain
       objectReference: {fileID: 0}
-    - target: {fileID: 4634949243684104417, guid: 57d8692d7359e3b4b9a424a393efa105,
-        type: 3}
-      propertyPath: m_NavMeshData
-      value: 
-      objectReference: {fileID: 23800000, guid: a129425061339f244bc5cac14c5f4813,
-        type: 2}
-    - target: {fileID: 4955733156951493599, guid: 57d8692d7359e3b4b9a424a393efa105,
-        type: 3}
-      propertyPath: m_TreeDistance
-      value: 105
-      objectReference: {fileID: 0}
-    - target: {fileID: 4955733156951493599, guid: 57d8692d7359e3b4b9a424a393efa105,
-        type: 3}
-      propertyPath: m_TreeCrossFadeLength
-      value: 80.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4955733156951493599, guid: 57d8692d7359e3b4b9a424a393efa105,
-        type: 3}
-      propertyPath: m_DetailObjectDistance
-      value: 110
-      objectReference: {fileID: 0}
-    - target: {fileID: 4955733156951493599, guid: 57d8692d7359e3b4b9a424a393efa105,
-        type: 3}
-      propertyPath: m_TreeBillboardDistance
-      value: 343
-      objectReference: {fileID: 0}
-    - target: {fileID: 4955733156951493599, guid: 57d8692d7359e3b4b9a424a393efa105,
-        type: 3}
-      propertyPath: m_TreeMaximumFullLODCount
-      value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: 4955733156951493599, guid: 57d8692d7359e3b4b9a424a393efa105,
-        type: 3}
-      propertyPath: m_PreserveTreePrototypeLayers
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1034683242536568670, guid: 57d8692d7359e3b4b9a424a393efa105, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
