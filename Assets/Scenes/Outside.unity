@@ -14,7 +14,7 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
-  m_Fog: 0
+  m_Fog: 1
   m_FogColor: {r: 0.09019608, g: 0.16862746, b: 0.20392159, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.04
@@ -36510,10 +36510,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Terrain
       objectReference: {fileID: 0}
+    - target: {fileID: 4634949243684104417, guid: 57d8692d7359e3b4b9a424a393efa105,
+        type: 3}
+      propertyPath: m_NavMeshData
+      value: 
+      objectReference: {fileID: 23800000, guid: a129425061339f244bc5cac14c5f4813,
+        type: 2}
     - target: {fileID: 4955733156951493599, guid: 57d8692d7359e3b4b9a424a393efa105,
         type: 3}
       propertyPath: m_TreeDistance
-      value: 444
+      value: 105
       objectReference: {fileID: 0}
     - target: {fileID: 4955733156951493599, guid: 57d8692d7359e3b4b9a424a393efa105,
         type: 3}
@@ -36540,7 +36546,8 @@ PrefabInstance:
       propertyPath: m_PreserveTreePrototypeLayers
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1034683242536568670, guid: 57d8692d7359e3b4b9a424a393efa105, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

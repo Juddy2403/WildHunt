@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 5534383620200805132}
   - component: {fileID: 762246597294785661}
   - component: {fileID: 8482289282328379327}
+  - component: {fileID: 2751270408788426101}
   m_Layer: 0
   m_Name: PT_Generic_Shrub_01_green
   m_TagString: Untagged
@@ -134,15 +135,15 @@ LODGroup:
   m_AnimateCrossFading: 0
   m_LastLODIsBillboard: 0
   m_LODs:
-  - screenRelativeHeight: 0.25
+  - screenRelativeHeight: 0.52264965
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 2030511849321712008}
-  - screenRelativeHeight: 0.125
+  - screenRelativeHeight: 0.2712942
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 8119850435517770163}
-  - screenRelativeHeight: 0.01
+  - screenRelativeHeight: 0.10610743
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 1955015890131924908}
@@ -163,6 +164,29 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0.57, z: 0}
   m_TimeToStationary: 0.5
+--- !u!136 &2751270408788426101
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5153741093904279990}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.02
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.61, z: 0}
 --- !u!1 &8255632427206956809
 GameObject:
   m_ObjectHideFlags: 0
