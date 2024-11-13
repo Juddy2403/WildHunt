@@ -15,6 +15,7 @@ public class GameMaster : SingletonBase<GameMaster>
     public MonsterManager MonsterManager { get; } = new();
     public CoinManager CoinManager { get; } = new();
 
+    public int CreatureQuota { get; private set; } = 20;
     public bool IsIndoors { get; private set; } = false;
     public static GameObject Player { get; set; } = null;
 
@@ -26,6 +27,12 @@ public class GameMaster : SingletonBase<GameMaster>
                 IsIndoors = true;
                 SceneManager.LoadScene("Inside");
                 CreatureManager.RunAwayCreatures();
+                TriggerGameOver(true);
+                if (DayManager.CurrentDay == 3)
+                {
+                    if (CreatureManager.CreaturesSaved < CreatureQuota) TriggerGameOver();
+                    else TriggerGameOver(true);
+                }
                 break;
             case "Inside":
                 IsIndoors = false;
@@ -34,7 +41,7 @@ public class GameMaster : SingletonBase<GameMaster>
                 break;
         }
     }
-    
+
     protected override void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         Debug.Log("scene loaded");
@@ -50,24 +57,24 @@ public class GameMaster : SingletonBase<GameMaster>
         Destroy(HUD.Instance);
         StartCoroutine(isWon ? ReloadScene("WonGame") : ReloadScene("LostGame"));
     }
+
     public void TriggerReloadGame()
     {
-        StartCoroutine(ReloadScene("Outside",true));
+        StartCoroutine(ReloadScene("Outside", true));
         //delete all active game objects
-        
     }
+
     private static IEnumerator ReloadScene(string sceneName, bool destroyAll = false)
     {
         yield return new WaitForEndOfFrame();
-        if(destroyAll)
-        { 
+        if (destroyAll)
+        {
             foreach (var obj in FindObjectsOfType<GameObject>())
             {
                 Destroy(obj);
             }
         }
+
         SceneManager.LoadScene(sceneName);
     }
-   
-
 }
