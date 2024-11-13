@@ -15,7 +15,7 @@ public class GameMaster : SingletonBase<GameMaster>
     public MonsterManager MonsterManager { get; } = new();
     public CoinManager CoinManager { get; } = new();
 
-    public int CreatureQuota { get; private set; } = 20;
+    public int CreatureQuota { get; private set; } = 3;
     public bool IsIndoors { get; private set; } = false;
     public static GameObject Player { get; set; } = null;
 
@@ -24,13 +24,13 @@ public class GameMaster : SingletonBase<GameMaster>
         switch (SceneManager.GetActiveScene().name)
         {
             case "Outside":
-                IsIndoors = true;
                 if (DayManager.CurrentDay == 3)
                 {
                     if (CreatureManager.CreaturesSaved < CreatureQuota) TriggerGameOver();
                     else TriggerGameOver(true);
                     return;
                 }
+                IsIndoors = true;
                 SceneManager.LoadScene("Inside");
                 CreatureManager.RunAwayCreatures();
                 break;

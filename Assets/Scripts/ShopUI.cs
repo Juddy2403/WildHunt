@@ -88,6 +88,6 @@ public class ShopUI : SingletonBase<ShopUI>
 
     protected override void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if(GameMaster.Instance.IsIndoors) gameObject.SetActive(true);
+        if(GameMaster.Instance.IsIndoors) gameObject?.SetActive(true);
     }
 }
