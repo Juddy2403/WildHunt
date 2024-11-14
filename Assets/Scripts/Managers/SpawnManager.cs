@@ -5,6 +5,8 @@ public class SpawnManager : MonoBehaviour
 {
     [SerializeField] private float _firstWaveStart = 5.0f;
     [SerializeField] private float _waveFrequencyIncrement = 3.0f;
+    [SerializeField] private int _minCreatureSpawnCount = 10;
+    [SerializeField] private int _maxCreatureSpawnCount = 20;
     [SerializeField] private GameObject _monsterTemplate = null;
     [SerializeField] private GameObject _creatureTemplate = null;
 
@@ -12,7 +14,7 @@ public class SpawnManager : MonoBehaviour
     void Awake()
     {
         _currentFrequency = GameMaster.Instance.MonsterManager.WaveStartFrequency;
-        SpawnWave(_creatureTemplate);
+        SpawnWave(_creatureTemplate, _minCreatureSpawnCount, _maxCreatureSpawnCount);
         Invoke(nameof(StartNewWave), _firstWaveStart);
     }
     void StartNewWave()
@@ -26,7 +28,7 @@ public class SpawnManager : MonoBehaviour
         Invoke(nameof(StartNewWave), _currentFrequency);
     }
     
-    private void SpawnWave(GameObject spawnTemplate,int minSpawnCount = 10, int maxSpawnCount = 20)
+    private void SpawnWave(GameObject spawnTemplate,int minSpawnCount, int maxSpawnCount)
     {
         GameObject player = GameMaster.Player;
         if (player == null)

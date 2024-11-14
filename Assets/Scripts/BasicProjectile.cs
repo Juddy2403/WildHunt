@@ -23,7 +23,7 @@ public class BasicProjectile : MonoBehaviour
             //if it's a gun, we need to aim the bullet
             var fpsCam = Camera.main;
             Vector3 aimSpot = fpsCam.transform.position;
-            aimSpot += fpsCam.transform.forward * 200.0f;
+            aimSpot += fpsCam.transform.forward * 50.0f;
             transform.LookAt(aimSpot);
             GetComponent<Rigidbody>().velocity = transform.forward * _speed;
             _damage += GameMaster.Instance.PlayerUpgradeManager.GunDamageIncrease;

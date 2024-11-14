@@ -8,7 +8,7 @@ public class CreatureAI : BasicCharacter
 {
     private bool _isAlive = true;
     private bool _detectedSafePoint = false;
-    [SerializeField] private float _followRange = 10.0f;
+    [SerializeField] private float _followRange = 15.0f;
     private bool _areMonstersClose = false;
     private NavMeshMovementBehaviour _navMovementBehaviour;
 

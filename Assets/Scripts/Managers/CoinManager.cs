@@ -1,7 +1,9 @@
-
+using System;
+using UnityEngine;
+[Serializable]
 public class CoinManager
 {
-    private int _coins = 0;
+    [SerializeField] private int _coins = 0;
     public int Coins
     {
         get => _coins;

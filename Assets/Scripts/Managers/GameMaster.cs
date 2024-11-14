@@ -7,15 +7,18 @@ using UnityEngine.SceneManagement;
 
 public class GameMaster : SingletonBase<GameMaster>
 {
+    [SerializeField] private int creatureQuota = 20;
+    public int CreatureQuota { get { return creatureQuota; } }
     public DayManager DayManager { get; } = new();
     public TrustManager TrustManager { get; } = new();
     public PlayerUpgradeManager PlayerUpgradeManager { get; } = new();
     public SanityManager SanityManager { get; } = new();
     public CreatureManager CreatureManager { get; } = new();
-    public MonsterManager MonsterManager { get; } = new();
-    public CoinManager CoinManager { get; } = new();
+    [SerializeField] private MonsterManager _monsterManager = new();
+    public MonsterManager MonsterManager => _monsterManager;
+    [SerializeField] private CoinManager _coinManager = new();
+    public CoinManager CoinManager => _coinManager;
 
-    public int CreatureQuota { get; private set; } = 20;
     public bool IsIndoors { get; private set; } = false;
     public static GameObject Player { get; set; } = null;
 

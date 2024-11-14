@@ -1,13 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
+[Serializable]
 
 public class MonsterManager
 {
-    private float _waveStartFrequency = 60.0f;
-    private float _waveEndFrequency = 40.0f;
-    private int _monsterMinSpawnCount = 5;
-    private int _monsterMaxSpawnCount = 20;
+    [SerializeField] private float _waveStartFrequency = 60.0f;
+    [SerializeField] private float _waveEndFrequency = 40.0f;
+    [SerializeField] private int _monsterMinSpawnCount = 10;
+    [SerializeField] private int _monsterMaxSpawnCount = 20;
     public float WaveStartFrequency => _waveStartFrequency;
     public float WaveEndFrequency => _waveEndFrequency;
     public int MonsterMinSpawnCount => _monsterMinSpawnCount;
