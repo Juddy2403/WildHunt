@@ -15,7 +15,7 @@ public class GameMaster : SingletonBase<GameMaster>
     public MonsterManager MonsterManager { get; } = new();
     public CoinManager CoinManager { get; } = new();
 
-    public int CreatureQuota { get; private set; } = 3;
+    public int CreatureQuota { get; private set; } = 20;
     public bool IsIndoors { get; private set; } = false;
     public static GameObject Player { get; set; } = null;
 
