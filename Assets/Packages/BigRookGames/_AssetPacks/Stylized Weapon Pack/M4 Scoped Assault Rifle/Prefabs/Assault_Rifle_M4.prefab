@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4704383960240427437}
   - component: {fileID: 55389678166867420}
   - component: {fileID: 3688532447173823238}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Assault_Rifle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4448447718370701034}
   - component: {fileID: 3492319534086419546}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Assault_Rifle_M4
   m_TagString: Untagged
   m_Icon: {fileID: 7148428337604731935, guid: 0000000000000000d000000000000000, type: 0}
@@ -160,7 +160,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7981648180587831687}
   - component: {fileID: 7981648180587831684}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AudioSource
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -288,7 +288,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7981648180778114327}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MuzzlePosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}

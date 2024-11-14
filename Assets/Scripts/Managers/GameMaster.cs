@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class GameMaster : SingletonBase<GameMaster>
 {
     [SerializeField] private int creatureQuota = 20;
-    public int CreatureQuota { get { return creatureQuota; } }
+    public int CreatureQuota => creatureQuota;
     public DayManager DayManager { get; } = new();
     public TrustManager TrustManager { get; } = new();
     public PlayerUpgradeManager PlayerUpgradeManager { get; } = new();
