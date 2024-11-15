@@ -1,21 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
-public class ShopManager : MonoBehaviour
+public class UIInstanceManager : MonoBehaviour
 {
     [SerializeField] private InputActionAsset _inputAsset;
-    private GameObject _shopUI = null;
+    [SerializeField] private GameObject _UIObj = null;
+    [SerializeField] private string _textToDisplay;
     private InputAction _interactAction;
-    private bool _isOnShop = false;
+    private bool _isOnBox = false;
     // Start is called before the first frame update
     void Start()
     {
         if (!_inputAsset) return;
 
-        _shopUI = FindObjectOfType<ShopUI>().gameObject;
-        _shopUI.SetActive(false);
+        _UIObj.SetActive(false);
 
         //Bind the actions to the input asset
         _interactAction = _inputAsset.FindActionMap("Gameplay").FindAction("Interact");
@@ -31,9 +30,9 @@ public class ShopManager : MonoBehaviour
     // Update is called once per frame
     private void HandleInteraction(InputAction.CallbackContext obj)
     {
-        if (!_isOnShop) return;
-        _shopUI.SetActive(!_shopUI.activeSelf);
-        if (_shopUI.activeSelf)
+        if (!_isOnBox) return;
+        _UIObj.SetActive(!_UIObj.activeSelf);
+        if (_UIObj.activeSelf)
         {
             //enable the cursor
             Cursor.lockState = CursorLockMode.None;
@@ -51,15 +50,15 @@ public class ShopManager : MonoBehaviour
     {
         if(other.gameObject == GameMaster.Player)
         {
-            _isOnShop = true;
-            TextPopup.Instance.Display("Press E to open shop");
+            _isOnBox = true;
+            TextPopup.Instance.Display(_textToDisplay);
         }
     }
     
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject != GameMaster.Player) return;
-        _isOnShop = false;
-        _shopUI.SetActive(false);
+        _isOnBox = false;
+        _UIObj.SetActive(false);
     }
 }
