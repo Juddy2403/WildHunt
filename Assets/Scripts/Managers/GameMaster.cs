@@ -34,12 +34,12 @@ public class GameMaster : SingletonBase<GameMaster>
                     return;
                 }
                 IsIndoors = true;
-                SceneManager.LoadScene("Inside");
+                StartCoroutine(LoadYourAsyncScene("Inside"));
                 CreatureManager.RunAwayCreatures();
                 break;
             case "Inside":
                 IsIndoors = false;
-                SceneManager.LoadScene("Outside");
+                StartCoroutine(LoadYourAsyncScene("Outside"));
                 DayManager.DayPassed();
                 break;
         }
@@ -60,7 +60,16 @@ public class GameMaster : SingletonBase<GameMaster>
         Destroy(HUD.Instance);
         StartCoroutine(isWon ? ReloadScene("WonGame") : ReloadScene("LostGame"));
     }
+    IEnumerator LoadYourAsyncScene(string sceneName)
+    {
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
 
+        // Wait until the asynchronous scene fully loads
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }
+    }
     private IEnumerator ReloadScene(string sceneName)
     {
         yield return new WaitForEndOfFrame();

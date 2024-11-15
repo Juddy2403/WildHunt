@@ -6,6 +6,7 @@ public class UIInstanceManager : MonoBehaviour
 {
     [SerializeField] private InputActionAsset _inputAsset;
     [SerializeField] private GameObject _UIObj = null;
+    [SerializeField] private string _UIObjName;
     [SerializeField] private string _textToDisplay;
     private InputAction _interactAction;
     private bool _isOnBox = false;
@@ -14,6 +15,10 @@ public class UIInstanceManager : MonoBehaviour
     {
         if (!_inputAsset) return;
 
+        if(_UIObjName == "ShopUI")
+        {
+            _UIObj = ShopUI.Instance.gameObject;
+        }
         _UIObj.SetActive(false);
 
         //Bind the actions to the input asset

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using Cursor = UnityEngine.Cursor;
 
 public class DialogueUI : MonoBehaviour
 {
@@ -25,14 +26,12 @@ public class DialogueUI : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (!Input.GetMouseButtonDown(0)) return;
+        if(_text.text == lines[_currentLine]) NextLine();
+        else
         {
-            if(_text.text == lines[_currentLine]) NextLine();
-            else
-            {
-                StopCoroutine(TypeLine());
-                _text.text = lines[_currentLine];
-            }
+            StopCoroutine(TypeLine());
+            _text.text = lines[_currentLine];
         }
     }
 
@@ -61,6 +60,9 @@ public class DialogueUI : MonoBehaviour
         }
         else
         {
+            //disable the cursor
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
             gameObject.SetActive(false);
         }
     }

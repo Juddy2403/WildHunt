@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
+using Cursor = UnityEngine.Cursor;
 
 public class ShopUI : SingletonBase<ShopUI>
 {
@@ -77,12 +78,15 @@ public class ShopUI : SingletonBase<ShopUI>
         else _knifeUpgrade.Update(_root);
         if (_movementUpgrade == null) _movementUpgrade = new Upgrade(_root, "Movement");
         else _movementUpgrade.Update(_root);
-        _exitButton ??= _root.Q<Button>("ExitButton");
+        _exitButton = _root.Q<Button>("ExitButton");
         if (_exitButton != null) _exitButton.clickable.clicked += OnExit;
     }
 
     private void OnExit()
     {
+        //disable the cursor
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         gameObject.SetActive(false);
     }
 
