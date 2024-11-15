@@ -1,20 +1,21 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 
-public class UIInstanceManager : MonoBehaviour
+public class ShopManager : MonoBehaviour
 {
     [SerializeField] private InputActionAsset _inputAsset;
-    [SerializeField] private GameObject _UIObj = null;
-    [SerializeField] private string _textToDisplay;
+    private GameObject _shopUI = null;
     private InputAction _interactAction;
-    private bool _isOnBox = false;
+    private bool _isOnShop = false;
     // Start is called before the first frame update
     void Start()
     {
         if (!_inputAsset) return;
 
-        _UIObj.SetActive(false);
+        _shopUI = FindObjectOfType<ShopUI>().gameObject;
+        _shopUI.SetActive(false);
 
         //Bind the actions to the input asset
         _interactAction = _inputAsset.FindActionMap("Gameplay").FindAction("Interact");
@@ -30,9 +31,9 @@ public class UIInstanceManager : MonoBehaviour
     // Update is called once per frame
     private void HandleInteraction(InputAction.CallbackContext obj)
     {
-        if (!_isOnBox) return;
-        _UIObj.SetActive(!_UIObj.activeSelf);
-        if (_UIObj.activeSelf)
+        if (!_isOnShop) return;
+        _shopUI.SetActive(!_shopUI.activeSelf);
+        if (_shopUI.activeSelf)
         {
             //enable the cursor
             Cursor.lockState = CursorLockMode.None;
@@ -50,15 +51,15 @@ public class UIInstanceManager : MonoBehaviour
     {
         if(other.gameObject == GameMaster.Player)
         {
-            _isOnBox = true;
-            TextPopup.Instance.Display(_textToDisplay);
+            _isOnShop = true;
+            TextPopup.Instance.Display("Press E to open shop");
         }
     }
     
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject != GameMaster.Player) return;
-        _isOnBox = false;
-        _UIObj.SetActive(false);
+        _isOnShop = false;
+        _shopUI.SetActive(false);
     }
 }
