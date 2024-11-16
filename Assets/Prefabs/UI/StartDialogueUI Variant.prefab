@@ -1,0 +1,164 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &8794155262398908654
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1148187247209447899, guid: 8ed8b55be0d1a6645be1e74cdd778b27,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 528.44385
+      objectReference: {fileID: 0}
+    - target: {fileID: 1148187247209447899, guid: 8ed8b55be0d1a6645be1e74cdd778b27,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 9.747715
+      objectReference: {fileID: 0}
+    - target: {fileID: 1148187247209447899, guid: 8ed8b55be0d1a6645be1e74cdd778b27,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 480.92697
+      objectReference: {fileID: 0}
+    - target: {fileID: 1148187247209447899, guid: 8ed8b55be0d1a6645be1e74cdd778b27,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1148187247209447899, guid: 8ed8b55be0d1a6645be1e74cdd778b27,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1148187247209447899, guid: 8ed8b55be0d1a6645be1e74cdd778b27,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1148187247209447899, guid: 8ed8b55be0d1a6645be1e74cdd778b27,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1148187247209447899, guid: 8ed8b55be0d1a6645be1e74cdd778b27,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1148187247209447899, guid: 8ed8b55be0d1a6645be1e74cdd778b27,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1148187247209447899, guid: 8ed8b55be0d1a6645be1e74cdd778b27,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369279925313310996, guid: 8ed8b55be0d1a6645be1e74cdd778b27,
+        type: 3}
+      propertyPath: textSpeed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369279925313310996, guid: 8ed8b55be0d1a6645be1e74cdd778b27,
+        type: 3}
+      propertyPath: lines.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369279925313310996, guid: 8ed8b55be0d1a6645be1e74cdd778b27,
+        type: 3}
+      propertyPath: lines.Array.data[0]
+      value: Ah, you're finally awake. Listen closely, there's no time to waste.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369279925313310996, guid: 8ed8b55be0d1a6645be1e74cdd778b27,
+        type: 3}
+      propertyPath: lines.Array.data[1]
+      value: "Outside, it's crawling with monsters.\\n Your job? Save the little
+        ghosts out there. \\n They'll follow you once it's safe\u2014no monsters
+        nearby."
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369279925313310996, guid: 8ed8b55be0d1a6645be1e74cdd778b27,
+        type: 3}
+      propertyPath: lines.Array.data[2]
+      value: Bring them back here, to the entrance. That's the only safe spot for
+        them. Got it?
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369279925313310996, guid: 8ed8b55be0d1a6645be1e74cdd778b27,
+        type: 3}
+      propertyPath: lines.Array.data[3]
+      value: "But here\u2019s the catch. You\u2019ve got 6 hours each night to work.
+        Midnight to 6 AM. If you're not back by dawn... well, let\u2019s just say
+        it\u2019s game over."
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369279925313310996, guid: 8ed8b55be0d1a6645be1e74cdd778b27,
+        type: 3}
+      propertyPath: lines.Array.data[4]
+      value: "And don\u2019t dawdle. You\u2019ve got 3 days to save 20 of them. If
+        you don\u2019t meet your quota, you\u2019re done."
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369279925313310996, guid: 8ed8b55be0d1a6645be1e74cdd778b27,
+        type: 3}
+      propertyPath: lines.Array.data[5]
+      value: Step outside when you're ready. And remember, every time you return
+        here, another day passes.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369279925313310996, guid: 8ed8b55be0d1a6645be1e74cdd778b27,
+        type: 3}
+      propertyPath: lines.Array.data[6]
+      value: Good luck, brave one. Those little ones are counting on you.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7672675978849709785, guid: 8ed8b55be0d1a6645be1e74cdd778b27,
+        type: 3}
+      propertyPath: m_Name
+      value: StartDialogueUI Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 7672675978849709785, guid: 8ed8b55be0d1a6645be1e74cdd778b27,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 2369279925313310996, guid: 8ed8b55be0d1a6645be1e74cdd778b27, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7672675978849709785, guid: 8ed8b55be0d1a6645be1e74cdd778b27,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6065383278920367022}
+  m_SourcePrefab: {fileID: 100100000, guid: 8ed8b55be0d1a6645be1e74cdd778b27, type: 3}
+--- !u!1 &1184956568687945271 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7672675978849709785, guid: 8ed8b55be0d1a6645be1e74cdd778b27,
+    type: 3}
+  m_PrefabInstance: {fileID: 8794155262398908654}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6065383278920367022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1184956568687945271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e20da8b6ae083124a943eb83e765efc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lines:
+  - Ah, you're finally awake.\n Listen closely, there's no time to waste.
+  - "Outside, it's crawling with monsters.\\n Your job? Save the little ghosts out
+    there. \\n They'll follow you once it's safe\u2014no monsters nearby."
+  - Bring them back here, to the entrance. \nThat's the only safe spot for them.
+    Got it?
+  - "But be careful, you have to make it back by 6 AM.\\n If you're not back by dawn...\\n
+    well, let\u2019s just say you don't want that."
+  - "And don\u2019t dawdle. \\nYou\u2019ve got 3 days to save 20 of them. \\nIf you
+    don\u2019t meet your quota, you\u2019re done."
+  - Step outside when you're ready. \nAnd remember, every time you return here, \nanother
+    day passes.
+  - Good luck, brave one. \nThose little ones are counting on you.
+  textSpeed: 0

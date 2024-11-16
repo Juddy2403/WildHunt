@@ -30,7 +30,7 @@ public class DialogueUI : MonoBehaviour
         if(_text.text == lines[_currentLine]) NextLine();
         else
         {
-            StopCoroutine(TypeLine());
+            StopAllCoroutines();
             _text.text = lines[_currentLine];
         }
     }

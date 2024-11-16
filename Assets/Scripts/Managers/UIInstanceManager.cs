@@ -8,6 +8,7 @@ public class UIInstanceManager : MonoBehaviour
     [SerializeField] private GameObject _UIObj = null;
     [SerializeField] private string _UIObjName;
     [SerializeField] private string _textToDisplay;
+    [SerializeField] private bool _hideCursor = true;
     private InputAction _interactAction;
     private bool _isOnBox = false;
     // Start is called before the first frame update
@@ -37,6 +38,7 @@ public class UIInstanceManager : MonoBehaviour
     {
         if (!_isOnBox) return;
         _UIObj.SetActive(!_UIObj.activeSelf);
+        if(!_hideCursor) return;
         if (_UIObj.activeSelf)
         {
             //enable the cursor

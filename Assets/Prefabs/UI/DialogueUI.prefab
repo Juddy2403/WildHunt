@@ -62,8 +62,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e20da8b6ae083124a943eb83e765efc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lines:
-  - nigga balls
-  - nigga balls nigga balls nigga balls nigga balls
-  - 'nigga balls nigga balls nigga balls '
-  textSpeed: 0
+  lines: []
+  textSpeed: 0.1
