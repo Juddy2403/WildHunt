@@ -16,7 +16,7 @@ public class MovementBehaviour : MonoBehaviour
     protected Transform _target;
 
     protected bool _grounded = false;
-    protected bool _canMove = true;
+    public bool CanMove { get; set; } = true;
     protected const float GROUND_CHECK_DISTANCE = 0.2f;
     protected const string GROUND_LAYER = "Ground";
 
@@ -39,12 +39,12 @@ public class MovementBehaviour : MonoBehaviour
 
     protected virtual void Update()
     {
-        HandleLookAt();
+        if(CanMove) HandleLookAt();
     }
 
     protected virtual void FixedUpdate()
     {
-        if (_canMove) HandleMovement();
+        if (CanMove) HandleMovement();
         //check if there is ground beneath our feet
         _grounded = Physics.Raycast(transform.position + Vector3.up * 0.1f, Vector3.down, GROUND_CHECK_DISTANCE,
             LayerMask.GetMask(GROUND_LAYER));
@@ -65,13 +65,13 @@ public class MovementBehaviour : MonoBehaviour
     {
         Vector3 force = bulletForward * 10f + Vector3.up * 10f; // Adjust the multipliers as needed
         _rigidBody.velocity = force;
-        _canMove = false;
+        CanMove = false;
         Invoke(nameof(EnableMovement), 0.7f);
     }
 
     private void EnableMovement()
     {
-        _canMove = true;
+        CanMove = true;
     }
 
     private void HandleLookAt()

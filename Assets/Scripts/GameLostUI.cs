@@ -37,6 +37,6 @@ public class GameLostUI : MonoBehaviour
         }
 
         yield return new WaitForEndOfFrame();
-        SceneManager.LoadScene("Outside");
+        SceneManager.LoadScene(0);
     }
 }

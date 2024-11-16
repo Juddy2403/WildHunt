@@ -89,6 +89,7 @@ public class ShopUI : SingletonBase<ShopUI>
         //disable the cursor
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        GameMaster.Player.GetComponent<MovementBehaviour>().CanMove = true;
         gameObject.SetActive(false);
     }
 

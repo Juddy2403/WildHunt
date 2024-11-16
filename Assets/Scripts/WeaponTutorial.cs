@@ -13,7 +13,8 @@ public class WeaponTutorial : MonoBehaviour
     {
         if (other.name == "Player")
         {
-            TextPopup.Instance.Display("Switch weapons with the keys 1, 2 or 3",2.0f);
+            TextPopup.Instance.Display("You can switch between gun, knife and empty\n " +
+                                       "slot with keys 1, 2 and 3",2.0f);
         }
     }
 }

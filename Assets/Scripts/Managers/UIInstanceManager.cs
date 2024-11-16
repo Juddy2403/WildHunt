@@ -41,12 +41,14 @@ public class UIInstanceManager : MonoBehaviour
         if(!_hideCursor) return;
         if (_UIObj.activeSelf)
         {
+            GameMaster.Player.GetComponent<MovementBehaviour>().CanMove = false;
             //enable the cursor
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
         else
         {
+            GameMaster.Player.GetComponent<MovementBehaviour>().CanMove = true;
             //disable the cursor
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;

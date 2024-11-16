@@ -6,7 +6,6 @@ using UnityEngine.Serialization;
 public class PlayerCharacter : BasicCharacter
 {
     [SerializeField] private InputActionAsset _inputAsset;
-
     private InputAction _jumpAction;
     private InputAction _shootAction;
     private InputAction _xmovementAction;
@@ -17,7 +16,12 @@ public class PlayerCharacter : BasicCharacter
     private InputAction _equipEmptyAction;
     private float _sprintSpeed;
     private float _movementSpeed;
-    public float MovementSpeed { get => _movementSpeed; set => _movementSpeed = value; }
+
+    public float MovementSpeed
+    {
+        get => _movementSpeed;
+        set => _movementSpeed = value;
+    }
 
     private void Start()
     {
@@ -39,11 +43,11 @@ public class PlayerCharacter : BasicCharacter
         _equipGunAction.performed += context => HandleSwitchWeapon(AttackBehaviour.WeaponType.Gun);
         _equipKnifeAction.performed += context => HandleSwitchWeapon(AttackBehaviour.WeaponType.Knife);
         _equipEmptyAction.performed += context => HandleSwitchWeapon(AttackBehaviour.WeaponType.Empty);
-        
+
         _sprintSpeed = _movementBehaviour.MovementSpeed * 2f;
         _movementSpeed = _movementBehaviour.MovementSpeed + GameMaster.Instance.PlayerUpgradeManager.MovementIncrease;
     }
-    
+
     private void BindActions()
     {
         _jumpAction = _inputAsset.FindActionMap("Gameplay").FindAction("Jump");
@@ -78,6 +82,7 @@ public class PlayerCharacter : BasicCharacter
 
     private void Update()
     {
+        if (!_movementBehaviour.CanMove) return;
         HandleMovementInput();
         HandleAttackInput();
     }
@@ -89,21 +94,22 @@ public class PlayerCharacter : BasicCharacter
         //movement
         float XmovementInput = _xmovementAction.ReadValue<float>();
         float ZmovementInput = _zmovementAction.ReadValue<float>();
-        
+
         Vector3 movement = XmovementInput * transform.right;
         movement += ZmovementInput * transform.forward;
         _movementBehaviour.MovementSpeed = _sprintAction.IsPressed() ? _sprintSpeed : _movementSpeed;
-        
+
         _movementBehaviour.DesiredMovementDirection = movement;
     }
 
     private void HandleJumpInput(InputAction.CallbackContext context)
     {
-        _movementBehaviour.Jump();
+        if (_movementBehaviour.CanMove) _movementBehaviour.Jump();
     }
+
     private void HandleSwitchWeapon(AttackBehaviour.WeaponType weaponIndex)
     {
-        _attackBehaviour?.SwitchWeapon(weaponIndex);
+        if (_movementBehaviour.CanMove) _attackBehaviour?.SwitchWeapon(weaponIndex);
     }
 
     private void HandleAttackInput()

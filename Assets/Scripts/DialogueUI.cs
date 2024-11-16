@@ -21,7 +21,13 @@ public class DialogueUI : MonoBehaviour
         if (_attachedDocument) _root = _attachedDocument.rootVisualElement;
         _text = _root.Q<Label>("DialogueText");
         _text.text = "";
+        GameMaster.Player.GetComponent<MovementBehaviour>().CanMove = false;
         StartDialogue();
+    }
+
+    private void OnDisable()
+    {
+        GameMaster.Player.GetComponent<MovementBehaviour>().CanMove = true;
     }
 
     private void Update()
@@ -63,6 +69,7 @@ public class DialogueUI : MonoBehaviour
             //disable the cursor
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
+            GameMaster.Player.GetComponent<MovementBehaviour>().CanMove = true;
             gameObject.SetActive(false);
         }
     }

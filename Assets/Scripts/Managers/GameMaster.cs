@@ -26,22 +26,21 @@ public class GameMaster : SingletonBase<GameMaster>
     {
         if(IsIndoors)
         {
-            if(DayManager.CurrentDay == 0) DayManager.DayPassed();
             if(DayManager.CurrentDay == 3)
             {
                 if(CreatureManager.CreaturesSaved < CreatureQuota) TriggerGameOver();
                 else TriggerGameOver(true);
                 return;
             }
+            DayManager.DayPassed();
             IsIndoors = false;
-            StartCoroutine(ReloadScene("Outside"));
             CreatureManager.RunAwayCreatures();
+            StartCoroutine(ReloadScene("Outside"));
         }
         else
         {
             IsIndoors = true;
             StartCoroutine(ReloadScene("Inside"));
-            DayManager.DayPassed();
         }
     }
 
