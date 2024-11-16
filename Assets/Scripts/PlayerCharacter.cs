@@ -12,7 +12,9 @@ public class PlayerCharacter : BasicCharacter
     private InputAction _xmovementAction;
     private InputAction _zmovementAction;
     private InputAction _sprintAction;
-    private InputAction _switchWeaponAction;
+    private InputAction _equipGunAction;
+    private InputAction _equipKnifeAction;
+    private InputAction _equipEmptyAction;
     private float _sprintSpeed;
     private float _movementSpeed;
     public float MovementSpeed { get => _movementSpeed; set => _movementSpeed = value; }
@@ -34,7 +36,9 @@ public class PlayerCharacter : BasicCharacter
 
         //we bind a callback to it instead of continuously monitoring input
         _jumpAction.performed += HandleJumpInput;
-        _switchWeaponAction.performed += HandleSwitchWeapon;
+        _equipGunAction.performed += context => HandleSwitchWeapon(AttackBehaviour.WeaponType.Gun);
+        _equipKnifeAction.performed += context => HandleSwitchWeapon(AttackBehaviour.WeaponType.Knife);
+        _equipEmptyAction.performed += context => HandleSwitchWeapon(AttackBehaviour.WeaponType.Empty);
         
         _sprintSpeed = _movementBehaviour.MovementSpeed * 2f;
         _movementSpeed = _movementBehaviour.MovementSpeed + GameMaster.Instance.PlayerUpgradeManager.MovementIncrease;
@@ -47,13 +51,17 @@ public class PlayerCharacter : BasicCharacter
         _xmovementAction = _inputAsset.FindActionMap("Gameplay").FindAction("XMovement");
         _zmovementAction = _inputAsset.FindActionMap("Gameplay").FindAction("ZMovement");
         _sprintAction = _inputAsset.FindActionMap("Gameplay").FindAction("Sprint");
-        _switchWeaponAction = _inputAsset.FindActionMap("Gameplay").FindAction("SwitchWeapon");
+        _equipGunAction = _inputAsset.FindActionMap("Gameplay").FindAction("EquipGun");
+        _equipKnifeAction = _inputAsset.FindActionMap("Gameplay").FindAction("EquipKnife");
+        _equipEmptyAction = _inputAsset.FindActionMap("Gameplay").FindAction("EquipEmpty");
     }
 
     protected void OnDestroy()
     {
         _jumpAction.performed -= HandleJumpInput;
-        _switchWeaponAction.performed -= HandleSwitchWeapon;
+        _equipGunAction.performed -= context => HandleSwitchWeapon(AttackBehaviour.WeaponType.Gun);
+        _equipKnifeAction.performed -= context => HandleSwitchWeapon(AttackBehaviour.WeaponType.Knife);
+        _equipEmptyAction.performed -= context => HandleSwitchWeapon(AttackBehaviour.WeaponType.Empty);
         //if health is 0 we need to trigger game over
         if (GetComponent<Health>().CurrentHealth <= 0) GameMaster.Instance.TriggerGameOver();
     }
@@ -93,9 +101,9 @@ public class PlayerCharacter : BasicCharacter
     {
         _movementBehaviour.Jump();
     }
-    private void HandleSwitchWeapon(InputAction.CallbackContext context)
+    private void HandleSwitchWeapon(AttackBehaviour.WeaponType weaponIndex)
     {
-        _attackBehaviour?.SwitchWeapon();
+        _attackBehaviour?.SwitchWeapon(weaponIndex);
     }
 
     private void HandleAttackInput()

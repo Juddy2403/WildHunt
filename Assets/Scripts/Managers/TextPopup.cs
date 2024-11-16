@@ -15,16 +15,16 @@ public class TextPopup : SingletonBase<TextPopup>
         _attachedDocument = GetComponent<UIDocument>();
         _attachedDocument.enabled = false;
     }
-    public void Display(string text)
+    public void Display(string text, float fadeAfter = 1)
     {
         _attachedDocument.enabled = true;
         if (_attachedDocument) _root = _attachedDocument.rootVisualElement;
-
         if (_root == null) return;
+        StopAllCoroutines();
         _text = _root.Q<Label>();
         _text.style.opacity = 1;
         _text.text = text;
-        Invoke(nameof(FadeText),1);
+        Invoke(nameof(FadeText),fadeAfter);
     }
     private void FadeText()
     {

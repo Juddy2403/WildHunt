@@ -29,31 +29,31 @@ public class AttackBehaviour : MonoBehaviour
         InstantiateWeaponInSocket(_gunTemplate);
     }
 
-    public void SwitchWeapon()
+    public void SwitchWeapon(WeaponType weaponIndex)
     {
         //destroy the current weapon (if there is one) and spawn the next one
+        if(weaponIndex == _currentWeapon) return;
         if(_weapon) Destroy(_weapon.gameObject);
-        switch (_currentWeapon)
+        switch (weaponIndex)
         {
             case WeaponType.Gun:
-            {
-                InstantiateWeaponInSocket(_knifeTemplate);
-                _currentWeapon = WeaponType.Knife;
-            }
-                break;
-            case WeaponType.Knife:
-            {
-                _currentWeapon = WeaponType.Empty;
-            }
-                break;
-            case WeaponType.Empty:
             {
                 InstantiateWeaponInSocket(_gunTemplate);
                 _currentWeapon = WeaponType.Gun;
             }
                 break;
-            default:
-                throw new ArgumentOutOfRangeException();
+            case WeaponType.Knife: //knife
+            {
+                InstantiateWeaponInSocket(_knifeTemplate);
+                _currentWeapon = WeaponType.Knife;
+            }
+                break;
+            case WeaponType.Empty: //empty
+            {
+                _currentWeapon = WeaponType.Empty;
+            }
+                break;
+            default: throw new ArgumentOutOfRangeException();
         }
     }
     private void InstantiateWeaponInSocket(GameObject weaponTemplate)

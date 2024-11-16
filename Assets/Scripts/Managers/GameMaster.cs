@@ -24,24 +24,24 @@ public class GameMaster : SingletonBase<GameMaster>
 
     public void SceneChange()
     {
-        switch (SceneManager.GetActiveScene().name)
+        if(IsIndoors)
         {
-            case "Outside":
-                if (DayManager.CurrentDay == 3)
-                {
-                    if (CreatureManager.CreaturesSaved < CreatureQuota) TriggerGameOver();
-                    else TriggerGameOver(true);
-                    return;
-                }
-                IsIndoors = true;
-                StartCoroutine(ReloadScene("Inside"));
-                CreatureManager.RunAwayCreatures();
-                break;
-            case "Inside":
-                IsIndoors = false;
-                StartCoroutine(ReloadScene("Outside"));
-                DayManager.DayPassed();
-                break;
+            if(DayManager.CurrentDay == 0) DayManager.DayPassed();
+            if(DayManager.CurrentDay == 3)
+            {
+                if(CreatureManager.CreaturesSaved < CreatureQuota) TriggerGameOver();
+                else TriggerGameOver(true);
+                return;
+            }
+            IsIndoors = false;
+            StartCoroutine(ReloadScene("Outside"));
+            CreatureManager.RunAwayCreatures();
+        }
+        else
+        {
+            IsIndoors = true;
+            StartCoroutine(ReloadScene("Inside"));
+            DayManager.DayPassed();
         }
     }
 
