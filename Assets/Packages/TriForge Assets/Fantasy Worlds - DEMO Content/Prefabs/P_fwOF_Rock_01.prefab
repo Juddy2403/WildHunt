@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1681224996073516063}
   - component: {fileID: 2775955588113319053}
-  - component: {fileID: 7308341836442214987}
+  - component: {fileID: 6516910372559813887}
   m_Layer: 0
   m_Name: P_fwOF_Rock_01
   m_TagString: Untagged
@@ -53,8 +53,8 @@ LODGroup:
     renderers:
     - renderer: {fileID: 7322507497811744417}
   m_Enabled: 1
---- !u!64 &7308341836442214987
-MeshCollider:
+--- !u!136 &6516910372559813887
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -71,10 +71,11 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -3611471854593489396, guid: 40e9efa1eec80434e8f4ec7d54191999, type: 3}
+  serializedVersion: 2
+  m_Radius: 0.5066103
+  m_Height: 1.0132205
+  m_Direction: 1
+  m_Center: {x: 0.046610236, y: 0, z: 0}
 --- !u!1 &4986969098577478910
 GameObject:
   m_ObjectHideFlags: 0
