@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class DayManager
 {
-    private int _currentDay = 1;
+    private int _currentDay = 0;
     public int CurrentDay => _currentDay;
 
     public void DayPassed()

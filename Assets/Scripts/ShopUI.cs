@@ -67,6 +67,8 @@ public class ShopUI : SingletonBase<ShopUI>
 
     private void OnEnable()
     {
+        gameObject?.SetActive(GameMaster.Instance.IsIndoors);
+        if(!gameObject.activeSelf) return;
         _attachedDocument = GetComponent<UIDocument>();
         if (_attachedDocument) _root = _attachedDocument.rootVisualElement;
         
@@ -90,8 +92,8 @@ public class ShopUI : SingletonBase<ShopUI>
         gameObject.SetActive(false);
     }
 
-    protected override void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        if(GameMaster.Instance.IsIndoors) gameObject?.SetActive(true);
-    }
+    // protected override void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    // {
+    //     if(GameMaster.Instance.IsIndoors) gameObject?.SetActive(true);
+    // }
 }

@@ -19,7 +19,7 @@ public class GameMaster : SingletonBase<GameMaster>
     [SerializeField] private CoinManager _coinManager = new();
     public CoinManager CoinManager => _coinManager;
 
-    public bool IsIndoors { get; private set; } = false;
+    public bool IsIndoors { get; private set; } = true;
     public static GameObject Player { get; set; } = null;
 
     public void SceneChange()
