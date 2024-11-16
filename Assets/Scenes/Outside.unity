@@ -124,6 +124,91 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &35644253
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1148187247209447899, guid: 8ed8b55be0d1a6645be1e74cdd778b27,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 528.44385
+      objectReference: {fileID: 0}
+    - target: {fileID: 1148187247209447899, guid: 8ed8b55be0d1a6645be1e74cdd778b27,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 9.747715
+      objectReference: {fileID: 0}
+    - target: {fileID: 1148187247209447899, guid: 8ed8b55be0d1a6645be1e74cdd778b27,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 480.92697
+      objectReference: {fileID: 0}
+    - target: {fileID: 1148187247209447899, guid: 8ed8b55be0d1a6645be1e74cdd778b27,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1148187247209447899, guid: 8ed8b55be0d1a6645be1e74cdd778b27,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1148187247209447899, guid: 8ed8b55be0d1a6645be1e74cdd778b27,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1148187247209447899, guid: 8ed8b55be0d1a6645be1e74cdd778b27,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1148187247209447899, guid: 8ed8b55be0d1a6645be1e74cdd778b27,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1148187247209447899, guid: 8ed8b55be0d1a6645be1e74cdd778b27,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1148187247209447899, guid: 8ed8b55be0d1a6645be1e74cdd778b27,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369279925313310996, guid: 8ed8b55be0d1a6645be1e74cdd778b27,
+        type: 3}
+      propertyPath: lines.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369279925313310996, guid: 8ed8b55be0d1a6645be1e74cdd778b27,
+        type: 3}
+      propertyPath: lines.Array.data[0]
+      value: You can switch between gun, knife and empty\n slot with keys 1, 2 and
+        3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7672675978849709785, guid: 8ed8b55be0d1a6645be1e74cdd778b27,
+        type: 3}
+      propertyPath: m_Name
+      value: DialogueUI
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8ed8b55be0d1a6645be1e74cdd778b27, type: 3}
+--- !u!1 &35644254 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7672675978849709785, guid: 8ed8b55be0d1a6645be1e74cdd778b27,
+    type: 3}
+  m_PrefabInstance: {fileID: 35644253}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &71177164
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -852,6 +937,7 @@ GameObject:
   - component: {fileID: 1302508398}
   - component: {fileID: 1302508397}
   - component: {fileID: 1302508399}
+  - component: {fileID: 1302508400}
   m_Layer: 0
   m_Name: WeaponTutorial
   m_TagString: Untagged
@@ -889,7 +975,7 @@ Transform:
   m_GameObject: {fileID: 1302508396}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 482.386, y: 3.0444925, z: 524.86786}
+  m_LocalPosition: {x: 482.88, y: 3.0444925, z: 525.61}
   m_LocalScale: {x: 5.2089, y: 4.917511, z: 8.974509}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -907,6 +993,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea59101bc89ef304586d6d3c2b9d9326, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1302508400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1302508396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25211b27e9628844ea9ac083031de396, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _DialogueObj: {fileID: 35644254}
 --- !u!1001 &1425846375
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1257,7 +1356,7 @@ PrefabInstance:
     - target: {fileID: 4913885659166963971, guid: 79c5cf6a8b4f200468cdf72e2b02809a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 486.22766
+      value: 485.08
       objectReference: {fileID: 0}
     - target: {fileID: 4913885659166963971, guid: 79c5cf6a8b4f200468cdf72e2b02809a,
         type: 3}
@@ -1272,7 +1371,7 @@ PrefabInstance:
     - target: {fileID: 4913885659166963971, guid: 79c5cf6a8b4f200468cdf72e2b02809a,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.45414352
+      value: -0.73455757
       objectReference: {fileID: 0}
     - target: {fileID: 4913885659166963971, guid: 79c5cf6a8b4f200468cdf72e2b02809a,
         type: 3}
@@ -1282,7 +1381,7 @@ PrefabInstance:
     - target: {fileID: 4913885659166963971, guid: 79c5cf6a8b4f200468cdf72e2b02809a,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.8909286
+      value: 0.6785464
       objectReference: {fileID: 0}
     - target: {fileID: 4913885659166963971, guid: 79c5cf6a8b4f200468cdf72e2b02809a,
         type: 3}
@@ -1297,7 +1396,7 @@ PrefabInstance:
     - target: {fileID: 4913885659166963971, guid: 79c5cf6a8b4f200468cdf72e2b02809a,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 234.01999
+      value: 274.54
       objectReference: {fileID: 0}
     - target: {fileID: 4913885659166963971, guid: 79c5cf6a8b4f200468cdf72e2b02809a,
         type: 3}
@@ -2598,6 +2697,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: FogSphere
       objectReference: {fileID: 0}
+    - target: {fileID: 9157857237307798514, guid: 35fc8ac515a6c054bacb1b2b0541f9c0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2804,3 +2908,4 @@ SceneRoots:
   - {fileID: 1653505960}
   - {fileID: 1850456687}
   - {fileID: 1302508398}
+  - {fileID: 35644253}

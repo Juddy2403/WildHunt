@@ -9,12 +9,12 @@ public class WeaponTutorial : MonoBehaviour
         if(GameMaster.Instance.DayManager.CurrentDay > 1) Destroy(gameObject);
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.name == "Player")
-        {
-            TextPopup.Instance.Display("You can switch between gun, knife and empty\n " +
-                                       "slot with keys 1, 2 and 3",2.0f);
-        }
-    }
+    // private void OnTriggerEnter(Collider other)
+    // {
+    //     if (other.name == "Player")
+    //     {
+    //         TextPopup.Instance.Display("You can switch between gun, knife and empty\n " +
+    //                                    "slot with keys 1, 2 and 3",20.0f);
+    //     }
+    // }
 }
