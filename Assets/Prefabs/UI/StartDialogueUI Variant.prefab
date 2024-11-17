@@ -155,14 +155,14 @@ MonoBehaviour:
     there. \\n They'll follow you once it's safe\u2014no monsters nearby."
   - Bring them back here, to the entrance. \nThat's the only safe spot for them.
     Got it?
-  - "But be careful, you have to come back inside by 6 AM.\\n If you're not back
-    by dawn...\\n well, let\u2019s just say you don't want that."
+  - "But be careful, you have to come back in by 6 AM.\\n If you're not back by dawn...\\n
+    well, let\u2019s just say you don't want that."
   - "And don\u2019t dawdle. \\nYou\u2019ve got 3 days to save 20 of them. \\nIf you
     don\u2019t meet your quota, you\u2019re done."
   - Step outside when you're ready. \nAnd remember, every time you return here, \nanother
     day passes.
   - Good luck, brave one. \nThose little ones are counting on you.
-  textSpeed: 0
+  textSpeed: 0.02
 --- !u!82 &6031515191516697217 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 3008161018339842671, guid: 8ed8b55be0d1a6645be1e74cdd778b27,
