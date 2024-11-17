@@ -13,6 +13,7 @@ public class EnemyKamikazeCharacter : BasicCharacter
     [SerializeField] GameObject _attackVFXTemplate = null;
     [SerializeField] private AudioSource _growlSound = null;
     [SerializeField] private AudioSource _roarSound = null;
+    [SerializeField] private EnemyAnimationController _animationController = null;
     private NavMeshMovementBehaviour _navMovementBehaviour;
     private bool _hasAttacked = false;
 
@@ -27,6 +28,7 @@ public class EnemyKamikazeCharacter : BasicCharacter
             _navMovementBehaviour.MovementSpeed += (currentDay - 1) * 2.5f;
             _navMovementBehaviour.SetState(new IdleState(_navMovementBehaviour));
         }
+        GetComponent<Health>().OnHealthChanged += GetHit;
         Invoke(nameof(GrowlSound),UnityEngine.Random.Range(2.0f, 10.0f));
     }
 
@@ -35,6 +37,15 @@ public class EnemyKamikazeCharacter : BasicCharacter
         if (_growlSound) _growlSound.Play();
         Invoke(nameof(GrowlSound), UnityEngine.Random.Range(5.0f, 15.0f));
     }
+
+    private void Update()
+    {
+        if (_animationController)
+        {
+            _animationController.IsRunning = _movementBehaviour.IsRunning;
+        }
+    }
+
     private void FixedUpdate()
     {
         HandleMovement();
@@ -75,6 +86,8 @@ public class EnemyKamikazeCharacter : BasicCharacter
         if (IsPlayerInAttackRange())
         {
             _hasAttacked = true;
+            _movementBehaviour.CanMove = false;
+            _animationController.Attack();
             _attackBehaviour.Attack();
             if (_attackVFXTemplate) Instantiate(_attackVFXTemplate, transform.position, transform.rotation);
             _movementBehaviour.PushBackwards(-transform.forward);
@@ -86,6 +99,7 @@ public class EnemyKamikazeCharacter : BasicCharacter
     private void ResetAttack()
     {
         _hasAttacked = false;
+        _movementBehaviour.CanMove = true;
     }
 
     public void CreatureDetected(GameObject creature)
@@ -118,5 +132,10 @@ public class EnemyKamikazeCharacter : BasicCharacter
     private bool IsPlayerInAttackRange()
     {
         return (transform.position - _currentTarget.transform.position).sqrMagnitude < _attackRange * _attackRange;
+    }
+    
+    private void GetHit(float startHealth, float currentHealth)
+    {
+        _animationController.GetHit();
     }
 }

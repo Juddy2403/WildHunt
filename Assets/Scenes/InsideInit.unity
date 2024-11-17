@@ -1476,7 +1476,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1234129001}
-  - component: {fileID: 1234129002}
   m_Layer: 0
   m_Name: House
   m_TagString: Untagged
@@ -1510,7 +1509,6 @@ Transform:
   - {fileID: 378916295}
   - {fileID: 2102217988}
   - {fileID: 1639679605}
-  - {fileID: 1274060200}
   - {fileID: 1456703507}
   - {fileID: 781388622}
   - {fileID: 1096062953}
@@ -1519,37 +1517,6 @@ Transform:
   - {fileID: 1596929361}
   m_Father: {fileID: 2081802050}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1234129002
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1234128999}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_AgentTypeID: 0
-  m_CollectObjects: 0
-  m_Size: {x: 10, y: 10, z: 10}
-  m_Center: {x: 0, y: 2, z: 0}
-  m_LayerMask:
-    serializedVersion: 2
-    m_Bits: 1527
-  m_UseGeometry: 0
-  m_DefaultArea: 0
-  m_GenerateLinks: 0
-  m_IgnoreNavMeshAgent: 1
-  m_IgnoreNavMeshObstacle: 1
-  m_OverrideTileSize: 0
-  m_TileSize: 256
-  m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.016666668
-  m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 0f79f288cff10114aacb6274f583c603, type: 2}
-  m_BuildHeightMesh: 0
 --- !u!1 &1261466141
 GameObject:
   m_ObjectHideFlags: 0
@@ -1622,52 +1589,6 @@ MonoBehaviour:
   _UIObjName: ShopUI
   _textToDisplay: Press E to open shop
   _hideCursor: 1
---- !u!1 &1274060197
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1274060200}
-  - component: {fileID: 1274060198}
-  m_Layer: 0
-  m_Name: CreatureInstancer
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1274060198
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1274060197}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd034f1b0e179f54194a5d8bfb9d80bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _spawnTemplate: {fileID: 6143053904771826585, guid: efef5d42855b6584cb378b4d0994cb9b,
-    type: 3}
---- !u!4 &1274060200
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1274060197}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 28.502968, y: 4.0308585, z: -11.094817}
-  m_LocalScale: {x: 1.2505158, y: 1.8593823, z: 1.2505158}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1234129001}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1281941121 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5446477390807014373, guid: b713585f24f940f4eadb10319818ef40,

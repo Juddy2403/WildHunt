@@ -2,7 +2,7 @@
     <Style src="project://database/Assets/HUD/hudStyleSheet.uss?fileID=7433441132597879392&amp;guid=4a0d45ef4f2c8c54db7c9712babd7f10&amp;type=3#hudStyleSheet" />
     <ui:VisualElement style="flex-grow: 1; position: absolute; height: 250px; width: 537px;">
         <ui:Label tabindex="-1" text="Day 0" parse-escape-sequences="true" display-tooltip-when-elided="true" name="DayNumber" focusable="false" class="text" style="font-size: 19px;" />
-        <ui:Label tabindex="-1" text="Creatures saved: 0" parse-escape-sequences="true" display-tooltip-when-elided="true" name="CreaturesSaved" focusable="false" class="text" />
+        <ui:Label tabindex="-1" text="Ghosts saved: 0" parse-escape-sequences="true" display-tooltip-when-elided="true" name="CreaturesSaved" focusable="false" class="text" />
         <ui:Label tabindex="-1" text="Coins: 0" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Coins" focusable="false" class="text" />
     </ui:VisualElement>
     <ui:VisualElement style="flex-grow: 1; position: absolute; height: 250px; width: 385px; top: -2px; left: 1528px; align-self: auto; align-items: stretch;">

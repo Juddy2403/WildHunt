@@ -21,6 +21,7 @@ public class MovementBehaviour : MonoBehaviour
     private bool _grounded = false;
     private bool _isBeingPushed = false;
     protected bool _isRunning = false;
+    public bool IsRunning => _isRunning;
     public bool CanMove { get; set; } = true;
     private const float GROUND_CHECK_DISTANCE = 0.2f;
     private const string GROUND_LAYER = "Ground";
