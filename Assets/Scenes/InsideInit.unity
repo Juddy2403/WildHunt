@@ -2300,17 +2300,17 @@ PrefabInstance:
     - target: {fileID: 3929110016685077893, guid: b69f8301e72b3234bb08e8411fd73c53,
         type: 3}
       propertyPath: WindStrength
-      value: 0.75
+      value: 0.344
       objectReference: {fileID: 0}
     - target: {fileID: 3929110016685077893, guid: b69f8301e72b3234bb08e8411fd73c53,
         type: 3}
       propertyPath: GrassWindStrength
-      value: 1.16
+      value: 0.62
       objectReference: {fileID: 0}
     - target: {fileID: 3929110016685077893, guid: b69f8301e72b3234bb08e8411fd73c53,
         type: 3}
       propertyPath: GrassWindRotationMapInfluence
-      value: 0.422
+      value: 0.196
       objectReference: {fileID: 0}
     - target: {fileID: 4722715177083764979, guid: b69f8301e72b3234bb08e8411fd73c53,
         type: 3}

@@ -138,4 +138,9 @@ public class EnemyKamikazeCharacter : BasicCharacter
     {
         _animationController.GetHit();
     }
+
+    private void OnDestroy()
+    {
+        GetComponent<Health>().OnHealthChanged -= GetHit;
+    }
 }
