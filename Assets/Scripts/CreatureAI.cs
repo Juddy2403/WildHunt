@@ -6,9 +6,9 @@ using UnityEngine;
 
 public class CreatureAI : BasicCharacter
 {
+    [SerializeField] private float _followRange = 15.0f;
     private bool _isAlive = true;
     private bool _detectedSafePoint = false;
-    [SerializeField] private float _followRange = 15.0f;
     private bool _areMonstersClose = false;
     private NavMeshMovementBehaviour _navMovementBehaviour;
 
@@ -27,7 +27,6 @@ public class CreatureAI : BasicCharacter
     {
         //if the player is null, we are indoors or the creature has already found a safe point, return
         if (!_movementBehaviour || !GameMaster.Player || GameMaster.Instance.IsIndoors || _detectedSafePoint) return;
-
         if (_areMonstersClose) HandleMonstersClose();
         else if (IsPlayerInFollowRange()) HandlePlayerInFollowRange();
         else HandleIdleState();

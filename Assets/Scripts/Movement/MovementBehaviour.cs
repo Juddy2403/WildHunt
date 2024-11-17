@@ -19,6 +19,7 @@ public class MovementBehaviour : MonoBehaviour
     protected Transform _target;
 
     private bool _grounded = false;
+    private bool _isBeingPushed = false;
     protected bool _isRunning = false;
     public bool CanMove { get; set; } = true;
     private const float GROUND_CHECK_DISTANCE = 0.2f;
@@ -48,7 +49,7 @@ public class MovementBehaviour : MonoBehaviour
 
     protected virtual void Update()
     {
-        if(CanMove) HandleLookAt();
+        if(CanMove || _isBeingPushed) HandleLookAt();
     }
 
     protected virtual void FixedUpdate()
@@ -99,13 +100,16 @@ public class MovementBehaviour : MonoBehaviour
     {
         Vector3 force = bulletForward * 10f + Vector3.up * 10f; // Adjust the multipliers as needed
         _rigidBody.velocity = force;
+        //allow the player to look around when its being pushed, but not to move
         CanMove = false;
+        _isBeingPushed = true;
         Invoke(nameof(EnableMovement), 0.7f);
     }
 
     private void EnableMovement()
     {
         CanMove = true;
+        _isBeingPushed = false;
     }
 
     private void HandleLookAt()

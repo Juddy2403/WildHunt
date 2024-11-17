@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class TextPopup : SingletonBase<TextPopup>
@@ -44,5 +45,9 @@ public class TextPopup : SingletonBase<TextPopup>
         //ensure we are the starting color again at the end if we would not exactly hit it due to rounding
         _attachedDocument.enabled = false;
 
+    }
+    protected override void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if(_text != null) _text.text = "";
     }
 }

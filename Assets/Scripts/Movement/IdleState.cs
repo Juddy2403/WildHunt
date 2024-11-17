@@ -5,8 +5,8 @@ namespace Movement
     public class IdleState : MovementState
     {
         private float _idleTimer = 0f;
-        private  float _startMovementSpeed = 0.1f;
-        private const float _movementSpeed = 2;
+        private float _startMovementSpeed;
+        private const float _movementSpeedMultiplier = 0.5f;
 
         public IdleState(NavMeshMovementBehaviour movementBehaviour) : base(movementBehaviour) { }
 
@@ -14,7 +14,7 @@ namespace Movement
         {
             _movementBehaviour.SetNavStopDistance(0);
             _startMovementSpeed = _movementBehaviour.MovementSpeed;
-            _movementBehaviour.MovementSpeed = _movementSpeed;
+            _movementBehaviour.MovementSpeed *= _movementSpeedMultiplier;
         }
 
         public override void Exit()

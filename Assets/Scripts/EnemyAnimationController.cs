@@ -9,7 +9,6 @@ public class EnemyAnimationController : MonoBehaviour
     void Awake()
     {
         _previousPosition = transform.root.position;
-
         _animator = transform.GetComponent<Animator>();
     }
     // Update is called once per frame

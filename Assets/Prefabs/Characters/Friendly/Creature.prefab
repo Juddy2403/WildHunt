@@ -185,6 +185,8 @@ MonoBehaviour:
   _movementSpeed: 6
   _jumpStrength: 10
   _fpsCamera: {fileID: 0}
+  _footstepSound: {fileID: 0}
+  _runningFootstepSound: {fileID: 0}
 --- !u!114 &7357157979032782140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,7 +199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62b302ee800eb3f41aed86c08821fb76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startHealth: 100
+  _startHealth: 50
   _flickerColor: {r: 1, g: 0, b: 0, a: 1}
   _flickerDuration: 0.3
   healthBar: {fileID: 1391719169689056748}
@@ -263,7 +265,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8023b1b7a17afd42b93c6a81373ba33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _followRange: 10
+  _followRange: 15
 --- !u!135 &1548508897228914989
 SphereCollider:
   m_ObjectHideFlags: 0

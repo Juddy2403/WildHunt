@@ -222,7 +222,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shoulderObject: {fileID: 0}
-  _movementSpeed: 6
+  _movementSpeed: 8
   _jumpStrength: 10
   _fpsCamera: {fileID: 0}
   _footstepSound: {fileID: 9139923314203728263}
