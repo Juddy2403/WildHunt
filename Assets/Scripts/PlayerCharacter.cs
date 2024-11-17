@@ -44,8 +44,21 @@ public class PlayerCharacter : BasicCharacter
         _equipKnifeAction.performed += context => HandleSwitchWeapon(AttackBehaviour.WeaponType.Knife);
         _equipEmptyAction.performed += context => HandleSwitchWeapon(AttackBehaviour.WeaponType.Empty);
 
+        // Subscribe to sprint action events
+        _sprintAction.started += HandleSprintStarted;
+        _sprintAction.canceled += HandleSprintCanceled;
+        
         _sprintSpeed = _movementBehaviour.MovementSpeed * 1.5f;
         _movementSpeed = _movementBehaviour.MovementSpeed + GameMaster.Instance.PlayerUpgradeManager.MovementIncrease;
+    }
+    private void HandleSprintStarted(InputAction.CallbackContext context)
+    {
+        _movementBehaviour.MovementSpeed = _sprintSpeed;
+    }
+
+    private void HandleSprintCanceled(InputAction.CallbackContext context)
+    {
+        _movementBehaviour.MovementSpeed = _movementSpeed;
     }
 
     private void BindActions()
@@ -97,7 +110,7 @@ public class PlayerCharacter : BasicCharacter
 
         Vector3 movement = XmovementInput * transform.right;
         movement += ZmovementInput * transform.forward;
-        _movementBehaviour.MovementSpeed = _sprintAction.IsPressed() ? _sprintSpeed : _movementSpeed;
+        //_movementBehaviour.MovementSpeed = _sprintAction.IsPressed() ? _sprintSpeed : _movementSpeed;
 
         _movementBehaviour.DesiredMovementDirection = movement;
     }

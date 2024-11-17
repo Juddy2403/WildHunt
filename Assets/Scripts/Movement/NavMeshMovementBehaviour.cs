@@ -27,7 +27,8 @@ namespace Movement
             get { return _movementSpeed; }
             set
             {
-                _movementSpeed = value; 
+                _isRunning = value > _movementSpeed;
+                _movementSpeed = value;
                 _navMeshAgent.speed = _movementSpeed;
             }
         }

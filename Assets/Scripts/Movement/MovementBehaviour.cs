@@ -9,32 +9,41 @@ public class MovementBehaviour : MonoBehaviour
     [SerializeField] protected float _movementSpeed = 1.0f;
     [SerializeField] protected float _jumpStrength = 5.0f;
     [SerializeField] private Camera _fpsCamera;
+    [SerializeField] private AudioSource _footstepSound;
+    [SerializeField] private AudioSource _runningFootstepSound;
 
-    protected Rigidbody _rigidBody;
-    protected Vector3 _desiredMovementDirection = Vector3.zero;
-    protected float _desiredXRotation = 0.0f;
+    private float _initMovementSpeed;
+    private Rigidbody _rigidBody;
+    private Vector3 _desiredMovementDirection = Vector3.zero;
+    private float _desiredXRotation = 0.0f;
     protected Transform _target;
 
-    protected bool _grounded = false;
+    private bool _grounded = false;
+    protected bool _isRunning = false;
     public bool CanMove { get; set; } = true;
-    protected const float GROUND_CHECK_DISTANCE = 0.2f;
-    protected const string GROUND_LAYER = "Ground";
+    private const float GROUND_CHECK_DISTANCE = 0.2f;
+    private const string GROUND_LAYER = "Ground";
 
     public Vector3 DesiredMovementDirection
     {
-        get { return _desiredMovementDirection; }
-        set { _desiredMovementDirection = value; }
+        set => _desiredMovementDirection = value;
     }
 
     public virtual float MovementSpeed
     {
-        get { return _movementSpeed; }
-        set { _movementSpeed = value; }
+        get => _movementSpeed;
+        set
+        {
+            if(_runningFootstepSound) _isRunning = value > _initMovementSpeed;
+            _movementSpeed = value;
+        }
     }
 
     protected virtual void Awake()
     {
         _rigidBody = GetComponent<Rigidbody>();
+        _initMovementSpeed = _movementSpeed;
+        if (_footstepSound) _footstepSound.enabled = false;
     }
 
     protected virtual void Update()
@@ -59,6 +68,31 @@ public class MovementBehaviour : MonoBehaviour
         //maintain vertical velocity as it was otherwise gravity would be stripped out
         movement.y = _rigidBody.velocity.y;
         _rigidBody.velocity = movement;
+        if (!_footstepSound) return;
+        HandleAudio(movement);
+    }
+
+    private void HandleAudio(Vector3 movement)
+    {
+        //if the player is walking and not jumping, play footstep sound
+        if(movement != Vector3.zero && _grounded)
+        {
+            if(_isRunning)
+            {
+                _runningFootstepSound.enabled = true;
+                _footstepSound.enabled = false;
+            }
+            else
+            {
+                _footstepSound.enabled = true;
+                if (_runningFootstepSound) _runningFootstepSound.enabled = false;
+            }
+        }
+        else
+        {
+            _footstepSound.enabled = false;
+            if (_runningFootstepSound) _runningFootstepSound.enabled = false;
+        }
     }
 
     public void PushBackwards(Vector3 bulletForward)
