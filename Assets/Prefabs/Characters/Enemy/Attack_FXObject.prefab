@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4233954938769757185}
   - component: {fileID: 4219047927241477423}
   m_Layer: 0
-  m_Name: KamikazeAttack_FXObject
+  m_Name: Attack_FXObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

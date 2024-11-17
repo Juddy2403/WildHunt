@@ -36,7 +36,7 @@ public class CreatureManager
 
     public void CreatureMurdered()
     {
-        GameMaster.Instance.CoinManager.Coins += 20;
+        GameMaster.Instance.CoinManager.Coins += 40;
         HUD.Instance.UpdateCreaturesSaved(--_creaturesSaved);
     }
     public void CreatureDied(Vector3 position)
