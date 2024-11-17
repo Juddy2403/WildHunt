@@ -13,7 +13,8 @@ public class GameMaster : SingletonBase<GameMaster>
     public TrustManager TrustManager { get; } = new();
     public PlayerUpgradeManager PlayerUpgradeManager { get; } = new();
     public SanityManager SanityManager { get; } = new();
-    public CreatureManager CreatureManager { get; } = new();
+    [SerializeField] private CreatureManager _creatureManager = new();
+    public CreatureManager CreatureManager => _creatureManager;
     [SerializeField] private MonsterManager _monsterManager = new();
     public MonsterManager MonsterManager => _monsterManager;
     [SerializeField] private CoinManager _coinManager = new();

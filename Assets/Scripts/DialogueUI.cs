@@ -7,6 +7,7 @@ using Cursor = UnityEngine.Cursor;
 
 public class DialogueUI : MonoBehaviour
 {
+    [SerializeField] private AudioSource _audio = null;
     private UIDocument _attachedDocument = null;
     private VisualElement _root = null;
     private Label _text = null;
@@ -36,6 +37,7 @@ public class DialogueUI : MonoBehaviour
         if(_text.text == lines[_currentLine]) NextLine();
         else
         {
+            _audio.enabled = false;
             StopAllCoroutines();
             _text.text = lines[_currentLine];
         }
@@ -49,11 +51,13 @@ public class DialogueUI : MonoBehaviour
 
     private IEnumerator TypeLine()
     {
+        _audio.enabled = true;
         foreach (char c in lines[_currentLine].ToCharArray())
         {
             _text.text += c;
             yield return new WaitForSeconds(textSpeed);
         }
+        _audio.enabled = false;
     }
 
     void NextLine()
@@ -66,6 +70,7 @@ public class DialogueUI : MonoBehaviour
         }
         else
         {
+            _audio.enabled = false;
             //disable the cursor
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;

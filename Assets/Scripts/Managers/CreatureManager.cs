@@ -1,7 +1,11 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using Random = UnityEngine.Random;
 
+[Serializable]
 public class CreatureManager
 {
+    [SerializeField] private AudioSource _deathSound;
     private int _creaturesSaved = 0;
     public int CreaturesSaved => _creaturesSaved;
 
@@ -34,6 +38,11 @@ public class CreatureManager
     {
         GameMaster.Instance.CoinManager.Coins += 20;
         HUD.Instance.UpdateCreaturesSaved(--_creaturesSaved);
+    }
+    public void CreatureDied(Vector3 position)
+    {
+        _deathSound.transform.position = position;
+        _deathSound.Play();
     }
 
     public void CreatureSaved()

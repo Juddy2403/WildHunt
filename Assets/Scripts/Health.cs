@@ -6,6 +6,7 @@ using UnityEngine.Serialization;
 public class Health : MonoBehaviour
 {
     private static readonly int BaseColor = Shader.PropertyToID("_BaseColor");
+    [SerializeField] private AudioSource _hitSound;
     [SerializeField] private int _startHealth = 10;
     private int _currentHealth = 0;
     public float StartHealth { get => _startHealth;
@@ -49,6 +50,7 @@ public class Health : MonoBehaviour
     {
         Debug.Log(gameObject.name + " has taken " + amount + " damage. Remaining health: " + _currentHealth);
 
+        _hitSound?.Play();
         _currentHealth -= amount;
         healthBar?.SetHealth(_currentHealth);
         _movementBehaviour.PushBackwards(bulletForward);
@@ -101,6 +103,8 @@ public class Health : MonoBehaviour
                 gameMaster.SanityManager.SanityLost();
                 DetectRadar.MurderEvent();
             }
+            //play death sound
+            GameMaster.Instance.CreatureManager.CreatureDied(transform.position);
         }
         Destroy(gameObject);
     }

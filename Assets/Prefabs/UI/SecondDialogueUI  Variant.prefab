@@ -115,6 +115,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SecondDialogueUI  Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 7672675978849709785, guid: 8ed8b55be0d1a6645be1e74cdd778b27,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2369279925313310996, guid: 8ed8b55be0d1a6645be1e74cdd778b27, type: 3}
     m_RemovedGameObjects: []
@@ -143,6 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e20da8b6ae083124a943eb83e765efc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _audio: {fileID: 7171660308697348099}
   lines:
   - "Back already? Not bad for your first night.\\n But... I can see it in your eyes\u2014\\nyou\u2019re
     wondering if there\u2019s an easier way to get by."
@@ -160,3 +166,9 @@ MonoBehaviour:
   - "The choice is yours, but remember: \\nshortcuts often come with sharp edges.
     \\nNow, off you go. I\u2019ll be here... counting my coins."
   textSpeed: 0
+--- !u!82 &7171660308697348099 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 3008161018339842671, guid: 8ed8b55be0d1a6645be1e74cdd778b27,
+    type: 3}
+  m_PrefabInstance: {fileID: 5348580427755856492}
+  m_PrefabAsset: {fileID: 0}

@@ -11,6 +11,8 @@ public class EnemyKamikazeCharacter : BasicCharacter
     [SerializeField] private float _attackRange = 2.0f;
     [SerializeField] private float _targetFollowRange = 20.0f;
     [SerializeField] GameObject _attackVFXTemplate = null;
+    [SerializeField] private AudioSource _growlSound = null;
+    [SerializeField] private AudioSource _roarSound = null;
     private NavMeshMovementBehaviour _navMovementBehaviour;
     private bool _hasAttacked = false;
 
@@ -25,9 +27,14 @@ public class EnemyKamikazeCharacter : BasicCharacter
             _navMovementBehaviour.MovementSpeed += (currentDay - 1) * 2.5f;
             _navMovementBehaviour.SetState(new IdleState(_navMovementBehaviour));
         }
-
+        Invoke(nameof(GrowlSound),UnityEngine.Random.Range(2.0f, 10.0f));
     }
 
+    private void GrowlSound()
+    {
+        if (_growlSound) _growlSound.Play();
+        Invoke(nameof(GrowlSound), UnityEngine.Random.Range(5.0f, 15.0f));
+    }
     private void FixedUpdate()
     {
         HandleMovement();
@@ -83,6 +90,7 @@ public class EnemyKamikazeCharacter : BasicCharacter
 
     public void CreatureDetected(GameObject creature)
     {
+        if (_roarSound) _roarSound.Play();
         //if we are not already targeting a creature, follow this one
         if (_currentTarget && _currentTarget.CompareTag("Creature")) return;
         if (_currentTarget == GameMaster.Player && IsPlayerInRange()) return;

@@ -1,7 +1,4 @@
-using System;
-using System.Collections.Generic;
 using Movement;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class CreatureAI : BasicCharacter

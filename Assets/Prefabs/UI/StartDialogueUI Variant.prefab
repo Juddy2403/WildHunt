@@ -148,6 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e20da8b6ae083124a943eb83e765efc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _audio: {fileID: 6031515191516697217}
   lines:
   - Ah, you're finally awake.\n Listen closely, there's no time to waste.
   - "Outside, it's crawling with monsters.\\n Your job? Save the little ghosts out
@@ -162,3 +163,9 @@ MonoBehaviour:
     day passes.
   - Good luck, brave one. \nThose little ones are counting on you.
   textSpeed: 0
+--- !u!82 &6031515191516697217 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 3008161018339842671, guid: 8ed8b55be0d1a6645be1e74cdd778b27,
+    type: 3}
+  m_PrefabInstance: {fileID: 8794155262398908654}
+  m_PrefabAsset: {fileID: 0}

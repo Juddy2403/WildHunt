@@ -2191,11 +2191,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: 'SecondDialogueUI  '
       objectReference: {fileID: 0}
-    - target: {fileID: 2324749837854887093, guid: 26d249153a2c8224187ac5cb92c47ae3,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
     - target: {fileID: 5032446820743324599, guid: 26d249153a2c8224187ac5cb92c47ae3,
         type: 3}
       propertyPath: m_LocalPosition.x
