@@ -14,10 +14,10 @@ public class SpawnManager : MonoBehaviour
     void Awake()
     {
         _currentFrequency = GameMaster.Instance.MonsterManager.WaveStartFrequency;
-        SpawnWave(_creatureTemplate, _minCreatureSpawnCount, _maxCreatureSpawnCount);
-        Invoke(nameof(StartNewWave), _firstWaveStart);
+        StartNewCreatureWave();
+        Invoke(nameof(StartNewMonsterWave), _firstWaveStart);
     }
-    void StartNewWave()
+    void StartNewMonsterWave()
     {
         MonsterManager monsterManager = GameMaster.Instance.MonsterManager;
         SpawnWave(_monsterTemplate, monsterManager.MonsterMinSpawnCount, monsterManager.MonsterMaxSpawnCount);
@@ -25,7 +25,12 @@ public class SpawnManager : MonoBehaviour
         _currentFrequency = Mathf.Clamp(_currentFrequency - _waveFrequencyIncrement,
             monsterManager.WaveEndFrequency, monsterManager.WaveStartFrequency);
 
-        Invoke(nameof(StartNewWave), _currentFrequency);
+        Invoke(nameof(StartNewMonsterWave), _currentFrequency);
+    }
+    void StartNewCreatureWave()
+    {
+        SpawnWave(_creatureTemplate, _minCreatureSpawnCount, _maxCreatureSpawnCount);
+        Invoke(nameof(StartNewCreatureWave), 60);
     }
     
     private void SpawnWave(GameObject spawnTemplate,int minSpawnCount, int maxSpawnCount)
