@@ -275,7 +275,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shoulderObject: {fileID: 1072125502403316871}
-  _movementSpeed: 8
+  _movementSpeed: 6
   _jumpStrength: 15
   _fpsCamera: {fileID: 2218799103978407978}
 --- !u!114 &1041545111055555548

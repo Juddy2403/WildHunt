@@ -44,7 +44,7 @@ public class PlayerCharacter : BasicCharacter
         _equipKnifeAction.performed += context => HandleSwitchWeapon(AttackBehaviour.WeaponType.Knife);
         _equipEmptyAction.performed += context => HandleSwitchWeapon(AttackBehaviour.WeaponType.Empty);
 
-        _sprintSpeed = _movementBehaviour.MovementSpeed * 2f;
+        _sprintSpeed = _movementBehaviour.MovementSpeed * 1.5f;
         _movementSpeed = _movementBehaviour.MovementSpeed + GameMaster.Instance.PlayerUpgradeManager.MovementIncrease;
     }
 
