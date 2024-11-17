@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1681224996073516063}
   - component: {fileID: 2775955588113319053}
-  - component: {fileID: 6516910372559813887}
   m_Layer: 0
   m_Name: P_fwOF_Rock_01
   m_TagString: Untagged
@@ -53,29 +52,6 @@ LODGroup:
     renderers:
     - renderer: {fileID: 7322507497811744417}
   m_Enabled: 1
---- !u!136 &6516910372559813887
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 336222436434858099}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.24
-  m_Height: 0.78
-  m_Direction: 0
-  m_Center: {x: 0.046610236, y: 0, z: 0}
 --- !u!1 &4986969098577478910
 GameObject:
   m_ObjectHideFlags: 0
