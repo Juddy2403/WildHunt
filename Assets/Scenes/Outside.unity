@@ -4760,18 +4760,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6901651282727701717, guid: 79c5cf6a8b4f200468cdf72e2b02809a,
         type: 3}
+      propertyPath: m_Range
+      value: 20.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 6901651282727701717, guid: 79c5cf6a8b4f200468cdf72e2b02809a,
+        type: 3}
       propertyPath: m_Intensity
-      value: 4.56
+      value: 6.69
       objectReference: {fileID: 0}
     - target: {fileID: 6901651282727701717, guid: 79c5cf6a8b4f200468cdf72e2b02809a,
         type: 3}
       propertyPath: m_SpotAngle
-      value: 66.94246
+      value: 101.56393
       objectReference: {fileID: 0}
     - target: {fileID: 6901651282727701717, guid: 79c5cf6a8b4f200468cdf72e2b02809a,
         type: 3}
       propertyPath: m_InnerSpotAngle
-      value: 58.151253
+      value: 66.0633
       objectReference: {fileID: 0}
     - target: {fileID: 8462820703556405304, guid: 79c5cf6a8b4f200468cdf72e2b02809a,
         type: 3}
