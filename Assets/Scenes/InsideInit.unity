@@ -2802,6 +2802,38 @@ PrefabInstance:
       propertyPath: m_Name
       value: StartDialogueUI
       objectReference: {fileID: 0}
+    - target: {fileID: 6065383278920367022, guid: dc72cb8e7583b864889755a26294de4a,
+        type: 3}
+      propertyPath: lines.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6065383278920367022, guid: dc72cb8e7583b864889755a26294de4a,
+        type: 3}
+      propertyPath: lines.Array.data[1]
+      value: Outside, it's crawling with monsters.\n Your job? Save the little ghosts
+        out there.
+      objectReference: {fileID: 0}
+    - target: {fileID: 6065383278920367022, guid: dc72cb8e7583b864889755a26294de4a,
+        type: 3}
+      propertyPath: lines.Array.data[2]
+      value: "And don\u2019t dawdle. \\nYou\u2019ve got 3 days to save 20 of them.
+        \\nIf you don\u2019t meet your quota, you\u2019re done."
+      objectReference: {fileID: 0}
+    - target: {fileID: 6065383278920367022, guid: dc72cb8e7583b864889755a26294de4a,
+        type: 3}
+      propertyPath: lines.Array.data[3]
+      value: Step outside when you're ready. \n I'll teach you how to do it.
+      objectReference: {fileID: 0}
+    - target: {fileID: 6065383278920367022, guid: dc72cb8e7583b864889755a26294de4a,
+        type: 3}
+      propertyPath: lines.Array.data[4]
+      value: Good luck, brave one. \nThose little ones are counting on you.
+      objectReference: {fileID: 0}
+    - target: {fileID: 6065383278920367022, guid: dc72cb8e7583b864889755a26294de4a,
+        type: 3}
+      propertyPath: lines.Array.data[5]
+      value: Good luck, brave one. \nThose little ones are counting on you.
+      objectReference: {fileID: 0}
     - target: {fileID: 8494971602086578485, guid: dc72cb8e7583b864889755a26294de4a,
         type: 3}
       propertyPath: m_LocalPosition.x

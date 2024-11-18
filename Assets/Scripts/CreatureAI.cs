@@ -34,8 +34,7 @@ public class CreatureAI : BasicCharacter
 
     private bool IsPlayerInFollowRange()
     {
-        return (transform.position - GameMaster.Player.transform.position).sqrMagnitude <
-               _followRange * _followRange;
+        return (transform.position - GameMaster.Player.transform.position).sqrMagnitude < _followRange * _followRange;
     }
     
     private void HandleMonstersClose()

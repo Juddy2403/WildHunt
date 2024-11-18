@@ -20,7 +20,7 @@ public class AttackBehaviour : MonoBehaviour
     public WeaponType CurrentWeapon { get { return _currentWeapon; } }
     void Awake()
     {
-        if (GameMaster.Instance.IsIndoors)
+        if (GameMaster.Instance.IsIndoors || GameMaster.Instance.DayManager.CurrentDay == 0)
         {
             _currentWeapon = WeaponType.Empty;
             return;

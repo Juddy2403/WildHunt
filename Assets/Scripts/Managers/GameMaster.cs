@@ -27,8 +27,13 @@ public class GameMaster : SingletonBase<GameMaster>
     {
         if(IsIndoors)
         {
-            DayManager.DayPassed();
             IsIndoors = false;
+            if(DayManager.CurrentDay == 0)
+            {
+                StartCoroutine(ReloadScene("OutsideInit"));
+                return;
+            }
+            DayManager.DayPassed();
             CreatureManager.RunAwayCreatures();
             StartCoroutine(ReloadScene("Outside"));
         }

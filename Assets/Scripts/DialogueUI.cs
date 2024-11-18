@@ -22,13 +22,13 @@ public class DialogueUI : MonoBehaviour
         if (_attachedDocument) _root = _attachedDocument.rootVisualElement;
         _text = _root.Q<Label>("DialogueText");
         _text.text = "";
-        GameMaster.Player.GetComponent<MovementBehaviour>().CanMove = false;
+        Time.timeScale = 0;
         StartDialogue();
     }
 
     private void OnDisable()
     {
-        GameMaster.Player.GetComponent<MovementBehaviour>().CanMove = true;
+        Time.timeScale = 1;
     }
 
     private void Update()
@@ -52,10 +52,10 @@ public class DialogueUI : MonoBehaviour
     private IEnumerator TypeLine()
     {
         _audio.enabled = true;
-        foreach (char c in lines[_currentLine].ToCharArray())
+        foreach (char c in lines[_currentLine])
         {
             _text.text += c;
-            yield return new WaitForSeconds(textSpeed);
+            yield return new WaitForSecondsRealtime(textSpeed);
         }
         _audio.enabled = false;
     }
@@ -74,7 +74,7 @@ public class DialogueUI : MonoBehaviour
             //disable the cursor
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
-            GameMaster.Player.GetComponent<MovementBehaviour>().CanMove = true;
+            Time.timeScale = 1;
             gameObject.SetActive(false);
         }
     }

@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/InsideInit.unity
     guid: 6d2a8778b230e8b43a1f119f64d90256
   - enabled: 1
+    path: Assets/Scenes/OutsideInit.unity
+    guid: e7bdd6b61ee337540a68f55e5a406a0c
+  - enabled: 1
     path: Assets/Scenes/Outside.unity
     guid: 9353bc8b151dc2a489307b976fc485d6
   - enabled: 1
