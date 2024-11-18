@@ -1,20 +1,17 @@
-using UnityEngine;
-
 public class SanityManager
 {
-    private int _sanity = 100;
-    public int Sanity => _sanity;
+    public int Sanity { get; private set; } = 100;
 
     public void SanityLost()
     {
-        if(_sanity <= 0)
+        if(Sanity <= 0)
         {
             //resetting it in case a lot of trust is lost at once and it becomes negative
-            _sanity = 0;
+            Sanity = 0;
             return;
         }
-        _sanity -= 10;
+        Sanity -= 10;
         //update the HUD
-        HUD.Instance.UpdateSanity(_sanity);
+        HUD.Instance.UpdateSanity(Sanity);
     }
 }

@@ -1,10 +1,9 @@
-using System;
 using UnityEngine;
 
 public class TimeManager : MonoBehaviour
 {
-    private int hour = 0;
-    private int minute = 0;
+    private int _hour = 0;
+    private int _minute = 0;
 
     void Start()
     {
@@ -13,13 +12,13 @@ public class TimeManager : MonoBehaviour
 
     private void MinutePassed()
     {
-        if (minute < 59) minute++;
+        if (_minute < 59) _minute++;
         else
         {
-            minute = 0;
-            hour++;
+            _minute = 0;
+            _hour++;
         }
-        HUD.Instance.UpdateTime(hour, minute);
+        HUD.Instance.UpdateTime(_hour, _minute);
         Invoke(nameof(MinutePassed), 1);
     }
 }

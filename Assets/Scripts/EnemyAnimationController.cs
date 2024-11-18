@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 public class EnemyAnimationController : MonoBehaviour
 {
@@ -15,11 +13,9 @@ public class EnemyAnimationController : MonoBehaviour
         get => _isMoving;
         set
         {
-            if (_isMoving != value)
-            {
-                _isMoving = value;
-                _animator.SetBool(Moving, _isMoving);
-            }
+            if (_isMoving == value) return;
+            _isMoving = value;
+            _animator.SetBool(Moving, _isMoving);
         }
     }
     private bool _isRunning = false;
@@ -28,14 +24,13 @@ public class EnemyAnimationController : MonoBehaviour
         get => _isRunning;
         set
         {
-            if (_isRunning != value)
-            {
-                _isRunning = value;
-                _animator.SetBool(Running, _isRunning);
-            }
+            if (_isRunning == value) return;
+            _isRunning = value;
+            _animator.SetBool(Running, _isRunning);
         }
     }
-    void Awake()
+
+    private void Awake()
     {
         _previousPosition = transform.root.position;
         _animator = transform.GetComponent<Animator>();
@@ -48,14 +43,15 @@ public class EnemyAnimationController : MonoBehaviour
     {
         _animator.SetTrigger(Hit);
     }
-    // Update is called once per frame
-    void Update()
+
+    private void Update()
     {
         HandleMovementAnimation();
     }
 
     private const float EPSILON = 0.0001f;
-    void HandleMovementAnimation()
+
+    private void HandleMovementAnimation()
     {
         if (!_animator) return;
 

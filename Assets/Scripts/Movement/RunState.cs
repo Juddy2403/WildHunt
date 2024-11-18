@@ -7,7 +7,9 @@ namespace Movement
         private float _timer;
         private  float _startMovementSpeed;
         private const float _movementSpeed = 10;
-
+        const float wanderRadius = 10f;
+        const float wanderTimer = 1f;
+        
         public RunState(NavMeshMovementBehaviour movementBehaviour) : base(movementBehaviour) { }
 
         public override void Enter()
@@ -22,9 +24,7 @@ namespace Movement
             _movementBehaviour.MovementSpeed = _startMovementSpeed;
             _movementBehaviour.SetTarget(null);
         }
-
-        const float wanderRadius = 10f;
-        const float wanderTimer = 1f;
+        
         public override void Update()
         {
             _timer += Time.deltaTime;

@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
 [Serializable]
-
 public class MonsterManager
 {
     [SerializeField] private float _waveStartFrequency = 60.0f;

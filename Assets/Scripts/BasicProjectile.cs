@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BasicProjectile : MonoBehaviour
@@ -41,7 +39,6 @@ public class BasicProjectile : MonoBehaviour
     }
 
     //This cannot be defined const as it can only apply to a field which is known at compile-time. Which is not the case for an array, so doing static readonly, which means it can serve a very similar purpose.
-
     private static readonly string[] RaycastMask = { "Ground", "StaticLevel" };
     private void WallDetection()
     {
@@ -69,11 +66,9 @@ public class BasicProjectile : MonoBehaviour
 
         Health otherHealth = other.GetComponent<Health>();
 
-        if (otherHealth != null)
-        {
-            otherHealth.Damage(_damage, transform.forward);
-            Kill();
-        }
+        if (otherHealth == null) return;
+        otherHealth.Damage(_damage, transform.forward);
+        Kill();
     }
 
 

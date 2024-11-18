@@ -1,9 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 using Cursor = UnityEngine.Cursor;
 
@@ -92,9 +87,4 @@ public class ShopUI : SingletonBase<ShopUI>
         GameMaster.Player.GetComponent<MovementBehaviour>().CanMove = true;
         gameObject.SetActive(false);
     }
-
-    // protected override void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    // {
-    //     if(GameMaster.Instance.IsIndoors) gameObject?.SetActive(true);
-    // }
 }

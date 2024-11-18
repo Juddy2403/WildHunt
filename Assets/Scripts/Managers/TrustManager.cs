@@ -1,20 +1,17 @@
-using UnityEngine;
-
 public class TrustManager
 {
-    private int _trust = 100;
-    public int Trust => _trust;
+    public int Trust { get; private set; } = 100;
 
     public void TrustLost(int amount)
     {
-        if(_trust <= 0)
+        if(Trust <= 0)
         {
             //resetting it in case a lot of trust is lost at once and it becomes negative
-            _trust = 0;
+            Trust = 0;
             return;
         }
-        _trust -= amount;
+        Trust -= amount;
         //update the HUD
-        HUD.Instance.UpdateTrust(_trust);
+        HUD.Instance.UpdateTrust(Trust);
     }
 }

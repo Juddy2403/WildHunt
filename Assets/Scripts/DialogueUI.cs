@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 using Cursor = UnityEngine.Cursor;
@@ -16,18 +14,20 @@ public class DialogueUI : MonoBehaviour
     private int _currentLine = 0;
 
     // Start is called before the first frame update
-    void OnEnable()
+    private void OnEnable()
     {
         _attachedDocument = GetComponent<UIDocument>();
         if (_attachedDocument) _root = _attachedDocument.rootVisualElement;
         _text = _root.Q<Label>("DialogueText");
         _text.text = "";
+        //pause the game
         Time.timeScale = 0;
         StartDialogue();
     }
 
     private void OnDisable()
     {
+        //resume the game
         Time.timeScale = 1;
     }
 
@@ -43,7 +43,7 @@ public class DialogueUI : MonoBehaviour
         }
     }
 
-    void StartDialogue()
+    private void StartDialogue()
     {
         _currentLine = 0;
         StartCoroutine(TypeLine());
@@ -60,7 +60,7 @@ public class DialogueUI : MonoBehaviour
         _audio.enabled = false;
     }
 
-    void NextLine()
+    private void NextLine()
     {
         if(_currentLine < lines.Length - 1)
         {

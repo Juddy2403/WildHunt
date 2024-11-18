@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
@@ -11,7 +10,7 @@ public class GameLostUI : MonoBehaviour
     private Button _replayButton = null;
     private Label _savedCreaturesLabel = null;
 
-    void OnEnable()
+    private void OnEnable()
     {
         _attachedDocument = GetComponent<UIDocument>();
         if (_attachedDocument) _root = _attachedDocument.rootVisualElement;
@@ -22,7 +21,7 @@ public class GameLostUI : MonoBehaviour
     }
 
     // Update is called once per frame
-    void OnReplay()
+    private void OnReplay()
     {
         StartCoroutine(ReloadScene());
     }

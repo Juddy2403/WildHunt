@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CreatureInstancer : MonoBehaviour
 {
     [SerializeField] private GameObject _spawnTemplate = null;
     // Start is called before the first frame update
-    void Awake()
+    private void Awake()
     {
         if(!_spawnTemplate)
         {

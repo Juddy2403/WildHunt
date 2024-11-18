@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,7 +8,7 @@ public class HealthBar : MonoBehaviour
     [SerializeField] private int _showDistance = 20;
     private bool _isVisible = true;
 
-    void Start()
+    private void Start()
     {
         _camera = Camera.main.transform;
         if (GameMaster.Instance.IsIndoors) gameObject.transform.localScale = Vector3.zero;

@@ -8,25 +8,21 @@ public class SingletonBase<T> : MonoBehaviour where T : MonoBehaviour
     {
         get
         {
-            if (!_instance && !ApplicationQuitting)
-            {
-                _instance = FindObjectOfType<T>();
-                if (!_instance)
-                {
-                    GameObject newInstance = new GameObject($"Singleton_{typeof(T).Name}");
-                    _instance = newInstance.AddComponent<T>();
-                }
-            }
+            if (_instance || _applicationQuitting) return _instance;
+            _instance = FindObjectOfType<T>();
+            if (_instance) return _instance;
+            GameObject newInstance = new GameObject($"Singleton_{typeof(T).Name}");
+            _instance = newInstance.AddComponent<T>();
             return _instance;
         }
     }
 
     public static bool Exists => _instance != null;
 
-    public static bool ApplicationQuitting = false;
+    private static bool _applicationQuitting = false;
     protected virtual void OnApplicationQuit()
     {
-        ApplicationQuitting = true;
+        _applicationQuitting = true;
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 

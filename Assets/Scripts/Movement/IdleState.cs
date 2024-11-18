@@ -7,6 +7,8 @@ namespace Movement
         private float _idleTimer = 0f;
         private float _startMovementSpeed;
         private const float _movementSpeedMultiplier = 0.5f;
+        private const float _wanderRadius = 10f;
+        private const float _idleWaitTime = 6f;
 
         public IdleState(NavMeshMovementBehaviour movementBehaviour) : base(movementBehaviour) { }
 
@@ -22,8 +24,7 @@ namespace Movement
             _movementBehaviour.MovementSpeed = _startMovementSpeed;
             _movementBehaviour.SetTarget(null);
         }
-        private const float _wanderRadius = 10f;
-        private const float _idleWaitTime = 4f;
+
         public override void Update()
         {
             _idleTimer += Time.deltaTime;

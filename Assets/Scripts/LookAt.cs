@@ -5,7 +5,7 @@ public class LookAt : MonoBehaviour
     [SerializeField] private GameObject target;
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (!target) target = GameMaster.Player;
         Vector3 direction = target.transform.position - transform.position;

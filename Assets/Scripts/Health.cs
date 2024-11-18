@@ -1,7 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class Health : MonoBehaviour
 {
@@ -20,7 +18,7 @@ public class Health : MonoBehaviour
     }
     Color _startColor;
     public float CurrentHealth { get { return _currentHealth; } }
-    protected MovementBehaviour _movementBehaviour;
+    private MovementBehaviour _movementBehaviour;
     public delegate void HealthChange(float startHealth, float currentHealth);
     public event HealthChange OnHealthChanged;
 
@@ -30,7 +28,7 @@ public class Health : MonoBehaviour
 
     public HealthBar healthBar;
 
-    void Awake()
+    private void Awake()
     {
         _currentHealth = _startHealth;
         _movementBehaviour = GetComponent<MovementBehaviour>();
@@ -109,7 +107,7 @@ public class Health : MonoBehaviour
         Destroy(gameObject);
     }
 
-    void OnDestroy()
+    private void OnDestroy()
     {
         if (_attachedMaterial == null) return;
         //since we created a new material in the start, we should clean it up

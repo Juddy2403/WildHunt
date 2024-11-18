@@ -1,4 +1,3 @@
-using UnityEngine;
 
 namespace Movement
 {
@@ -6,7 +5,7 @@ namespace Movement
     {
         protected NavMeshMovementBehaviour _movementBehaviour;
 
-        public MovementState(NavMeshMovementBehaviour movementBehaviour)
+        protected MovementState(NavMeshMovementBehaviour movementBehaviour)
         {
             _movementBehaviour = movementBehaviour;
         }

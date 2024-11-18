@@ -9,7 +9,6 @@ namespace Movement
         public FollowState(NavMeshMovementBehaviour movementBehaviour, Transform target) : base(movementBehaviour)
         {
             _target = target;
-           // Debug.Log("Following " + target.name);
         }
 
         public override void Enter()

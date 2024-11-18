@@ -58,15 +58,15 @@ public class CreatureAI : BasicCharacter
         //on trigger exit is not called when obj destroyed, so i do it here
         SphereCollider sphereCollider = GetComponent<SphereCollider>();
         Collider[] colliders = Physics.OverlapSphere(transform.position, sphereCollider.radius);
-        foreach (var collider in colliders) OnTriggerExit(collider);
+        foreach (var colliderVar in colliders) OnTriggerExit(colliderVar);
     }
 
-    void OnTriggerStay(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.layer != LayerMask.NameToLayer("Enemy")) return;
         _areMonstersClose = true;
-        EnemyKamikazeCharacter enemyKamikazeCharacter = other.GetComponent<EnemyKamikazeCharacter>();
-        if (enemyKamikazeCharacter) enemyKamikazeCharacter.CreatureDetected(gameObject);
+        EnemyCharacter enemyCharacter = other.GetComponent<EnemyCharacter>();
+        if (enemyCharacter) enemyCharacter.CreatureDetected(gameObject);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -95,7 +95,7 @@ public class CreatureAI : BasicCharacter
     {
         if (other.gameObject.layer != LayerMask.NameToLayer("Enemy")) return;
         _areMonstersClose = false;
-        var enemyKamikazeCharacter = other.GetComponent<EnemyKamikazeCharacter>();
+        var enemyKamikazeCharacter = other.GetComponent<EnemyCharacter>();
         enemyKamikazeCharacter?.CreatureLost(gameObject);
     }
 }

@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
@@ -67,13 +66,11 @@ public class HUD : SingletonBase<HUD>
     {
         if (GameMaster.Player == null) return;
         Health playerHealth = GameMaster.Player.GetComponent<Health>();
-        if (playerHealth)
-        {
-            // initialize
-            UpdateHealth(playerHealth.StartHealth, playerHealth.CurrentHealth);
-            // hook to monitor changes
-            playerHealth.OnHealthChanged += UpdateHealth;
-        }
+        if (!playerHealth) return;
+        // initialize
+        UpdateHealth(playerHealth.StartHealth, playerHealth.CurrentHealth);
+        // hook to monitor changes
+        playerHealth.OnHealthChanged += UpdateHealth;
     }
 
     public void UpdateDay(int day)
@@ -96,9 +93,18 @@ public class HUD : SingletonBase<HUD>
         _healthBar.title = $"{currentHealth}/{startHealth}";
         //change the healthbarContainer color from green to red based on the health percentage
         if (_healthBarContainer == null) return;
-        if (currentHealth / startHealth < 0.25f) ColorUtility.TryParseHtmlString("#C3321B", out color);
-        else if (currentHealth / startHealth < 0.5f) ColorUtility.TryParseHtmlString("#F8BB2C", out color);
-        else ColorUtility.TryParseHtmlString("#7DD930", out color);
+        switch (currentHealth / startHealth)
+        {
+            case < 0.25f:
+                ColorUtility.TryParseHtmlString("#C3321B", out color);
+                break;
+            case < 0.5f:
+                ColorUtility.TryParseHtmlString("#F8BB2C", out color);
+                break;
+            default:
+                ColorUtility.TryParseHtmlString("#7DD930", out color);
+                break;
+        }
         
         //make the color darker
         _healthBarContainer.style.unityBackgroundImageTintColor = color;
@@ -127,7 +133,14 @@ public class HUD : SingletonBase<HUD>
     {
         if (_time == null) return;
         _time.text = $"{hour:D2}:{minute:D2} AM";
-        if(hour == 5) _time.style.color = Color.red;
-        if(hour == 6) GameMaster.Instance.TriggerGameOver();
+        switch (hour)
+        {
+            case 5:
+                _time.style.color = Color.red;
+                break;
+            case 6:
+                GameMaster.Instance.TriggerGameOver();
+                break;
+        }
     }
 }

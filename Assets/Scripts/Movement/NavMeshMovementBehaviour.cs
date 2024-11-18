@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
@@ -59,12 +58,10 @@ namespace Movement
             //target pos is either _target.position or _wanderTarget
             Vector3 targetPos = _target ? _target.position : _wanderTarget;
             //should the target move we should recalculate our path
-            if ((targetPos - _previousTargetPosition).sqrMagnitude > movementEpsilon)
-            {
-                _navMeshAgent.SetDestination(targetPos);
-                _navMeshAgent.isStopped = false;
-                _previousTargetPosition = targetPos;
-            }
+            if (!((targetPos - _previousTargetPosition).sqrMagnitude > movementEpsilon)) return;
+            _navMeshAgent.SetDestination(targetPos);
+            _navMeshAgent.isStopped = false;
+            _previousTargetPosition = targetPos;
         }
         public void SetState(MovementState newState)
         {
@@ -79,9 +76,8 @@ namespace Movement
         public static Vector3 RandomNavmeshLocation(Vector3 origin, float radius) {
             Vector3 randomDirection = Random.insideUnitSphere * radius;
             randomDirection += origin;
-            NavMeshHit hit; 
             Vector3 finalPosition = Vector3.zero;
-            if (NavMesh.SamplePosition(randomDirection, out hit, radius, 1)) {
+            if (NavMesh.SamplePosition(randomDirection, out var hit, radius, 1)) {
                 finalPosition = hit.position;            
             }
             finalPosition.y += 0.5f;

@@ -1,8 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class AttackBehaviour : MonoBehaviour
 {
@@ -16,13 +13,14 @@ public class AttackBehaviour : MonoBehaviour
         Knife,
         Empty
     }
-    WeaponType _currentWeapon = WeaponType.Gun;
-    public WeaponType CurrentWeapon { get { return _currentWeapon; } }
-    void Awake()
+
+    public WeaponType CurrentWeapon { get; private set; } = WeaponType.Gun;
+
+    private void Awake()
     {
         if (GameMaster.Instance.IsIndoors || (name == "Player" && GameMaster.Instance.DayManager.CurrentDay == 0))
         {
-            _currentWeapon = WeaponType.Empty;
+            CurrentWeapon = WeaponType.Empty;
             return;
         }
         //spawn guns
@@ -32,25 +30,25 @@ public class AttackBehaviour : MonoBehaviour
     public void SwitchWeapon(WeaponType weaponIndex)
     {
         //destroy the current weapon (if there is one) and spawn the next one
-        if(weaponIndex == _currentWeapon) return;
+        if(weaponIndex == CurrentWeapon) return;
         if(_weapon) Destroy(_weapon.gameObject);
         switch (weaponIndex)
         {
             case WeaponType.Gun:
             {
                 InstantiateWeaponInSocket(_gunTemplate);
-                _currentWeapon = WeaponType.Gun;
+                CurrentWeapon = WeaponType.Gun;
             }
                 break;
             case WeaponType.Knife: //knife
             {
                 InstantiateWeaponInSocket(_knifeTemplate);
-                _currentWeapon = WeaponType.Knife;
+                CurrentWeapon = WeaponType.Knife;
             }
                 break;
             case WeaponType.Empty: //empty
             {
-                _currentWeapon = WeaponType.Empty;
+                CurrentWeapon = WeaponType.Empty;
             }
                 break;
             default: throw new ArgumentOutOfRangeException();

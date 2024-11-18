@@ -1,11 +1,7 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using Movement;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-public class EnemyKamikazeCharacter : BasicCharacter
+public class EnemyCharacter : BasicCharacter
 {
     [SerializeField] private GameObject _currentTarget = null;
     [SerializeField] private float _attackRange = 2.0f;
@@ -83,17 +79,15 @@ public class EnemyKamikazeCharacter : BasicCharacter
         if (_hasAttacked || !_attackBehaviour || !_currentTarget) return;
 
         //if we are in range of the player, fire our weapon, 
-        if (IsPlayerInAttackRange())
-        {
-            _hasAttacked = true;
-            _movementBehaviour.CanMove = false;
-            _animationController.Attack();
-            _attackBehaviour.Attack();
-            if (_attackVFXTemplate) Instantiate(_attackVFXTemplate, transform.position, transform.rotation);
-            _movementBehaviour.PushBackwards(-transform.forward);
-            //can only attack again after a delay
-            Invoke(nameof(ResetAttack), 1.0f);
-        }
+        if (!IsPlayerInAttackRange()) return;
+        _hasAttacked = true;
+        _movementBehaviour.CanMove = false;
+        _animationController.Attack();
+        _attackBehaviour.Attack();
+        if (_attackVFXTemplate) Instantiate(_attackVFXTemplate, transform.position, transform.rotation);
+        _movementBehaviour.PushBackwards(-transform.forward);
+        //can only attack again after a delay
+        Invoke(nameof(ResetAttack), 1.0f);
     }
 
     private void ResetAttack()

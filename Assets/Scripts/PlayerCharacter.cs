@@ -1,7 +1,5 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 
 public class PlayerCharacter : BasicCharacter
 {
@@ -15,13 +13,8 @@ public class PlayerCharacter : BasicCharacter
     private InputAction _equipKnifeAction;
     private InputAction _equipEmptyAction;
     private float _sprintSpeed;
-    private float _movementSpeed;
 
-    public float MovementSpeed
-    {
-        get => _movementSpeed;
-        set => _movementSpeed = value;
-    }
+    public float MovementSpeed { get; set; }
 
     private void Start()
     {
@@ -49,7 +42,7 @@ public class PlayerCharacter : BasicCharacter
         _sprintAction.canceled += HandleSprintCanceled;
         
         _sprintSpeed = _movementBehaviour.MovementSpeed * 1.5f;
-        _movementSpeed = _movementBehaviour.MovementSpeed + GameMaster.Instance.PlayerUpgradeManager.MovementIncrease;
+        MovementSpeed = _movementBehaviour.MovementSpeed + GameMaster.Instance.PlayerUpgradeManager.MovementIncrease;
     }
     private void HandleSprintStarted(InputAction.CallbackContext context)
     {
@@ -58,7 +51,7 @@ public class PlayerCharacter : BasicCharacter
 
     private void HandleSprintCanceled(InputAction.CallbackContext context)
     {
-        _movementBehaviour.MovementSpeed = _movementSpeed;
+        _movementBehaviour.MovementSpeed = MovementSpeed;
     }
 
     private void BindActions()
@@ -110,7 +103,6 @@ public class PlayerCharacter : BasicCharacter
 
         Vector3 movement = XmovementInput * transform.right;
         movement += ZmovementInput * transform.forward;
-        //_movementBehaviour.MovementSpeed = _sprintAction.IsPressed() ? _sprintSpeed : _movementSpeed;
 
         _movementBehaviour.DesiredMovementDirection = movement;
     }

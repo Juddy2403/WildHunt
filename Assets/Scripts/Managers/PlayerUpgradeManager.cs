@@ -1,14 +1,9 @@
-using UnityEngine;
-
 public class PlayerUpgradeManager
 {
     private int _healthIncrease = 0;
-    private int _gunDamageIncrease = 0;
-    public int GunDamageIncrease => _gunDamageIncrease;
-    private int _knifeDamageIncrease = 0;
-    public int KnifeDamageIncrease => _knifeDamageIncrease;
-    private int _movementIncrease = 0;
-    public int MovementIncrease => _movementIncrease;
+    public int GunDamageIncrease { get; private set; } = 0;
+    public int KnifeDamageIncrease { get; private set; } = 0;
+    public int MovementIncrease { get; private set; } = 0;
 
     public void Upgrade(string name)
     {
@@ -21,14 +16,14 @@ public class PlayerUpgradeManager
                 break;
             case "Gun":
                 //UpgradeGun();
-                _gunDamageIncrease += 5;
+                GunDamageIncrease += 5;
                 break;
             case "Knife":
                 //UpgradeKnife();
-                _knifeDamageIncrease += 5;
+                KnifeDamageIncrease += 5;
                 break;
             case "Movement":
-                _movementIncrease += 1;
+                MovementIncrease += 1;
                 GameMaster.Player.GetComponent<PlayerCharacter>().MovementSpeed += 1;
                 break;
         }

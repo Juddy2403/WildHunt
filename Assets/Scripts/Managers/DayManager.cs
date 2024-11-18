@@ -1,13 +1,10 @@
-using UnityEngine;
-
 public class DayManager
 {
-    private int _currentDay = 0;
-    public int CurrentDay => _currentDay;
+    public int CurrentDay { get; private set; } = 0;
 
     public void DayPassed()
     {
-        _currentDay++;
-        HUD.Instance.UpdateDay(_currentDay);
+        CurrentDay++;
+        HUD.Instance.UpdateDay(CurrentDay);
     }
 }

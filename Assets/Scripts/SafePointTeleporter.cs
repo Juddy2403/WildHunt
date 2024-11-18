@@ -6,7 +6,8 @@ public class SafePointTeleporter : MonoBehaviour
     [SerializeField] private InputActionAsset _inputAsset;
     private InputAction _interactAction;
     private bool _isOnSafePoint = false;
-    void Awake()
+
+    private void Awake()
     {
         if (!_inputAsset) return;
 
@@ -16,11 +17,13 @@ public class SafePointTeleporter : MonoBehaviour
         //we bind a callback to it instead of continiously monitoring input
         _interactAction.performed += HandleInteraction;
     }
-    void OnDestroy()
+
+    private void OnDestroy()
     {
         _interactAction.performed -= HandleInteraction;
     }
-    void HandleInteraction(InputAction.CallbackContext context)
+
+    private void HandleInteraction(InputAction.CallbackContext context)
     {
         if (!_isOnSafePoint) return;
         GameMaster.Instance.SceneChange();
@@ -28,13 +31,11 @@ public class SafePointTeleporter : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
-        if (other.name == "SafePointCollider")
-        {
-            _isOnSafePoint = true;
-            TextPopup.Instance.Display(GameMaster.Instance.IsIndoors
-                ? "Press E to exit the house"
-                : "Press E to enter the house");
-        }
+        if (other.name != "SafePointCollider") return;
+        _isOnSafePoint = true;
+        TextPopup.Instance.Display(GameMaster.Instance.IsIndoors
+            ? "Press E to exit the house"
+            : "Press E to enter the house");
     }
     private void OnTriggerExit(Collider other)
     {

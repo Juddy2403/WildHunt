@@ -12,7 +12,7 @@ public class DetectRadar : MonoBehaviour
     private Color _initMatColor;
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         if (!GameMaster.Instance.IsIndoors)
         {
@@ -55,13 +55,11 @@ public class DetectRadar : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject == GameMaster.Player)
-        {
-            _lookAt.enabled = false;
-            //reset radar color
-            _radar.GetComponent<Renderer>().material.color = _initMatColor;
-            _isPlayerInside = false;
-        }
+        if (other.gameObject != GameMaster.Player) return;
+        _lookAt.enabled = false;
+        //reset radar color
+        _radar.GetComponent<Renderer>().material.color = _initMatColor;
+        _isPlayerInside = false;
     }
 
     public static void MurderEvent()
