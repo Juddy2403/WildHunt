@@ -6,7 +6,7 @@ using Random = UnityEngine.Random;
 public class CreatureManager
 {
     [SerializeField] private AudioSource _deathSound;
-    private int _creaturesSaved = 0;
+    [SerializeField] private int _creaturesSaved = 0;
     public int CreaturesSaved => _creaturesSaved;
 
     public void RunAwayCreatures()

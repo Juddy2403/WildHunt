@@ -27,12 +27,6 @@ public class GameMaster : SingletonBase<GameMaster>
     {
         if(IsIndoors)
         {
-            if(DayManager.CurrentDay == 3)
-            {
-                if(CreatureManager.CreaturesSaved < CreatureQuota) TriggerGameOver();
-                else TriggerGameOver(true);
-                return;
-            }
             DayManager.DayPassed();
             IsIndoors = false;
             CreatureManager.RunAwayCreatures();
@@ -40,6 +34,19 @@ public class GameMaster : SingletonBase<GameMaster>
         }
         else
         {
+            //if player meets the quota, trigger game won
+            if(CreatureManager.CreaturesSaved >= CreatureQuota)
+            {
+                TriggerGameOver(true);
+                return;
+            }
+            //after 3 days check if the player won or lost
+            if(DayManager.CurrentDay == 3)
+            {
+                if(CreatureManager.CreaturesSaved < CreatureQuota) TriggerGameOver();
+                else TriggerGameOver(true);
+                return;
+            }
             IsIndoors = true;
             StartCoroutine(ReloadScene("Inside"));
         }
