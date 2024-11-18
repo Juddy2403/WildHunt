@@ -5,7 +5,7 @@
         <ui:Label tabindex="-1" text="Ghosts saved: 0" parse-escape-sequences="true" display-tooltip-when-elided="true" name="CreaturesSaved" focusable="false" class="text" />
         <ui:Label tabindex="-1" text="Coins: 0" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Coins" focusable="false" class="text" />
     </ui:VisualElement>
-    <ui:VisualElement style="flex-grow: 1; position: absolute; height: 250px; width: 385px; top: -2px; left: 1528px; align-self: auto; align-items: stretch;">
+    <ui:VisualElement style="flex-grow: 1; position: absolute; height: 250px; width: 385px; top: 0; left: 79%; align-self: auto; align-items: stretch;">
         <ui:ProgressBar value="22" title="hp" name="PlayerHealthbar" focusable="false" class="text" />
         <ui:ProgressBar value="100" title="100/100" name="SanityBar" class="text" />
         <ui:ProgressBar value="100" title="100/100" name="TrustBar" class="text" />
@@ -13,7 +13,7 @@
     <ui:VisualElement style="flex-grow: 1; width: 537px; height: 200px; min-height: 200px; max-height: 0; align-items: center; align-self: center;">
         <ui:Label tabindex="-1" text="00:00 AM" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Time" class="text" style="font-size: 39px;" />
     </ui:VisualElement>
-    <ui:VisualElement style="flex-grow: 1; position: absolute; height: 250px; width: 76px; top: -2px; left: 1453px; align-self: auto; align-items: flex-end;">
+    <ui:VisualElement style="flex-grow: 1; position: absolute; height: 130px; width: 76px; top: 0; left: 75%; align-self: auto; align-items: flex-end;">
         <ui:Label tabindex="-1" text="HP" parse-escape-sequences="true" display-tooltip-when-elided="true" class="text" />
         <ui:Label tabindex="-1" text="Sanity" parse-escape-sequences="true" display-tooltip-when-elided="true" class="text" />
         <ui:Label tabindex="-1" text="Trust" parse-escape-sequences="true" display-tooltip-when-elided="true" class="text" />

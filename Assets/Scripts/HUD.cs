@@ -1,6 +1,8 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
+using ColorUtility = UnityEngine.ColorUtility;
 
 public class HUD : SingletonBase<HUD>
 {
@@ -29,11 +31,13 @@ public class HUD : SingletonBase<HUD>
         
         _trustBar = _root.Q<ProgressBar>("TrustBar"); 
         _trustBarContainer = _trustBar.Q(className: "unity-progress-bar__progress");
-        _trustBarContainer.style.backgroundColor = Color.magenta;
+        ColorUtility.TryParseHtmlString("#5D9AE0", out var color);
+        _trustBarContainer.style.unityBackgroundImageTintColor = color;
         
         _sanityBar = _root.Q<ProgressBar>("SanityBar"); 
         _sanityBarContainer = _sanityBar.Q(className: "unity-progress-bar__progress");
-        _sanityBarContainer.style.backgroundColor = Color.blue;
+        ColorUtility.TryParseHtmlString("#DBAD2A", out color);
+        _sanityBarContainer.style.unityBackgroundImageTintColor = color;
         
         _dayNr = _root.Q<Label>("DayNumber");
         _savedCreatureNr = _root.Q<Label>("CreaturesSaved");
@@ -87,14 +91,18 @@ public class HUD : SingletonBase<HUD>
     {
         if (_healthBar == null) return;
 
+        Color color;
         _healthBar.value = (currentHealth / startHealth) * 100.0f;
         _healthBar.title = $"{currentHealth}/{startHealth}";
-        
         //change the healthbarContainer color from green to red based on the health percentage
         if (_healthBarContainer == null) return;
-        if (currentHealth / startHealth < 0.25f) _healthBarContainer.style.backgroundColor = Color.red;
-        else if (currentHealth / startHealth < 0.5f) _healthBarContainer.style.backgroundColor = Color.yellow;
-        else _healthBarContainer.style.backgroundColor = Color.green;
+        if (currentHealth / startHealth < 0.25f) ColorUtility.TryParseHtmlString("#C3321B", out color);
+        else if (currentHealth / startHealth < 0.5f) ColorUtility.TryParseHtmlString("#F8BB2C", out color);
+        else ColorUtility.TryParseHtmlString("#7DD930", out color);
+        
+        //make the color darker
+        _healthBarContainer.style.unityBackgroundImageTintColor = color;
+       // _healthBarContainer.style.backgroundColor = color;
     }
     
     public void UpdateTrust(int trust)
