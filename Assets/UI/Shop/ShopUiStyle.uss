@@ -2,7 +2,7 @@
     height: 100px;
     -unity-font-definition: initial;
     background-image: url("project://database/Packages/com.unity.render-pipelines.core/Editor/PostProcessing/LensFlareResource/CircleFlareThumbnail@2x.png?fileID=2800000&guid=37e93113453ac0d46863acd4090899c8&type=3#CircleFlareThumbnail@2x");
-    -unity-background-image-tint-color: rgb(195, 87, 54);
+    -unity-background-image-tint-color: rgb(152, 152, 152);
     background-color: rgba(255, 255, 255, 0);
     -unity-text-align: middle-left;
     -unity-background-scale-mode: scale-to-fit;
@@ -38,24 +38,31 @@
     height: 40px;
     min-height: 0;
     max-height: 200px;
+    background-image: url("project://database/Assets/Packages/Laterns%20and%20candles/textures/CarvedLampPost%20[Specular].tif?fileID=2800000&guid=93997d9efb46915458ae8da4dd7c9e8d&type=3#CarvedLampPost [Specular]");
 }
 
 .unity-progress-bar__background {
-    border-left-color: rgb(128, 10, 0);
-    border-right-color: rgb(128, 10, 0);
-    border-top-color: rgb(128, 10, 0);
-    border-bottom-color: rgb(128, 10, 0);
+    border-left-color: rgba(128, 10, 0, 0);
+    border-right-color: rgba(128, 10, 0, 0);
+    border-top-color: rgba(128, 10, 0, 0);
+    border-bottom-color: rgba(128, 10, 0, 0);
     -unity-text-outline-color: rgba(0, 0, 0, 0);
-    background-color: rgb(111, 51, 51);
+    background-color: rgba(111, 51, 51, 0);
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
     width: auto;
+    background-image: url("project://database/Assets/UI/Shop/Sprites/stoneProgressBar.png?fileID=2800000&guid=13133adae22fef445869a5297f023d7a&type=3#stoneProgressBar");
+    -unity-background-scale-mode: stretch-to-fill;
 }
 
 .unity-progress-bar__progress {
-    background-color: rgb(195, 87, 54);
+    background-color: rgba(31, 22, 22, 0.67);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
 }
 
 .coin {
@@ -77,7 +84,7 @@
 .text {
     -unity-font-definition: initial;
     -unity-font: url("project://database/Assets/UI/Shop/Caparison.ttf?fileID=12800000&guid=7209270de85c4d54091b5dea3c963bae&type=3#Caparison");
-    color: rgb(255, 211, 109);
+    color: rgb(207, 207, 207);
     font-size: 30px;
     align-self: flex-start;
     justify-content: space-between;
@@ -86,8 +93,9 @@
     height: 95px;
     align-items: center;
     -unity-text-align: middle-left;
+    -unity-font-style: bold;
 }
 
 .buttons:hover {
-    -unity-background-image-tint-color: rgb(123, 14, 14);
+    -unity-background-image-tint-color: rgb(255, 255, 255);
 }
