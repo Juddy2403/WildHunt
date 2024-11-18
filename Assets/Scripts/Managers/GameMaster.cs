@@ -11,6 +11,7 @@ public class GameMaster : SingletonBase<GameMaster>
     public int CreatureQuota => creatureQuota;
     public DayManager DayManager { get; } = new();
     public TrustManager TrustManager { get; } = new();
+    public TutorialManager TutorialManager { get; } = new();
     public PlayerUpgradeManager PlayerUpgradeManager { get; } = new();
     public SanityManager SanityManager { get; } = new();
     [SerializeField] private CreatureManager _creatureManager = new();
@@ -34,13 +35,12 @@ public class GameMaster : SingletonBase<GameMaster>
                 return;
             }
 
-            DayManager.DayPassed();
             CreatureManager.RunAwayCreatures();
             StartCoroutine(ReloadScene("Outside"));
         }
         else
         {
-            if (DayManager.CurrentDay == 0) DayManager.DayPassed();
+            DayManager.DayPassed();
             //if player meets the quota, trigger game won
             if (CreatureManager.CreaturesSaved >= CreatureQuota)
             {
@@ -64,6 +64,7 @@ public class GameMaster : SingletonBase<GameMaster>
     protected override void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         Debug.Log("scene loaded");
+        if (IsIndoors && DayManager.CurrentDay != 0) TutorialManager.OnGoingInside();
         if (SanityManager.Sanity < 100) MonsterManager.UpdateSpawnCount();
         PlayerUpgradeManager.ApplyHealthIncrease();
     }

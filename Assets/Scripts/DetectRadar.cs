@@ -1,13 +1,8 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class DetectRadar : MonoBehaviour
 {
-    private static readonly int Color1 = Shader.PropertyToID("_Color");
     [SerializeField] private GameObject _radar = null;
     private bool _isPlayerInside = false;
 
@@ -36,19 +31,25 @@ public class DetectRadar : MonoBehaviour
     // Update is called once per frame
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject == GameMaster.Player)
+        if (other.gameObject != GameMaster.Player) return;
+        
+        var gameMaster = GameMaster.Instance;
+            
+        //handle the second day tutorial
+        if(gameMaster.DayManager.CurrentDay == 2) gameMaster.TutorialManager.EnteredRadius();
+        //if enemy sees player with a weapon, trust is lost
+        if (GameMaster.Player.GetComponent<AttackBehaviour>().CurrentWeapon != AttackBehaviour.WeaponType.Empty)
         {
-            //if enemy sees player with a weapon, trust is lost
-            if (GameMaster.Player.GetComponent<AttackBehaviour>().CurrentWeapon !=
-                AttackBehaviour.WeaponType.Empty)
-                GameMaster.Instance.TrustManager.TrustLost(5);
-            //change radar color
-            var materialColor = Color.red;
-            materialColor.a = _initMatColor.a;
-            _radar.GetComponent<Renderer>().material.color = materialColor;
-
-            _isPlayerInside = true;
+            gameMaster.TrustManager.TrustLost(5);
+            //handle the second day tutorial
+            if(gameMaster.DayManager.CurrentDay == 2) gameMaster.TutorialManager.EnteredRadiusWithWeapon();
         }
+        //change radar color
+        var materialColor = Color.red;
+        materialColor.a = _initMatColor.a;
+        _radar.GetComponent<Renderer>().material.color = materialColor;
+
+        _isPlayerInside = true;
     }
 
     private void OnTriggerExit(Collider other)
@@ -70,17 +71,24 @@ public class DetectRadar : MonoBehaviour
 
     private void OnMurder()
     {
-        //if the object is gameObject is not active, return
+        //if this is the ghost that was murdered, no trust is lost (duh)
         if (!gameObject.activeSelf) return;
+
+        //only counts as murder if the player is indoors 
+        if (!GameMaster.Instance.IsIndoors) return;
+        //trust is lost only if murder is seen
+        if (!_isPlayerInside && GameMaster.Player?.GetComponent<AttackBehaviour>()?.CurrentWeapon 
+            != AttackBehaviour.WeaponType.Gun) return;
         
-        if (GameMaster.Instance.IsIndoors)
-        {
-            if (_isPlayerInside || GameMaster.Player?.GetComponent<AttackBehaviour>()?.CurrentWeapon 
-                == AttackBehaviour.WeaponType.Gun)
-            {
-                Debug.Log("Murder trust lost");
-                GameMaster.Instance.TrustManager.TrustLost(10);
-            }
-        }
+        var gameMaster = GameMaster.Instance;
+        
+        Debug.Log("Murder trust lost");
+        gameMaster.TrustManager.TrustLost(10);
+        
+        //handle the second day tutorial
+        if (gameMaster.DayManager.CurrentDay != 2) return;
+        if (_isPlayerInside) gameMaster.TutorialManager.MurderSeen();
+        else gameMaster.TutorialManager.MurderedWithGun();
+
     }
 }
