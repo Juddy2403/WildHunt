@@ -2246,6 +2246,41 @@ PrefabInstance:
       propertyPath: textSpeed
       value: 0.02
       objectReference: {fileID: 0}
+    - target: {fileID: 5197236511255987891, guid: 26d249153a2c8224187ac5cb92c47ae3,
+        type: 3}
+      propertyPath: lines.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5197236511255987891, guid: 26d249153a2c8224187ac5cb92c47ae3,
+        type: 3}
+      propertyPath: lines.Array.data[0]
+      value: "Good work last night, but there\u2019s another way to make this job...
+        \\nprofitable."
+      objectReference: {fileID: 0}
+    - target: {fileID: 5197236511255987891, guid: 26d249153a2c8224187ac5cb92c47ae3,
+        type: 3}
+      propertyPath: lines.Array.data[1]
+      value: "Those wandering ghosts? They hold pure essence.\\n Kill one, and I\u2019ll
+        pay you for it. \\nMy friend next door trades upgrades for cash."
+      objectReference: {fileID: 0}
+    - target: {fileID: 5197236511255987891, guid: 26d249153a2c8224187ac5cb92c47ae3,
+        type: 3}
+      propertyPath: lines.Array.data[2]
+      value: "Careful, though. Each ghost has a visual radius. \\nIf the others see
+        or hear you, \\nthey\u2019ll lose trust and try to escape when the day ends."
+      objectReference: {fileID: 0}
+    - target: {fileID: 5197236511255987891, guid: 26d249153a2c8224187ac5cb92c47ae3,
+        type: 3}
+      propertyPath: lines.Array.data[3]
+      value: "Also, murder eats at your sanity. \\nMore fear means more monsters
+        hunting you.\\n It\u2019s your call, but every choice has a price."
+      objectReference: {fileID: 0}
+    - target: {fileID: 5197236511255987891, guid: 26d249153a2c8224187ac5cb92c47ae3,
+        type: 3}
+      propertyPath: lines.Array.data[4]
+      value: "The choice is yours, but remember: \\nshortcuts often come with sharp
+        edges. \\nNow, off you go. I\u2019ll be here... counting my coins."
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3477,8 +3512,30 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2272280253929765472, guid: 9a48639fb0142424d835a6bead2961c7,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4011134068754660824}
   m_SourcePrefab: {fileID: 100100000, guid: 9a48639fb0142424d835a6bead2961c7, type: 3}
+--- !u!1 &4011134068754660823 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2272280253929765472, guid: 9a48639fb0142424d835a6bead2961c7,
+    type: 3}
+  m_PrefabInstance: {fileID: 4011134068754660822}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4011134068754660824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4011134068754660823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3e2aab695bcb024e87b66ad12cb358f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5966156707580641564
 PrefabInstance:
   m_ObjectHideFlags: 0

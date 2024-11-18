@@ -25,33 +25,37 @@ public class GameMaster : SingletonBase<GameMaster>
 
     public void SceneChange()
     {
-        if(IsIndoors)
+        if (IsIndoors)
         {
             IsIndoors = false;
-            if(DayManager.CurrentDay == 0)
+            if (DayManager.CurrentDay == 0)
             {
                 StartCoroutine(ReloadScene("OutsideInit"));
                 return;
             }
+
             DayManager.DayPassed();
             CreatureManager.RunAwayCreatures();
             StartCoroutine(ReloadScene("Outside"));
         }
         else
         {
+            if (DayManager.CurrentDay == 0) DayManager.DayPassed();
             //if player meets the quota, trigger game won
-            if(CreatureManager.CreaturesSaved >= CreatureQuota)
+            if (CreatureManager.CreaturesSaved >= CreatureQuota)
             {
                 TriggerGameOver(true);
                 return;
             }
+
             //after 3 days check if the player won or lost
-            if(DayManager.CurrentDay == 3)
+            if (DayManager.CurrentDay == 3)
             {
-                if(CreatureManager.CreaturesSaved < CreatureQuota) TriggerGameOver();
+                if (CreatureManager.CreaturesSaved < CreatureQuota) TriggerGameOver();
                 else TriggerGameOver(true);
                 return;
             }
+
             IsIndoors = true;
             StartCoroutine(ReloadScene("Inside"));
         }
@@ -72,6 +76,7 @@ public class GameMaster : SingletonBase<GameMaster>
         Destroy(HUD.Instance);
         StartCoroutine(isWon ? ReloadScene("WonGame") : ReloadScene("LostGame"));
     }
+
     private IEnumerator ReloadScene(string sceneName)
     {
         yield return new WaitForEndOfFrame();

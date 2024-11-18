@@ -10,10 +10,6 @@ public class DialogueManager : MonoBehaviour
     void Start()
     {
         _DialogueObj.SetActive(false);
-        if(GameMaster.Instance.DayManager.CurrentDay > 1)
-        {
-            gameObject.SetActive(false);
-        }
     }
     private void OnTriggerEnter(Collider other)
     {
