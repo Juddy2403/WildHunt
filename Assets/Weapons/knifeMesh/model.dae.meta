@@ -3,7 +3,12 @@ guid: ee7b236dfcc102347a589ac8842d9a44
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Kukri
+    second: {fileID: 2100000, guid: 24f0cb30c7a0bda4b954c2cc727deaec, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

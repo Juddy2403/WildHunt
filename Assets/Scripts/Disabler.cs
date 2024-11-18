@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Disabler : MonoBehaviour
 {
-    void Start()
+    void OnEnable()
     {
         if(GameMaster.Instance.DayManager.CurrentDay > 1)
         {
