@@ -756,7 +756,7 @@ PrefabInstance:
     - target: {fileID: 1276297627025725291, guid: 577e25c594af768458b34fff79884f85,
         type: 3}
       propertyPath: _targetFollowRange
-      value: 30
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 3782426723616031718, guid: 577e25c594af768458b34fff79884f85,
         type: 3}

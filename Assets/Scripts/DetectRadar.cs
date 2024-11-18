@@ -4,6 +4,7 @@ using UnityEngine.Events;
 public class DetectRadar : MonoBehaviour
 {
     [SerializeField] private GameObject _radar = null;
+    [SerializeField] private LookAt _lookAt = null;
     private bool _isPlayerInside = false;
 
     private static UnityEvent _onMurderEvent = new UnityEvent();
@@ -32,7 +33,7 @@ public class DetectRadar : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject != GameMaster.Player) return;
-        
+        _lookAt.enabled = true;
         var gameMaster = GameMaster.Instance;
             
         //handle the second day tutorial
@@ -56,6 +57,7 @@ public class DetectRadar : MonoBehaviour
     {
         if (other.gameObject == GameMaster.Player)
         {
+            _lookAt.enabled = false;
             //reset radar color
             _radar.GetComponent<Renderer>().material.color = _initMatColor;
             _isPlayerInside = false;
